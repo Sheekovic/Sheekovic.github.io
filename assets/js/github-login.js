@@ -6,24 +6,29 @@ const auth = getAuth(firebaseConfig);
 
 export function githubLogin() {
   signInWithPopup(auth, new GithubAuthProvider())
-    .then((result) => {
-      // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+    .then(async (result) => {
       const credential = GithubAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
 
-      // The signed-in user info.
-      const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
+      // Send the token to the backend
+      const response = await fetch('/login/github', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ token })
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        // Handle successful login
+        console.log('GitHub login successful:', data.user);
+      } else {
+        // Handle failed login
+        console.error('GitHub login failed');
+      }
     })
     .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GithubAuthProvider.credentialFromError(error);
-      // ...
+      console.error('Error during GitHub login:', error);
     });
 }
