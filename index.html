@@ -40,19 +40,19 @@
 						</li>
 						<li><a href="elements.html">Elements</a></li>
 						<li>
-							<script src="firebase-config.js"></script>
+							<script src="assets/js/firebase-config.js"></script>
 							<script src="assets/js/github-login.js"></script>
 							<form method="GET" action="/login/github" class="form">
-								<input type="submit" value="Sign Up with GitHub" class="button primary" />
+							  <input type="submit" value="Sign Up with GitHub" class="button primary" />
 							</form>
 							<script>
-								// Attach the GitHub login function to the form submission
-								document.querySelector('form').addEventListener('submit', function(event) {
-								  event.preventDefault();
-								  githubLogin();  // Call the GitHub login function
-								});
-							  </script>
-						</li>
+							  // Attach the GitHub login function to the form submission
+							  document.querySelector('form').addEventListener('submit', function(event) {
+								event.preventDefault();
+								githubLogin();  // Call the GitHub login function
+							  });
+							</script>
+						  </li>						  
 					</ul>
 				</nav>
 			</header>
