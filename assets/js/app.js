@@ -1,4 +1,4 @@
-import './App.css';
+import '*/assets/css/main.css';
 import { app } from './firebase-config';
 import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
 
