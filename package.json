@@ -1,0 +1,31 @@
+{
+    "name": "sheekovic-site",
+    "version": "1.0.0",
+    "description": "A portfolio site for Ahmed F. Wahballah (Sheekovic)",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js",
+      "build": "npm run build",
+      "test": "npm test",
+      "firebase-init": "firebase init"
+    },
+    "keywords": [
+      "portfolio",
+      "Sheekovic",
+      "developer"
+    ],
+    "author": "Ahmed F. Wahballah",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1",
+      "firebase-admin": "^11.7.0"
+    },
+    "devDependencies": {
+      "jest": "^27.0.6",
+      "nodemon": "^2.0.7"
+    },
+    "engines": {
+      "node": ">=14.x"
+    }
+  }
+  
