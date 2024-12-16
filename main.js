@@ -23,7 +23,7 @@ const auth = getAuth(app);
 const githubProvider = new GithubAuthProvider();
 auth.languageCode = 'en';
 const analytics = getAnalytics(app);
-const githubSignUpButton = document.getElementById('github-signin');
+const githubSignUpButton = document.getElementById('github-signup');
 githubSignUpButton.addEventListener('click', function(){
   alert('github sign up button clicked');
 })
