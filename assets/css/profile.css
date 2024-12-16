@@ -1,7 +1,7 @@
 /* Profile Section */
 #profile {
     padding: 4em 0;
-    background-color: #070625;
+    background-color: #272833;
 }
 
 #profile .content {
@@ -16,7 +16,7 @@
 }
 
 #profile p {
-    font-size: 1.2em;
+    font-size: 1.5em;
     color: #666;
     margin-bottom: 1em;
 }
@@ -27,6 +27,7 @@
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 #profile table {
@@ -36,13 +37,14 @@
 
 #profile th, #profile td {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
+    color: black; /* Text color for both cells and headers */
 }
 
 #profile th {
     background-color: #007bff;
-    color: #fff;
+    color: white;
 }
 
 #profile td img {
