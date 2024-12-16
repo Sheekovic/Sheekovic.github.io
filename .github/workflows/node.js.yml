@@ -25,5 +25,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install express  # Ensure express is installed
+    - run: npm install firebase
     - run: node --trace-deprecation ./assets/js/server.js  # Show deprecation warnings
     - run: npm test  # Run tests if needed
