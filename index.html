@@ -41,61 +41,62 @@
 						</li>
 						<li><a href="elements.html">Elements</a></li>
 						<li>
-							<!-- Include Firebase Configuration and Authentication -->
-							<script src="assets/js/firebase-config.js"></script>
+							<!-- GitHub Sign Up Button -->
+							<section>
+								<button id="github-signup" class="button primary">Sign Up with GitHub</button>
+							</section>
+						
+							<!-- Import Firebase Configuration -->
 							<script type="module">
-							  import { getAuth, signInWithPopup, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-							  import { app } from "./assets/js/firebase-config.js";
-						  
-							  const auth = getAuth(app);
-							  const githubProvider = new GithubAuthProvider();
-						  
-							  async function githubSignUp() {
-								try {
-								  const response = await signInWithPopup(auth, githubProvider);
-								  const user = response.user;
-						  
-								  // Optionally, send user info or token to the backend
-								  console.log('User information:', user);
-						  
-								  // Send token to the backend for validation (optional)
-								  const credential = GithubAuthProvider.credentialFromResult(response);
-								  const token = credential.accessToken;
-						  
-								  const serverResponse = await fetch('/login/github', {
-									method: 'POST',
-									headers: {
-									  'Content-Type': 'application/json',
-									},
-									body: JSON.stringify({ token }),
-								  });
-						  
-								  const serverData = await serverResponse.json();
-								  if (serverData.success) {
-									console.log('GitHub login successful:', serverData.user);
-								  } else {
-									console.error('GitHub login failed:', serverData.message);
-								  }
-								} catch (error) {
-								  console.error('Error during GitHub sign-up:', error);
+								// Import Firebase app and custom configuration
+								import { app } from "./assets/js/firebase-config.js";
+								import { getAuth, signInWithPopup, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+						
+								// Initialize Firebase Authentication
+								const auth = getAuth(app);
+								const githubProvider = new GithubAuthProvider();
+						
+								// GitHub Sign-Up Function
+								async function githubSignUp() {
+									try {
+										const result = await signInWithPopup(auth, githubProvider);
+										const user = result.user;
+						
+										console.log("User information:", user);
+						
+										// Optional: Send the token to the backend
+										const credential = GithubAuthProvider.credentialFromResult(result);
+										const token = credential.accessToken;
+						
+										const serverResponse = await fetch('/login/github', {
+											method: 'POST',
+											headers: { 'Content-Type': 'application/json' },
+											body: JSON.stringify({ token })
+										});
+						
+										const responseData = await serverResponse.json();
+										if (responseData.success) {
+											console.log('GitHub login successful:', responseData.user);
+										} else {
+											console.error('GitHub login failed:', responseData.message);
+										}
+									} catch (error) {
+										console.error('Error during GitHub sign-up:', error);
+									}
 								}
-							  }
-						  
-							  // Attach GitHub signup to button click
-							  document.addEventListener("DOMContentLoaded", function () {
-								const githubButton = document.getElementById("github-signup");
-								if (githubButton) {
-								  githubButton.addEventListener("click", (event) => {
-									event.preventDefault();
-									githubSignUp();
-								  });
-								}
-							  });
+						
+								// Attach Function to Button
+								document.addEventListener("DOMContentLoaded", () => {
+									const githubButton = document.getElementById("github-signup");
+									if (githubButton) {
+										githubButton.addEventListener("click", (event) => {
+											event.preventDefault();
+											githubSignUp();
+										});
+									}
+								});
 							</script>
-						  
-							<!-- Button for GitHub Signup -->
-							<button id="github-signup" class="button primary">Sign Up with GitHub</button>
-						  </li>																					
+						</li>																									
 					</ul>
 				</nav>
 			</header>
