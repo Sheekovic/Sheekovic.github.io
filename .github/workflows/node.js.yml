@@ -24,4 +24,5 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
+    - run: npm install express  # Ensure express is installed
     - run: node ./assets/js/server.js  # Specify the path to server.js
