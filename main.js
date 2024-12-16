@@ -25,5 +25,11 @@ auth.languageCode = 'en';
 const analytics = getAnalytics(app);
 const githubSignUpButton = document.getElementById('github-signup');
 githubSignUpButton.addEventListener('click', function(){
-  alert('github sign up button clicked');
+  signInWithPopup(auth, githubProvider)
+  .then((response) => {
+    console.log(response.user)
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 })
