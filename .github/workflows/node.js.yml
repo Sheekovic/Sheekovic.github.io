@@ -25,4 +25,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install express  # Ensure express is installed
-    - run: node ./assets/js/server.js  # Specify the path to server.js
+    - run: node --trace-deprecation ./assets/js/server.js  # Show deprecation warnings
+    - run: npm test  # Run tests if needed
