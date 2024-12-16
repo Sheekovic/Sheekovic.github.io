@@ -12,6 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="main.js" defer type="module"></script>
 	</head>
 	<body class="is-preload landing">
 		<div id="page-wrapper">
@@ -45,57 +46,6 @@
 							<section>
 								<button id="github-signup" class="button primary">Sign Up with GitHub</button>
 							</section>
-						
-							<!-- Import Firebase Configuration -->
-							<script type="module">
-								// Import Firebase app and custom configuration
-								import { app } from "./assets/js/firebase-config.js";
-								import { getAuth, signInWithPopup, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-						
-								// Initialize Firebase Authentication
-								const auth = getAuth(app);
-								const githubProvider = new GithubAuthProvider();
-						
-								// GitHub Sign-Up Function
-								async function githubSignUp() {
-									try {
-										const result = await signInWithPopup(auth, githubProvider);
-										const user = result.user;
-						
-										console.log("User information:", user);
-						
-										// Optional: Send the token to the backend
-										const credential = GithubAuthProvider.credentialFromResult(result);
-										const token = credential.accessToken;
-						
-										const serverResponse = await fetch('/login/github', {
-											method: 'POST',
-											headers: { 'Content-Type': 'application/json' },
-											body: JSON.stringify({ token })
-										});
-						
-										const responseData = await serverResponse.json();
-										if (responseData.success) {
-											console.log('GitHub login successful:', responseData.user);
-										} else {
-											console.error('GitHub login failed:', responseData.message);
-										}
-									} catch (error) {
-										console.error('Error during GitHub sign-up:', error);
-									}
-								}
-						
-								// Attach Function to Button
-								document.addEventListener("DOMContentLoaded", () => {
-									const githubButton = document.getElementById("github-signup");
-									if (githubButton) {
-										githubButton.addEventListener("click", (event) => {
-											event.preventDefault();
-											githubSignUp();
-										});
-									}
-								});
-							</script>
 						</li>																									
 					</ul>
 				</nav>
