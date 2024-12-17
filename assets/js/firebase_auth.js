@@ -1,5 +1,5 @@
 // Import Firebase SDKs and your Firebase configuration
-import { auth } from './assets/js/firebase-config.js';
+import { auth } from './firebase-config.js';
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
 // Providers
