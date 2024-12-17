@@ -21,7 +21,7 @@ onAuthStateChanged(auth, (user) => {
     githubSignUpButton.style.alignItems = "center";
   } else {
     // User is not signed in, display the original button
-    githubSignUpButton.innerHTML = '<button id="github-signup" class="btn btn-primary">Sign Up with GitHub</button>';
+    githubSignUpButton.innerHTML = '<button id="login-btn" class="btn btn-primary">Sign Up with GitHub</button>';
   }
 });
 
