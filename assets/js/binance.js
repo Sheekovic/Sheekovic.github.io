@@ -4,7 +4,7 @@ import {
   onAuthStateChanged 
 } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-import { auth, githubProvider, updateUI } from "./firebase-auth.js"; // Import shared logic
+import { binanceAuth, binanceGithubProvider, binanceGoogleProvider, updateUI } from "./firebase-auth.js"; // Import shared logic
 
 // Initialize Elements
 const githubSignUpButton = document.getElementById('github-signup');
@@ -33,9 +33,16 @@ onAuthStateChanged(auth, (user) => {
 
 // GitHub Sign-Up Button Click Event
 githubSignUpButton.addEventListener('click', () => {
-  signInWithPopup(auth, githubProvider)
+  signInWithPopup(binanceAuth, binanceGithubProvider)
       .then(response => updateUI(response.user))
       .catch(error => console.error("GitHub Sign-Up Error:", error));
+});
+
+// Google Sign-Up Button Click Event
+googleSignUpButton.addEventListener('click', () => {
+  signInWithPopup(binanceAuth, binanceGoogleProvider)
+      .then(response => updateUI(response.user))
+      .catch(error => console.error("Google Sign-Up Error:", error));
 });
 
 // Register Telegram ID

@@ -7,6 +7,12 @@ import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signInWithEmai
 
 // Firebase services
 const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
+
+// Firebase services for binance.js
+export const binanceAuth = getAuth(firebaseApp);
+export const binanceGithubProvider = new GithubAuthProvider();
+export const binanceGoogleProvider = new GoogleAuthProvider();
+
 const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 
 // Providers
@@ -50,7 +56,7 @@ document.getElementById('sign-out').addEventListener('click', () => {
 });
 
 // Update UI After Sign-In
-function updateUI(user) {
+export function updateUI(user) {
   const userProfilePic = user.photoURL || "default-avatar.png";
   const userName = user.displayName || user.email || "Anonymous";
   document.getElementById('user-info').innerHTML = `
