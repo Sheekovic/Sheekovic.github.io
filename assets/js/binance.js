@@ -4,7 +4,7 @@ import {
   onAuthStateChanged 
 } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-import { binanceAuth, binanceGithubProvider, binanceGoogleProvider, updateUI } from "./firebase-auth.js"; // Import shared logic
+import { binanceAuth, binanceGithubProvider, binanceGoogleProvider, updateUI } from "./firebase_auth"; // Import shared logic
 
 // Initialize Elements
 const githubSignUpButton = document.getElementById('github-signup');
