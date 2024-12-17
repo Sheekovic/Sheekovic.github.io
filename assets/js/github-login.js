@@ -1,5 +1,5 @@
 // github-login.js
-import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { firebaseConfig } from './firebase-config';
 
 const auth = getAuth(firebaseConfig);
