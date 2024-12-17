@@ -1,10 +1,13 @@
-// Import Firebase Auth and Firebase Helper Functions
-import { 
-  getAuth, 
-  onAuthStateChanged 
-} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+import firebaseConfig from './assets/js/firebase-config.js'; // Import the config if needed for debugging
+import { firebaseApp } from './assets/js/firebase-config.js'; // Import initialized app
+import { getAuth, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 
-import { binanceAuth, binanceGithubProvider, binanceGoogleProvider, updateUI } from "./firebase_auth"; // Import shared logic
+// Firebase services
+const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
+const githubProvider = new GithubAuthProvider();
+auth.languageCode = 'en';
+const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 
 // Initialize Elements
 const githubSignUpButton = document.getElementById('github-signup');
@@ -33,16 +36,9 @@ onAuthStateChanged(auth, (user) => {
 
 // GitHub Sign-Up Button Click Event
 githubSignUpButton.addEventListener('click', () => {
-  signInWithPopup(binanceAuth, binanceGithubProvider)
+  signInWithPopup(auth, githubProvider)
       .then(response => updateUI(response.user))
       .catch(error => console.error("GitHub Sign-Up Error:", error));
-});
-
-// Google Sign-Up Button Click Event
-googleSignUpButton.addEventListener('click', () => {
-  signInWithPopup(binanceAuth, binanceGoogleProvider)
-      .then(response => updateUI(response.user))
-      .catch(error => console.error("Google Sign-Up Error:", error));
 });
 
 // Register Telegram ID
