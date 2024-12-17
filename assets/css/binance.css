@@ -3,56 +3,31 @@ body {
     background-color: #0d1117; /* Dark mode background */
     color: #c9d1d9; /* Light text color */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
 }
 
-.container {
-    max-width: 600px;
-    padding: 2rem;
-    text-align: center;
-    background-color: #21262d; /* Dark GitHub-like card background */
-    border-radius: 8px;
-}
-
-.btn-primary {
-    background-color: #0070f3;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #005cc5;
-}
-
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-}
-
-h1, h3 {
-    margin-bottom: 1rem;
-}
-
-/* Navigation Bar Styling */
+/* Navbar Styling */
 nav {
     background-color: #161b22; /* Dark background for the navbar */
     padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav #logo a {
+    color: #c9d1d9;
+    text-decoration: none;
+    font-size: 1.5rem;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 1rem;
+    gap: 1rem;
 }
 
 nav ul li a {
@@ -64,6 +39,31 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #0070f3;
+}
+
+/* Main Content */
+.container {
+    flex: 1;
+    max-width: 600px;
+    padding: 2rem;
+    text-align: center;
+    background-color: #21262d; /* Dark GitHub-like card background */
+    border-radius: 8px;
+}
+
+h1, h3 {
+    margin-bottom: 1rem;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #0070f3;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #005cc5;
 }
 
 /* Footer Styling */
@@ -82,10 +82,6 @@ footer ul.icons {
     gap: 1rem;
 }
 
-footer ul.icons li {
-    display: inline-block;
-}
-
 footer ul.icons li a {
     color: #c9d1d9;
     font-size: 1.2rem;
@@ -94,4 +90,8 @@ footer ul.icons li a {
 
 footer ul.icons li a:hover {
     color: #0070f3;
+}
+
+footer ul.copyright {
+    margin-top: 1rem;
 }
