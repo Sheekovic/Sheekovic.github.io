@@ -1,0 +1,184 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    background-color: #0d1117;
+    color: #c9d1d9;
+}
+
+a {
+    color: #58a6ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header */
+#header {
+    background-color: #161b22;
+    border-bottom: 1px solid #21262d;
+    padding: 1em 2em;
+}
+
+#header #logo a {
+    color: #ffffff;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#header #nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5em;
+}
+
+#header #nav ul li a {
+    color: #8b949e;
+    font-weight: 500;
+}
+
+#header #nav ul li a:hover {
+    color: #c9d1d9;
+}
+
+/* Forum Section */
+#forum {
+    padding: 4em 2em;
+}
+
+#forum .content header h2 {
+    font-size: 2.5em;
+    color: #ffffff;
+    margin-bottom: 0.5em;
+}
+
+#forum .content header p {
+    color: #8b949e;
+    font-size: 1.2em;
+}
+
+.categories ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 2em 0 1em 0;
+    gap: 1em;
+    justify-content: center;
+}
+
+.categories ul li a {
+    background-color: #21262d;
+    color: #58a6ff;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-size: 1.1em;
+}
+
+.categories ul li a:hover {
+    background-color: #30363d;
+    color: #ffffff;
+}
+
+.discussions h3 {
+    font-size: 2em;
+    margin-top: 2em;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 0.5em;
+    color: #ffffff;
+}
+
+/* Post a New Thread */
+.post-thread {
+    background-color: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 2em;
+    margin-top: 2em;
+    color: #c9d1d9;
+}
+
+.post-thread h3 {
+    font-size: 1.8em;
+    margin-bottom: 1em;
+    color: #ffffff;
+}
+
+.post-thread form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.post-thread form input[type="text"],
+.post-thread form textarea {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    border: 1px solid #21262d;
+    border-radius: 4px;
+    padding: 0.75em;
+    font-size: 1em;
+    width: 100%;
+}
+
+.post-thread form button {
+    background-color: #238636;
+    color: #ffffff;
+    border: none;
+    padding: 0.75em 1.5em;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.post-thread form button:hover {
+    background-color: #2ea043;
+}
+
+/* Footer */
+#footer {
+    background-color: #161b22;
+    padding: 2em;
+    text-align: center;
+    color: #8b949e;
+}
+
+#footer ul.icons {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+    padding: 0;
+}
+
+#footer ul.icons li a {
+    color: #8b949e;
+    font-size: 1.2em;
+}
+
+#footer ul.icons li a:hover {
+    color: #58a6ff;
+}
+
+#footer ul.copyright {
+    list-style: none;
+    margin-top: 1em;
+    font-size: 0.9em;
+    padding: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #header #nav ul {
+        flex-direction: column;
+    }
+
+    .categories ul {
+        flex-wrap: wrap;
+        gap: 0.5em;
+    }
+}
