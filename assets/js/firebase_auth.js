@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Sign-Out
+document.getElementById('sign-out').addEventListener('click', () => {
+  auth.signOut()
+    .then(() => console.log("Sign-Out Successful"))
+    .catch(error => console.error("Sign-Out Error:", error));
+});
+
 // Update UI After Sign-In
 function updateUI(user) {
   const userProfilePic = user.photoURL || "default-avatar.png";
