@@ -1,7 +1,8 @@
 /* Profile Section */
 #profile {
     padding: 4em 0;
-    background-color: #272833;
+    background-color: #0d1117; /* Dark background matching GitHub dark mode */
+    color: #c9d1d9; /* Light text color for readability */
 }
 
 #profile .content {
@@ -13,21 +14,21 @@
 #profile h2 {
     font-size: 2.5em;
     margin-bottom: 0.5em;
+    color: #f0f6fc; /* Bright heading text */
 }
 
 #profile p {
-    font-size: 1.5em;
-    color: #666;
+    font-size: 1.2em;
+    color: #8b949e; /* Subtle text for descriptions */
     margin-bottom: 1em;
 }
 
 #profile .table-wrapper {
     overflow-x: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center;
+    border: 1px solid #21262d; /* Subtle border for the table */
+    border-radius: 8px;
+    background-color: #161b22; /* Table background matching the dark theme */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
 }
 
 #profile table {
@@ -36,15 +37,16 @@
 }
 
 #profile th, #profile td {
-    padding: 10px;
+    padding: 12px;
     text-align: center;
-    border-bottom: 1px solid #ddd;
-    color: black; /* Text color for both cells and headers */
+    border-bottom: 1px solid #30363d; /* Light border for rows */
+    color: #c9d1d9; /* Text color */
 }
 
 #profile th {
-    background-color: #007bff;
-    color: white;
+    background-color: #238636; /* Green header background */
+    color: #ffffff; /* White text for contrast */
+    font-weight: bold;
 }
 
 #profile td img {
@@ -54,5 +56,19 @@
 }
 
 #profile tr:hover {
-    background-color: #f0f0f0;
+    background-color: #21262d; /* Highlight row on hover */
+}
+
+#profile td {
+    background-color: #0d1117; /* Dark background for table cells */
+}
+
+/* Footer Icons */
+#footer ul.icons li a {
+    color: #8b949e; /* Subtle color for footer icons */
+    transition: color 0.3s ease;
+}
+
+#footer ul.icons li a:hover {
+    color: #58a6ff; /* Bright blue highlight on hover */
 }
