@@ -1,6 +1,13 @@
 // Import Firebase SDKs and your Firebase configuration
-import { auth } from './firebase-config.js';
+import { firebaseApp } from './firebase-config.js'; // Import initialized app
+import firebaseConfig from './firebase-config.js'; // Import the config if needed for debugging
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+
+// Firebase services
+const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
+const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 
 // Providers
 const githubProvider = new GithubAuthProvider();
