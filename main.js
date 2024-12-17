@@ -1,26 +1,14 @@
-// Import Firebase SDKs
-require('dotenv').config();
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+// Import Firebase SDKs and your Firebase configuration
+import { firebaseApp } from './assets/js/firebase-config.js'; // Import initialized app
+import firebaseConfig from './assets/js/firebase-config.js'; // Import the config if needed for debugging
 import { getAuth, GithubAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 
-// Firebase Configuration
-const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MSG_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// Firebase services
+const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
 const githubProvider = new GithubAuthProvider();
 auth.languageCode = 'en';
-const analytics = getAnalytics(app);
+const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 
 // Get the GitHub sign-up button
 const githubSignUpButton = document.getElementById('github-signup');
