@@ -51,6 +51,11 @@
 						</tbody>
 					</table>
 				</div>
+				
+				<!-- Sign-Out Button -->
+				<div style="text-align: center;">
+					<button id="sign-out">Sign Out</button>
+				</div>
 			</div>
 		</section>
 
@@ -114,6 +119,13 @@
 				alert("Please log in to view your profile.");
 				window.location.href = "login.html"; // Redirect to home page
 			}
+		});
+
+		// Sign Out
+		document.getElementById('sign-out').addEventListener('click', () => {
+			auth.signOut()
+				.then(() => console.log("Sign-Out Successful"))
+				.catch(error => console.error("Sign-Out Error:", error));
 		});
 	</script>
 </body>

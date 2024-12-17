@@ -63,6 +63,20 @@
     background-color: #0d1117; /* Dark background for table cells */
 }
 
+#profile button#sign-out {
+    background-color: #238636; /* Green button background */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#profile button#sign-out:hover {
+    background-color: #1e7c31; /* Darker green on hover */
+}
+
 /* Footer Icons */
 #footer ul.icons li a {
     color: #8b949e; /* Subtle color for footer icons */
