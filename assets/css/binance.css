@@ -37,3 +37,61 @@ body {
 h1, h3 {
     margin-bottom: 1rem;
 }
+
+/* Navigation Bar Styling */
+nav {
+    background-color: #161b22; /* Dark background for the navbar */
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #c9d1d9;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #0070f3;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #161b22; /* Dark background for footer */
+    padding: 1rem 0;
+    text-align: center;
+    color: #c9d1d9;
+}
+
+footer ul.icons {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+footer ul.icons li {
+    display: inline-block;
+}
+
+footer ul.icons li a {
+    color: #c9d1d9;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+footer ul.icons li a:hover {
+    color: #0070f3;
+}
