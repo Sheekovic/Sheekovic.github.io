@@ -49,5 +49,11 @@ function updateUI(user) {
   document.getElementById('user-info').innerHTML = `
     <img src="${userProfilePic}" alt="Profile Picture" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 8px;">
     <span>${userName}</span>
+    <p>Redirecting to your profile in 5 seconds...</p>
   `;
+
+  // Wait for 5 seconds, then redirect to profile.html
+  setTimeout(() => {
+    window.location.href = "profile.html";
+  }, 5000);
 }
