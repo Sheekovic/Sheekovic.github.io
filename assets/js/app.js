@@ -1,6 +1,6 @@
 import '*/assets/css/main.css';
 import { app } from './firebase-config';
-import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
 function App() {
   const auth = getAuth();
