@@ -4,7 +4,7 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 // Initialize Firebase Auth
 const auth = getAuth();
 
-const githubSignUpButton = document.getElementById('login-btn');
+const githubSignUpButton = document.getElementById('github-signup');
 
 // Check if a user is already signed in
 onAuthStateChanged(auth, (user) => {
@@ -21,7 +21,7 @@ onAuthStateChanged(auth, (user) => {
     githubSignUpButton.style.alignItems = "center";
   } else {
     // User is not signed in, display the original button
-    githubSignUpButton.innerHTML = '<button id="login-btn" class="btn btn-primary">Sign Up with GitHub</button>';
+    githubSignUpButton.innerHTML = '<button id="github-signup" class="btn btn-primary">Sign Up with GitHub</button>';
   }
 });
 
