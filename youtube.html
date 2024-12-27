@@ -1,71 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Live Subscribers</title>
-  <link rel="icon" type="image/x-icon" href="images/ytlogo.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.7/themes/odometer-theme-default.css" integrity="sha512-kMPqFnKueEwgQFzXLEEl671aHhQqrZLS5IP3HzqdfozaST/EgU+/wkM07JCmXFAt9GO810I//8DBonsJUzGQsQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="ytstyle.css">
-  <link href="https://fonts.googleapis.com/css?family=Schoolbell&v1" rel="stylesheet">
-  <link href="https://fonts.cdnfonts.com/css/trade-gothic-lt-std" rel="stylesheet">
-</head>
-<body>
-  <header>
-    <div class="logo-container">
-      <img src="images/ytlogo.png" alt="YouTube Logo" class="logo">
-    </div>
-    <div class="search-container">
-      <input type="text" id="channelLink" placeholder="Enter YouTube channel link">
-      <button onclick="fetchChannelId()">Search</button>
-    </div>
-  </header>
-  <section>
-    <h1>YouTube Live Subscribers</h1>
-    <div class="channel-name" id="channelName">
-        <!-- Channel name will appear here -->
-    </div>
-    <div class="channel-image" id="channelImage">
-        <!-- youtube logo -->
-        <img src="images/ytlogo.png" alt="YouTube channel image" id="YTchannelImage">
-    </div>
-  </section>
-  <main>
-    <div class="stats-container">
-      <div class="stat">
-        <div class="subscribers-odometer odometer">0</div>
-        <div class="type">Subscribers</div>
-      </div>
-      <div class="stat">
-        <div class="views-odometer odometer">0</div>
-        <div class="type">Views</div>
-      </div>
-      <div class="stat">
-        <div class="videos-odometer odometer">0</div>
-        <div class="type">Videos</div>
-      </div>
-    </div>
-  </main>
-  <footer>
-    <div class="footer-container">
-        <h3>Follow and Connect with Me</h3>
-        <ul class="social-links">
-            <li>
-                <a href="https://github.com/Sheekovic" target="_blank">
-                    <img src="images/github.png" alt="GitHub Icon" class="social-icon-github">
-                </a>
-            </li>
-            <li>
-                <a href="https://facebook.com/Sheekovic" target="_blank">
-                    <img src="images/facebook.png" alt="Facebook Icon" class="social-icon-facebook">
-                </a>
-            </li>
-        </ul>
-        <p>Designed by Sheekovic © 2024</p>
-    </div>
-    </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.7/odometer.min.js" integrity="sha512-v3fZyWIk7kh9yGNQZf1SnSjIxjAKsYbg6UQ+B+QxAZqJQLrN3jMjrdNwcxV6tis6S0s1xyVDZrDz9UoRLfRpWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="youtube.js"></script>
-</body>
-</html>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Live Subscribers Counter</title>
+    <link rel="icon" type="image/x-icon" href="images/YTLSC.png">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.7/themes/odometer-theme-default.css"
+        integrity="sha512-kMPqFnKueEwgQFzXLEEl671aHhQqrZLS5IP3HzqdfozaST/EgU+/wkM07JCmXFAt9GO810I//8DBonsJUzGQsQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/ytstyle.css">
+    <link rel="stylesheet" href="assets/css/ytlighttheme.css">
+    <link href="https://fonts.googleapis.com/css?family=Schoolbell&v1" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/trade-gothic-lt-std" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Logo -->
+             <a href="youtube.html">
+            <img src="images/YTLSC.png" alt="YouTube Logo" class="logo"> YouTube Live Subscribers Counter
+            </a>
+        </div>
+        <!-- Home button -->
+        <div class="home-button">
+            <a href="index.html">Home</a>
+        </div>
+    </header>
+    <section>
+        <div class="search-container">
+            <input type="text" id="channelLink" placeholder="Enter YouTube channel link">
+            <button onclick="fetchChannelId()">Search</button>
+        </div>
+    </section>
+    <section>
+        <h1>YouTube Live Subscribers Counter</h1>
+        <div class="channel-name" id="channelName">
+            <!-- Channel name will appear here -->
+        </div>
+        <div class="channel-image" id="channelImage">
+            <!-- youtube logo -->
+            <img src="images/youtubeicon.png" alt="YouTube channel image" id="YTchannelImage">
+        </div>
+        <div class="youtube-subscribe" id="youtubeSubscribeButton">
+            <!-- Youtube subscribe button will appear here -->
+            <button id="sub-button" class="subscribe-button">SUBSCRIBE</button>
+        </div>
+    </section>
+    <main>
+        <div class="stats-container">
+            <div class="stat">
+                <div class="subscribers-odometer odometer">0</div>
+                <div class="type">Subscribers</div>
+            </div>
+            <div class="stat">
+                <div class="views-odometer odometer">0</div>
+                <div class="type">Views</div>
+            </div>
+            <div class="stat">
+                <div class="videos-odometer odometer">0</div>
+                <div class="type">Videos</div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <h3>Follow and Connect with Me</h3>
+            <ul class="social-links">
+                <li>
+                    <a href="https://github.com/Sheekovic" target="_blank">
+                        <img src="images/github.png" alt="GitHub Icon" class="social-icon-github">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://facebook.com/Sheekovic" target="_blank">
+                        <img src="images/facebook.png" alt="Facebook Icon" class="social-icon-facebook">
+                    </a>
+                </li>
+            </ul>
+            <div class="copyright">
+                Designed by Sheekovic © 2024
+            </div>            
+        </div>
+        <button id="darkModeToggle" class="theme-switch-button">Light Mode</button>
+    </footer>    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.7/odometer.min.js"
+        integrity="sha512-v3fZyWIk7kh9yGNQZf1SnSjIxjAKsYbg6UQ+B+QxAZqJQLrN3jMjrdNwcxV6tis6S0s1xyVDZrDz9UoRLfRpWw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="youtube.js"></script>
+    <script src="ytlighttheme.js"></script>
+</body>
+
+</html>
