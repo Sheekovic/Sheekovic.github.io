@@ -10,22 +10,6 @@ const githubProvider = new GithubAuthProvider();
 auth.languageCode = 'en';
 const analytics = getAnalytics(firebaseApp); 
 
-// SQLite setup (for Node.js or other environments where SQLite can be used)
-import sqlite3 from 'sqlite3'; 
-const db = new sqlite3.Database('./mydatabase.sqlite');
-
-// Create users table if not exists
-db.serialize(() => {
-    db.run(`
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            userId TEXT UNIQUE,
-            username TEXT,
-            telegramId TEXT
-        )
-    `);
-});
-
 // Initialize Elements
 const githubSignUpButton = document.getElementById('github-signup');
 const registerButton = document.getElementById('register-btn');
@@ -74,8 +58,12 @@ registerButton.addEventListener('click', () => {
                 telegramId: telegramId
             };
 
-            const query = `INSERT INTO users (userId, username, telegramId) VALUES (?, ?, ?)`;
-            db.run(query, [userId, userData.username, userData.telegramId], function(error) {
+            // Prepare data to be written
+            const data = `${userId},${userData.username},${userData.telegramId}\n`;
+
+            // Write to a text file
+            const fs = require('fs');
+            fs.appendFile('./assets/database/users.txt', data, (error) => {
                 if (error) {
                     console.error("Error saving user data:", error);
                 } else {
