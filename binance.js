@@ -61,18 +61,22 @@ registerButton.addEventListener('click', () => {
             // Prepare data to be written
             const data = `${userId},${userData.username},${userData.telegramId}\n`;
 
-            // Write to a text file
-            const fs = require('fs');
-            fs.appendFile('./assets/database/users.txt', data, (error) => {
-                if (error) {
-                    console.error("Error saving user data:", error);
-                } else {
-                    console.log("User data saved successfully.");
-                    registerResult.innerText = "Registration successful!";
-                }
-            });
+            // Write to a text file using File System API or Local Storage as alternatives
+            try {
+                const blob = new Blob([data], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = './assets/database/users.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            } catch (error) {
+                console.error("Error saving user data:", error);
+            }
         }
     } else {
         alert('Please enter a valid Telegram ID.');
     }
 });
+
