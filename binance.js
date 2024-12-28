@@ -13,6 +13,8 @@ const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 const githubSignUpButton = document.getElementById('github-signup');
 const registerButton = document.getElementById('register-btn');
 const yourUsername = document.getElementById('username');
+const telegramInput = document.getElementById('telegram-id');
+const registerResult = document.getElementById('register-result');
 
 // Handle Auth State Changes
 onAuthStateChanged(auth, (user) => {
@@ -59,7 +61,10 @@ registerButton.addEventListener('click', () => {
             };
             const userRef = firebaseApp.database().ref(`users/${userId}`);
             userRef.set(userData)
-                .then(() => console.log("User data saved successfully."))
+                .then(() => {
+                    console.log("User data saved successfully.");
+                    registerResult.innerText = "Registration successful!";
+                })
                 .catch(error => console.error("Error saving user data:", error));
         }
     } else {
