@@ -9,6 +9,9 @@ const githubProvider = new GithubAuthProvider();
 auth.languageCode = 'en';
 const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 
+// Initialize Firebase database
+const database = firebaseApp.database();
+
 // Initialize Elements
 const githubSignUpButton = document.getElementById('github-signup');
 const registerButton = document.getElementById('register-btn');
@@ -59,7 +62,7 @@ registerButton.addEventListener('click', () => {
                 username: user.displayName || "Anonymous",
                 telegramId: telegramId
             };
-            const userRef = firebaseApp.database().ref(`users/${userId}`);
+            const userRef = database.ref(`users/${userId}`);
             userRef.set(userData)
                 .then(() => {
                     console.log("User data saved successfully.");
