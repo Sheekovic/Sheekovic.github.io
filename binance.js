@@ -1,15 +1,18 @@
-import firebaseConfig from './assets/js/firebase-config.js'; // Import the config if needed for debugging
-import { firebaseApp } from './assets/js/firebase-config.js'; // Import initialized app
+// Firebase Configuration
+import firebaseConfig from './assets/js/firebase-config.js'; 
+import { firebaseApp } from './assets/js/firebase-config.js'; 
 import { getAuth, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 
-// Firebase services
-const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
+// Initialize Firebase services
+const auth = getAuth(firebaseApp); 
 const githubProvider = new GithubAuthProvider();
 auth.languageCode = 'en';
-const analytics = getAnalytics(firebaseApp); // Use analytics if needed
-const sqlite3 = require('sqlite3').verbose();
-let db = new sqlite3.Database('./mydatabase.sqlite');
+const analytics = getAnalytics(firebaseApp); 
+
+// SQLite setup (for Node.js or other environments where SQLite can be used)
+import sqlite3 from 'sqlite3'; 
+const db = new sqlite3.Database('./mydatabase.sqlite');
 
 db.serialize(() => {
     // Create users table if not exists
@@ -33,7 +36,6 @@ const registerResult = document.getElementById('register-result');
 // Handle Auth State Changes
 onAuthStateChanged(auth, (user) => {
   if (user) {
-      // User is signed in
       const userProfilePic = user.photoURL || "default-avatar.png";
       const userName = user.displayName || "Anonymous";
 
@@ -46,7 +48,6 @@ onAuthStateChanged(auth, (user) => {
 
       yourUsername.innerText = userName;
   } else {
-      // User is not signed in
       githubSignUpButton.innerHTML = `
           <button id="github-signup" class="btn btn-primary">Sign Up with GitHub</button>
       `;
@@ -65,7 +66,6 @@ githubSignUpButton.addEventListener('click', () => {
 registerButton.addEventListener('click', () => {
     const telegramId = telegramInput.value;
     if (telegramId) {
-        // Save Telegram ID in SQLite database
         const user = auth.currentUser;
         if (user) {
             const userId = user.uid;
