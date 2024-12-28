@@ -112,11 +112,18 @@ header nav ul li .button:hover {
 /* Footer Styling */
 footer {
     background-color: #161b22;
-    padding: 2rem 1rem; /* Spacing for larger footer */
+    padding: 1rem 1rem; /* Spacing for larger footer */
     text-align: center;
     margin-top: auto; /* Push footer to the bottom of the page */
     color: #c9d1d9;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow above */
+}
+
+/* footer h6 styling */
+footer h6 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 footer ul.icons {
@@ -125,7 +132,7 @@ footer ul.icons {
     margin: 0;
     display: flex;
     justify-content: center;
-    gap: 1.5rem; /* Increased spacing for clarity */
+    gap: 20px; /* Increased spacing for clarity */
 }
 
 footer ul.icons li a {

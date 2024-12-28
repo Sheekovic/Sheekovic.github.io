@@ -12,6 +12,7 @@ const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 // Initialize Elements
 const githubSignUpButton = document.getElementById('github-signup');
 const registerButton = document.getElementById('register-btn');
+const yourUsername = document.getElementById('username');
 
 // Handle Auth State Changes
 onAuthStateChanged(auth, (user) => {
@@ -26,11 +27,14 @@ onAuthStateChanged(auth, (user) => {
       `;
       githubSignUpButton.style.display = "flex";
       githubSignUpButton.style.alignItems = "center";
+
+      yourUsername.innerText = userName;
   } else {
       // User is not signed in
       githubSignUpButton.innerHTML = `
           <button id="github-signup" class="btn btn-primary">Sign Up with GitHub</button>
       `;
+      yourUsername.innerText = "Anonymous";
   }
 });
 
@@ -43,11 +47,22 @@ githubSignUpButton.addEventListener('click', () => {
 
 // Register Telegram ID
 registerButton.addEventListener('click', () => {
-  const telegramId = document.getElementById('telegram-id').value;
-  if (telegramId) {
-      // Simulate Telegram ID registration (Implement Firebase logic here)
-      alert(`Registered Telegram ID: ${telegramId}`);
-  } else {
-      alert('Please enter a valid Telegram ID.');
-  }
+    const telegramId = telegramInput.value;
+    if (telegramId) {
+        // Save Telegram ID in Firebase
+        const user = auth.currentUser;
+        if (user) {
+            const userId = user.uid;
+            const userData = {
+                username: user.displayName || "Anonymous",
+                telegramId: telegramId
+            };
+            const userRef = firebaseApp.database().ref(`users/${userId}`);
+            userRef.set(userData)
+                .then(() => console.log("User data saved successfully."))
+                .catch(error => console.error("Error saving user data:", error));
+        }
+    } else {
+        alert('Please enter a valid Telegram ID.');
+    }
 });
