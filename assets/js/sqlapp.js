@@ -1,4 +1,4 @@
-import { uid, userName, email } from '../../main';
+import { uid, userName, email } from '../../main.js';
 const sqlite3 = require('sqlite3').verbose();
 
 const db = new sqlite3.Database('./assets/database/user_data.db', (err) => {
