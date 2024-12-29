@@ -3,13 +3,13 @@ import { firebaseApp } from './assets/js/firebase-config.js'; // Import initiali
 import firebaseConfig from './assets/js/firebase-config.js'; // Import the config if needed for debugging
 import { getAuth, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+import sqlite3 from 'sqlite3'; // Use ES6 module syntax
 
 // Firebase services
 const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
 const githubProvider = new GithubAuthProvider();
 auth.languageCode = 'en';
 const analytics = getAnalytics(firebaseApp); // Use analytics if needed
-const sqlite3 = require('sqlite3').verbose();
 
 // Get the GitHub sign-up button
 const githubSignUpButton = document.getElementById('github-signup');
