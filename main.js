@@ -14,12 +14,19 @@ const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 // Get the GitHub sign-up button
 const githubSignUpButton = document.getElementById('github-signup');
 
+// Export user details at the top level
+export let userName = '';
+export let email = '';
+export let uid = '';
+
 // Check if a user is already signed in
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, update the button
     const userProfilePic = user.photoURL || "default-avatar.png"; // Fallback image if photoURL is not available
-    const userName = user.displayName || "Anonymous"; // Fallback name if displayName is not available
+    userName = user.displayName || "Anonymous"; // Fallback name if displayName is not available
+    email = user.email || "Not provided";
+    uid = user.uid;
 
     githubSignUpButton.innerHTML = `
       <img src="${userProfilePic}" alt="Profile Picture" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 8px;">
