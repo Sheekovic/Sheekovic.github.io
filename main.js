@@ -1,4 +1,4 @@
-// Import Firebase SDKs and your Firebase configuration
+// Import Firebase SDKs and your Firebase configuration 
 import { firebaseApp } from './assets/js/firebase-config.js'; // Import initialized app
 import firebaseConfig from './assets/js/firebase-config.js'; // Import the config if needed for debugging
 import { getAuth, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
@@ -9,9 +9,34 @@ const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
 const githubProvider = new GithubAuthProvider();
 auth.languageCode = 'en';
 const analytics = getAnalytics(firebaseApp); // Use analytics if needed
+const sqlite3 = require('sqlite3').verbose();
 
 // Get the GitHub sign-up button
 const githubSignUpButton = document.getElementById('github-signup');
+
+// Function to save user data to the SQLite databases
+function saveUserData(user) {
+  const db = new sqlite3.Database('./assets/database/user_data.db', (err) => {
+    if (err) {
+      console.error('Error connecting to the database:', err.message);
+      return;
+    }
+  });
+
+  // Use only the fields `uid`, `username`, and `email`
+  const sql = 'INSERT INTO users (uid, username, email) VALUES (?, ?, ?)';
+  const values = [user.uid, user.displayName || 'Anonymous', user.email];
+
+  db.run(sql, values, (err) => {
+    if (err) {
+      console.error('Error saving user data:', err.message);
+    } else {
+      console.log('User data saved successfully.');
+    }
+    db.close();
+  });
+}
+
 
 // Check if a user is already signed in
 onAuthStateChanged(auth, (user) => {
@@ -26,6 +51,9 @@ onAuthStateChanged(auth, (user) => {
     `;
     githubSignUpButton.style.display = "flex";
     githubSignUpButton.style.alignItems = "center";
+
+    // Save user data to the sQLite databases
+    saveUserData(user);
 
 
   } else {
@@ -54,7 +82,7 @@ githubSignUpButton.addEventListener('click', function () {
       githubSignUpButton.style.display = "flex";
       githubSignUpButton.style.alignItems = "center";
 
-      // Save user data to Firestore
+      // Save user data to sqlite
       saveUserData(user);
     })
     .catch((error) => {
