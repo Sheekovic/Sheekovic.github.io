@@ -3,6 +3,7 @@ import { firebaseApp } from './assets/js/firebase-config.js'; // Import initiali
 import firebaseConfig from './assets/js/firebase-config.js'; // Import the config if needed for debugging
 import { getAuth, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
 // Firebase services
 const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
@@ -12,6 +13,9 @@ const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 
 // Get the GitHub sign-up button
 const githubSignUpButton = document.getElementById('github-signup');
+
+// Firestore instance
+const db = getFirestore(firebaseApp);
 
 // Function to save user data
 async function saveUserData(user) {
