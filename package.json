@@ -19,7 +19,8 @@
     "dependencies": {
         "express": "^4.17.1",
         "firebase": "^11.1.0",
-        "firebase-admin": "^13.0.1"
+        "firebase-admin": "^13.0.1",
+        "sqlite3": "^5.1.7"
     },
     "devDependencies": {
         "jest": "^27.0.6",
