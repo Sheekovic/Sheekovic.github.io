@@ -13,6 +13,22 @@ const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 // Get the GitHub sign-up button
 const githubSignUpButton = document.getElementById('github-signup');
 
+// Function to save user data
+async function saveUserData(user) {
+  try {
+    const userData = {
+      id: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+    };
+    // Update or create user data in Firestore
+    await setDoc(doc(db, "user_data", user.uid), userData);
+    console.log("User data saved successfully!");
+  } catch (error) {
+    console.error("Error saving user data:", error);
+  }
+}
+
 // Check if a user is already signed in
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -26,6 +42,9 @@ onAuthStateChanged(auth, (user) => {
     `;
     githubSignUpButton.style.display = "flex";
     githubSignUpButton.style.alignItems = "center";
+
+    // Save user data to Firestore
+    saveUserData(user);
   } else {
     // User is not signed in, display the original button
     githubSignUpButton.innerHTML = '<button id="github-signup" class="button primary">Sign Up with GitHub</button>';
@@ -51,6 +70,9 @@ githubSignUpButton.addEventListener('click', function () {
       `;
       githubSignUpButton.style.display = "flex";
       githubSignUpButton.style.alignItems = "center";
+
+      // Save user data to Firestore
+      saveUserData(user);
     })
     .catch((error) => {
       console.error("Error during GitHub sign-up:", error);
