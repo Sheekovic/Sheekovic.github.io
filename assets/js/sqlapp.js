@@ -1,4 +1,4 @@
-// import firebase app so we can define uid, username, and email
+// sqlapp.js
 const sqlite3 = require('sqlite3').verbose();
 
 const db = new sqlite3.Database('./assets/database/user_data.db', (err) => {
@@ -39,3 +39,6 @@ function saveUserData(user) {
         db.close();
     });
 }
+
+// Export saveUserData function
+module.exports = { saveUserData };
