@@ -3,7 +3,7 @@ import { firebaseApp } from './assets/js/firebase-config.js'; // Import initiali
 import firebaseConfig from './assets/js/firebase-config.js'; // Import the config if needed for debugging
 import { getAuth, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-import * as sqlApp from './assets/js/sqlapp.js'; // Import the sqlapp module
+import { saveUserData } from './assets/js/sqlapp.js';
 
 // Firebase services
 const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
@@ -14,10 +14,6 @@ const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 // Get the GitHub sign-up button
 const githubSignUpButton = document.getElementById('github-signup');
 
-// Export user details at the top level
-export let userName = '';
-export let email = '';
-export let uid = '';
 
 // Check if a user is already signed in
 onAuthStateChanged(auth, (user) => {
@@ -35,7 +31,7 @@ onAuthStateChanged(auth, (user) => {
     githubSignUpButton.style.display = "flex";
     githubSignUpButton.style.alignItems = "center";
 
-    sqlApp.saveUserData(user);
+    saveUserData(user);
 
   } else {
     // User is not signed in, display the original button
@@ -63,7 +59,7 @@ githubSignUpButton.addEventListener('click', function () {
       githubSignUpButton.style.display = "flex";
       githubSignUpButton.style.alignItems = "center";
 
-      sqlApp.saveUserData(user);
+      saveUserData(user);
 
     })
     .catch((error) => {
