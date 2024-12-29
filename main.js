@@ -20,8 +20,8 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, update the button
     const userProfilePic = user.photoURL || "default-avatar.png"; // Fallback image if photoURL is not available
-    userName = user.displayName || "Anonymous"; // Fallback name if displayName is not available
-    email = user.email || "Not provided";
+    const userName = user.displayName || "Anonymous"; // Fallback name if displayName is not available
+    const email = user.email || "Not provided";
     uid = user.uid;
 
     githubSignUpButton.innerHTML = `
