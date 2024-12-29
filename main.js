@@ -3,7 +3,7 @@ import { firebaseApp } from './assets/js/firebase-config.js'; // Import initiali
 import firebaseConfig from './assets/js/firebase-config.js'; // Import the config if needed for debugging
 import { getAuth, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-import sqlite3 from 'sqlite3'; // Use ES6 module syntax
+import * as sqlApp from './assets/js/sqlapp.js'; // Import the sqlapp module
 
 // Firebase services
 const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
@@ -13,30 +13,6 @@ const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 
 // Get the GitHub sign-up button
 const githubSignUpButton = document.getElementById('github-signup');
-
-// Function to save user data to the SQLite databases
-function saveUserData(user) {
-  const db = new sqlite3.Database('./assets/database/user_data.db', (err) => {
-    if (err) {
-      console.error('Error connecting to the database:', err.message);
-      return;
-    }
-  });
-
-  // Use only the fields `uid`, `username`, and `email`
-  const sql = 'INSERT INTO users (uid, username, email) VALUES (?, ?, ?)';
-  const values = [user.uid, user.displayName || 'Anonymous', user.email];
-
-  db.run(sql, values, (err) => {
-    if (err) {
-      console.error('Error saving user data:', err.message);
-    } else {
-      console.log('User data saved successfully.');
-    }
-    db.close();
-  });
-}
-
 
 // Check if a user is already signed in
 onAuthStateChanged(auth, (user) => {
@@ -52,9 +28,7 @@ onAuthStateChanged(auth, (user) => {
     githubSignUpButton.style.display = "flex";
     githubSignUpButton.style.alignItems = "center";
 
-    // Save user data to the sQLite databases
-    saveUserData(user);
-
+    sqlApp.saveUserData(user);
 
   } else {
     // User is not signed in, display the original button
@@ -82,8 +56,8 @@ githubSignUpButton.addEventListener('click', function () {
       githubSignUpButton.style.display = "flex";
       githubSignUpButton.style.alignItems = "center";
 
-      // Save user data to sqlite
-      saveUserData(user);
+      sqlApp.saveUserData(user);
+
     })
     .catch((error) => {
       console.error("Error during GitHub sign-up:", error);
