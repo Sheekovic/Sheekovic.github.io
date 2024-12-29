@@ -1,7 +1,19 @@
 const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+const fs = require('fs');
+
+// Ensure the directory exists
+const databaseDir = path.resolve(__dirname, '../database');
+if (!fs.existsSync(databaseDir)) {
+  fs.mkdirSync(databaseDir, { recursive: true }); // Create the directory if it doesn't exist
+}
+
+// Specify the full path to the database file
+const dbPath = path.join(databaseDir, 'user_data.db');
+console.log('Database Path:', dbPath);
 
 // Create or open the SQLite database
-const db = new sqlite3.Database('user_data.db', (err) => {
+const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Error opening database:', err.message);
     process.exit(1);
