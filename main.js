@@ -3,7 +3,7 @@ import { firebaseApp } from './assets/js/firebase-config.js'; // Import initiali
 import firebaseConfig from './assets/js/firebase-config.js'; // Import the config if needed for debugging
 import { getAuth, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-import { saveUserData } from './assets/js/sqlapp.js';
+import sqlite3 from 'sqlite3';
 
 // Firebase services
 const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
@@ -11,9 +11,11 @@ const githubProvider = new GithubAuthProvider();
 auth.languageCode = 'en';
 const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 
+// SQLite database setup
+const db = new sqlite3.Database('./assets/database/user_data.db');
+
 // Get the GitHub sign-up button
 const githubSignUpButton = document.getElementById('github-signup');
-
 
 // Check if a user is already signed in
 onAuthStateChanged(auth, (user) => {
@@ -22,7 +24,16 @@ onAuthStateChanged(auth, (user) => {
     const userProfilePic = user.photoURL || "default-avatar.png"; // Fallback image if photoURL is not available
     const userName = user.displayName || "Anonymous"; // Fallback name if displayName is not available
     const email = user.email || "Not provided";
-    uid = user.uid;
+    const uid = user.uid;
+
+    // Insert user data into SQLite
+    db.run("INSERT INTO users (uid, username, email) VALUES (?, ?, ?)", [uid, userName, email], (err) => {
+      if (err) {
+        console.error("Error inserting user data into SQLite:", err);
+      } else {
+        console.log("User data inserted successfully.");
+      }
+    });
 
     githubSignUpButton.innerHTML = `
       <img src="${userProfilePic}" alt="Profile Picture" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 8px;">
@@ -30,8 +41,6 @@ onAuthStateChanged(auth, (user) => {
     `;
     githubSignUpButton.style.display = "flex";
     githubSignUpButton.style.alignItems = "center";
-
-    saveUserData(user);
 
   } else {
     // User is not signed in, display the original button
@@ -58,8 +67,6 @@ githubSignUpButton.addEventListener('click', function () {
       `;
       githubSignUpButton.style.display = "flex";
       githubSignUpButton.style.alignItems = "center";
-
-      saveUserData(user);
 
     })
     .catch((error) => {
