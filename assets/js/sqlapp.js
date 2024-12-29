@@ -1,4 +1,4 @@
-import { uid, userName, email } from '../../main.js';
+// import firebase app so we can define uid, username, and email
 const sqlite3 = require('sqlite3').verbose();
 
 const db = new sqlite3.Database('./assets/database/user_data.db', (err) => {
@@ -16,10 +16,6 @@ db.close((err) => {
     }
     console.log('Database connection closed.');
 });
-
-userName = user.displayName || "Anonymous";
-email = user.email || "Anonymous";
-uid = user.uid;
 
 // save user data to the database
 function saveUserData(user) {
