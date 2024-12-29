@@ -30,5 +30,6 @@ jobs:
     - run: npm ci
     - run: node ./assets/js/check-sqlite.js
     - run: node ./assets/js/create_user_data_db.js
+    - run: node ./assets/js/sqlapp.js
   #  - run: node ./assets/js/app.js  # Show deprecation warnings
   #  - run: npm test  # Run tests if needed
