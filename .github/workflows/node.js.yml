@@ -1,0 +1,35 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - run: node --version
+    - run: npm --version
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install express  # Ensure express is installed
+    - run: npm install firebase
+    - run: npm install sqlite3
+    - run: npm ci
+    - run: node ./assets/js/check-sqlite.js
+    - run: node ./assets/js/create_user_data_db.js
+    - run: node ./assets/js/sqlapp.js
+  #  - run: node ./assets/js/app.js  # Show deprecation warnings
+  #  - run: npm test  # Run tests if needed

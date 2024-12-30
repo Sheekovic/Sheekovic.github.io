@@ -1,0 +1,98 @@
+/* General body styling */
+body {
+    font-family: 'Courier New', Courier, monospace; /* Monospace font like GitHub */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0d1117; /* GitHub's dark mode background */
+    margin: 0;
+    color: #c9d1d9; /* Light text for better contrast on dark background */
+  }
+  
+  /* Login container */
+  .login-container {
+    background: #161b22; /* Dark background similar to GitHub containers */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    text-align: center;
+    border: 1px solid #30363d; /* Border with a subtle contrast */
+  }
+  
+  /* Heading styling */
+  .login-container h1 {
+    margin-bottom: 20px;
+    color: #f0f6fc; /* Brighter text for headings */
+  }
+  
+  /* Form inputs */
+  .login-container input {
+    margin-bottom: 12px;
+    padding: 10px;
+    background-color: #0d1117; /* Dark input background */
+    color: #c9d1d9; /* Light text inside inputs */
+    border: 1px solid #30363d; /* Border for inputs */
+    border-radius: 4px;
+  }
+  
+  /* Inputs focus effect */
+  .login-container input:focus {
+    outline: none;
+    border-color: #58a6ff; /* Highlight input on focus */
+    box-shadow: 0 0 5px #58a6ff;
+  }
+  
+  /* Buttons */
+  .login-container button {
+    background: #238636; /* GitHub green for buttons */
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  /* Button hover effect */
+  .login-container button:hover {
+    background: #2ea043; /* Slightly lighter green on hover */
+  }
+  
+  /* Horizontal rule for separation */
+  hr {
+    margin: 20px 0;
+    border: 0;
+    height: 1px;
+    background-color: #30363d;
+  }
+  
+  /* User information section */
+  #user-info {
+    margin-top: 20px;
+  }
+  
+  /* Profile picture in user info */
+  #user-info img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  /* Buttons for alternative sign-ins */
+  #login-options button {
+    background: #21262d; /* Neutral dark button background */
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #login-options button:hover {
+    background: #30363d; /* Slightly lighter on hover */
+    border-color: #58a6ff; /* Highlight on hover */
+  }
+  
