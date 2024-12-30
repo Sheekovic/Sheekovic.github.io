@@ -1,0 +1,315 @@
+/* General body styling */
+
+body {
+    margin: 0;
+    font-family: 'Trade Gothic LT Std', sans-serif;
+    background-color: #181818;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+header {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #202020;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 0px rgba(146, 32, 32, 0.2);
+}
+
+header .logo-container {
+    display: inline-flex;
+    align-items: center;
+    font-size: 20px;              /* Set the font size */
+    font-weight: bold;            /* Make the text bold */
+    color: #f5e6e6;               /* YouTube's red color */
+    margin-left: 15px;            /* Space between logo and h2 */
+    text-transform: uppercase;    /* Optional - Capitalize the text */
+    letter-spacing: 1.5px;        /* Optional - Add slight letter spacing */
+    cursor: pointer;
+}
+
+header .logo-container a {
+    text-decoration: none;  /* Remove underline */
+    color: inherit;        /* Inherit color from h2 */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container img.logo {
+    width: 8%;      /* Set a default size for the logo */
+    height: auto;     /* Maintain aspect ratio */
+    /* in the center */
+    display: inline-flex;
+    align-items: center;
+}
+
+
+/* Home button styling at the top right corner */
+.home-button {
+    padding: 10px 20px;
+    border: none;
+    margin-right: 20px;
+    border-radius: 3px;
+    background-color: #ef232c;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    /* Center the text within the button */
+}
+
+.home-button a {
+    text-decoration: none;
+    /* Remove underline */
+    color: #ffffff;
+    /* Ensure white text */
+    font-weight: bold;
+    /* Match the button style */
+    padding: 10px 20px;
+    /* Ensure consistent padding */
+    font-size: 20px;
+    /* Adjust the font size as desired */
+}
+
+
+.logo-container {
+    display: inline-flex;
+    margin-left: 20px;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+}
+
+.search-container {
+    margin-top: 30px;
+    display: inline-block;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-container input {
+    width: 350px;
+    /* Increased width */
+    padding: 15px;
+    /* Increased padding for a larger appearance */
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 16px;
+    /* Slightly larger font size */
+}
+
+.search-container button {
+    padding: 15px 25px;
+    /* Increased padding for a larger button */
+    border: none;
+    border-radius: 3px;
+    background-color: #ef232c;
+    color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    /* Match font size with input */
+    margin-left: 10px;
+}
+
+
+main {
+    display: flex;
+    flex-direction: column; /* Ensures content is stacked vertically */
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Ensures main content expands to the viewport width */
+}
+
+.stats-container {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 30px auto;
+    max-width: 1000px;
+    padding-inline: 20px;
+}
+
+.stat {
+    background-color: #ef232c;
+    padding: 25px;
+    text-align: center;
+    color: #FFFFFF;
+    /*make it rounded like youtube*/
+    border-radius: 10px;
+}
+
+.stats-container .stat .odometer {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.stats-container .stat .type {
+    font-size: 20px;
+}
+
+.channel-name {
+    font-size: 100px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    gap: 10px;
+}
+
+#channelImage {
+    display: block;
+    /*make it the center*/
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    /*make white border*/
+    border: 5px solid #ef232c;
+}
+
+#YTchannelImage {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* section h1 styling */
+section h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    gap: 10px;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+}
+
+.social-links li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #fffefe;
+    /* Adjust this color as needed */
+    display: flex;
+    align-items: center;
+}
+
+.social-icon-facebook {
+    width: 30px;
+    /* Adjust size */
+    height: 30px;
+    margin-right: 8px;
+    /* Space between icon and text */
+}
+
+.social-icon-github {
+    width: 30px;
+    /* Adjust size */
+    height: 30px;
+    margin-right: 8px;
+    /* Space between icon and text */
+}
+
+.youtube-subscribe {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.subscribe-button {
+    padding: 10px 20px;
+    width: fit-content;
+    display: inline-block;
+    border: none;
+    border-radius: 3px;
+    background-color: #ef232c;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* Footer styling */
+footer {
+    display: inline-flex; /* Enable flexbox for the footer */
+    align-items: center; /* Center items vertically */
+    background-color: #202020;
+    color: #FFF;
+    padding: 10px 20px; /* Adjust padding for spacing */
+    box-shadow: 0px -2px 0px rgba(146, 32, 32, 0.2); /* Box shadow above footer */
+    width: 100%; /* Full-width footer */
+    text-align: center;
+    justify-content: space-between;
+}
+
+/* Footer content container */
+.footer-container {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    margin-left: 830px;
+    gap: 10px; /* Space between elements inside the container */
+}
+
+/* styling for footer container h3 */
+.footer-container h3 {
+    font-size: 18px;
+    margin-bottom: auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Styling for the copyright text */
+.copyright {
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* Theme switch button styling */
+.theme-switch-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    background-color: #ef232c;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 15px;
+    /* bold font */
+    font-weight: bold;
+    text-align: center; /* Center text within the button */
+    margin-right: 20px; /* Push the button to the far right */
+}
+
+@media (max-width: 700px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+}
