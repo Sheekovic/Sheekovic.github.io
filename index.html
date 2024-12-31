@@ -12,9 +12,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="is-preload landing">
@@ -44,7 +42,7 @@
 			<div class="content">
 				<header>
 					<h2>Ahmed F. Wahballah (Sheekovic)</h2>
-					<p>26-year-old coder, programmer, and musician.<br />
+					<p><span id="dynamic-age"></span>-year-old coder, programmer, and musician.<br />
 						Merging the art of logic with the soul of sound.</p>
 				</header>
 				<span class="image"><img src="images/sheeko.jpg" alt="Ahmed F. Wahballah (Sheekovic)" /></span>
@@ -120,20 +118,22 @@
 		<section id="four" class="wrapper style1 special fade-up">
 			<div class="container">
 				<header class="major">
-					<h2>My GitHub Highlights</h2>
-					<p>Discover repositories focused on coding, automation, and gaming.</p>
+					<h2>SHEEKOVIC TOOLS</h2>
+					<p>Your gateway to innovative and practical solutions.</p>
 				</header>
 				<div class="box alt">
 					<div class="row gtr-uniform">
 						<section class="col-4 col-6-medium col-12-xsmall">
-							<span class="icon solid alt major fa-code"></span>
-							<h3>Game Hacking Tools</h3>
-							<p>Scripts and utilities for exploring and modifying in-game features.</p>
+							<span class="icon solid alt major"><i class="fa-brands fa-youtube"></i></span>
+							<h3>YouTube Live Subscriber Counter</h3>
+							<p>Track real-time subscribers, views, and videos for YouTube channels.</p>
+							<a href="youtube.html" class="button small">Try the Tool</a>
 						</section>
 						<section class="col-4 col-6-medium col-12-xsmall">
 							<span class="icon solid alt major fa-robot"></span>
-							<h3>Automation Bots</h3>
-							<p>Custom bots built for efficiency, speed, and scalability.</p>
+							<h3>Age Calculator Tool</h3>
+							<p>Your age in days, weeks, months, and years, and your Zodiac sign, Birthstone, Fun Facts, and more.</p>
+							<a href="Age.html" class="button small">Try the Tool</a>
 						</section>
 						<section class="col-4 col-6-medium col-12-xsmall">
 							<span class="icon solid alt major fa-rocket"></span>
@@ -201,7 +201,7 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="main.js" defer type="module"></script>
-
+	<script src="assets/js/dynamicAge.js"></script>
 </body>
 
 </html>

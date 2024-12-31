@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Sheekovic - Age Calculator</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/age.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="is-preload landing">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1 id="logo"><a href="index.html">SHEEKOVIC</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="youtube.html">YouTube Live</a></li>
+                    <li><a href="binance.html">Binance Project</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li>
+                        <section>
+                            <button id="github-signup" class="button primary">Sign Up with GitHub</button>
+                        </section>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Section -->
+        <section id="main" class="wrapper style1 special fade-up">
+            <div class="container">
+                <header class="major">
+                    <h2>Age Calculator</h2>
+                    <p>Find out your exact age and more fun facts!</p>
+                </header>
+                <div class="box">
+                    <!-- Input Form -->
+                    <form id="age-form">
+                        <div class="row gtr-uniform">
+                            <div class="col-4 col-12-small">
+                                <input type="number" id="day" name="day" placeholder="Day" min="1" max="31" required>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <input type="number" id="month" name="month" placeholder="Month" min="1" max="12"
+                                    required>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <input type="number" id="year" name="year" placeholder="Year" min="1900" required>
+                            </div>
+                        </div>
+                        <section>
+                            <button type="submit" class="button primary">Calculate</button>
+                        </section>
+                    </form>
+                    <!-- Output Section -->
+                    <div id="results" style="margin-top: 20px; display: none;">
+                        <p id="current-age"></p>
+                        <p id="next-birthday"></p>
+                        <p id="fun-facts"></p>
+                        <p id="famous-people"></p>
+                    </div>
+                    <!-- compatibility form -->
+                    <form id="compatibility-form">
+                        <div class="row gtr-uniform">
+                            <div class="col-4 col-12-small">
+                                <input type="number" id="compatibility-day" name="compatibility-day" placeholder="Day"
+                                    min="1" max="31" required>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <input type="number" id="compatibility-month" name="compatibility-month"
+                                    placeholder="Month" min="1" max="12" required>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <input type="number" id="compatibility-year" name="compatibility-year"
+                                    placeholder="Year" min="1900" required>
+                            </div>
+                        </div>
+                        <section>
+                            <button type="submit" class="button primary">Check Compatibility</button>
+                        </section>
+                    </form>
+                    <!-- compatibility output section -->
+                    <div id="compatibility-results" style="margin-top: 20px; display: none;">
+                        <p id="compatibility"></p>
+                    </div>
+                    <div class="compatibility-details" id="compatibility-details">
+                        <img src="" id="zodiac-image">
+                        <img src="" id="zodiac-image-2">
+                        <h2 id="zodiac_signs"></h2>
+                        <p id="match-score"></p>
+                        <img src="" id="zodiac-score-image">
+                    </div>
+                    <div id="compatibility-score">
+                    </div>
+                </div>
+            </div>
+    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/Sheekovic" class="icon brands alt fa-twitter"><span class="label">X</span></a>
+            </li>
+            <li><a href="https://www.facebook.com/sheekovic" class="icon brands alt fa-facebook-f"><span
+                        class="label">Facebook</span></a></li>
+            <li><a href="https://www.linkedin.com/in/sheekovic/" class="icon brands alt fa-linkedin-in"><span
+                        class="label">LinkedIn</span></a></li>
+            <li><a href="https://www.instagram.com/sheekovic/" class="icon brands alt fa-instagram"><span
+                        class="label">Instagram</span></a></li>
+            <li><a href="https://github.com/Sheekovic" class="icon brands alt fa-github"><span
+                        class="label">GitHub</span></a></li>
+            <li><a href="mailto:ahmeedsheeko@gmail.com" class="icon solid alt fa-envelope"><span
+                        class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; Beyond. All rights reserved.</li>
+            <li>Design: <a href="https://github.com/Sheekovic">Sheekovic</a></li>
+        </ul>
+    </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="main.js" defer type="module"></script>
+    <script src="assets/js/AgeCalculator.js"></script>
+</body>
+
+</html>
