@@ -1,0 +1,769 @@
+/* Import OCR A Extended font */
+@import url('https://fonts.googleapis.com/css2?family=OCR+A+Extended&display=swap');
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'OCR A Extended', monospace;
+    background-color: #272727;
+    color: #cfcfea;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+header {
+    background-color: #35393c;
+    padding: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+header nav {
+    text-align: left;
+}
+
+.logo {
+    width: 2%;
+    /* Set a default size for the logo */
+    height: auto;
+    /* Maintain aspect ratio */
+    /* in the center */
+    display: inline-flex;
+    align-items: left;
+}
+
+/* Glitch Effect for Navigation Links */
+header nav a {
+    position: relative;
+    /* Needed for pseudo-elements */
+    color: #cfcfea;
+    text-transform: uppercase;
+    font-weight: bold;
+    /* Bold text */
+    text-decoration: none;
+    font-size: 1.3em;
+    margin: 0 20px;
+    padding: 10px 0;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    /* For pseudo-element positioning */
+    animation: glitch-nav 1.5s infinite;
+    /* Continuous glitch */
+}
+
+/* Hover Effect */
+header nav a:hover {
+    color: #84a98c;
+    transform: scale(1.1);
+}
+
+/* Glitch Effect Heading Styles */
+h1 {
+    text-align: center;
+    font-size: 1.5em;
+    color: #cfcfea;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.hero {
+    font-size: clamp(20px, 5vw, 50px);
+    line-height: 1;
+    display: block;
+    color: #fff;
+    z-index: 2;
+    /* Bright things in dark environments usually cast that light, giving off a glow */
+    filter: drop-shadow(0 1px 3px);
+}
+
+.layers {
+    position: relative;
+}
+
+.layers::before,
+.layers::after {
+    content: attr(data-text);
+    position: absolute;
+    width: 110%;
+    z-index: -1;
+}
+
+.layers::before {
+    top: 10px;
+    left: 15px;
+    color: #e0287d;
+}
+
+.layers::after {
+    top: 5px;
+    left: -10px;
+    color: #1bc7fb;
+}
+
+.single-path {
+    clip-path: polygon(0% 12%,
+            53% 12%,
+            53% 26%,
+            25% 26%,
+            25% 86%,
+            31% 86%,
+            31% 0%,
+            53% 0%,
+            53% 84%,
+            92% 84%,
+            92% 82%,
+            70% 82%,
+            70% 29%,
+            78% 29%,
+            78% 65%,
+            69% 65%,
+            69% 66%,
+            77% 66%,
+            77% 45%,
+            85% 45%,
+            85% 26%,
+            97% 26%,
+            97% 28%,
+            84% 28%,
+            84% 34%,
+            54% 34%,
+            54% 89%,
+            30% 89%,
+            30% 58%,
+            83% 58%,
+            83% 5%,
+            68% 5%,
+            68% 36%,
+            62% 36%,
+            62% 1%,
+            12% 1%,
+            12% 34%,
+            60% 34%,
+            60% 57%,
+            98% 57%,
+            98% 83%,
+            1% 83%,
+            1% 53%,
+            91% 53%,
+            91% 84%,
+            8% 84%,
+            8% 83%,
+            4% 83%);
+}
+
+.paths {
+    animation: paths 5s step-end infinite;
+}
+
+@keyframes paths {
+    0% {
+        clip-path: polygon(0% 43%,
+                83% 43%,
+                83% 22%,
+                23% 22%,
+                23% 24%,
+                91% 24%,
+                91% 26%,
+                18% 26%,
+                18% 83%,
+                29% 83%,
+                29% 17%,
+                41% 17%,
+                41% 39%,
+                18% 39%,
+                18% 82%,
+                54% 82%,
+                54% 88%,
+                19% 88%,
+                19% 4%,
+                39% 4%,
+                39% 14%,
+                76% 14%,
+                76% 52%,
+                23% 52%,
+                23% 35%,
+                19% 35%,
+                19% 8%,
+                36% 8%,
+                36% 31%,
+                73% 31%,
+                73% 16%,
+                1% 16%,
+                1% 56%,
+                50% 56%,
+                50% 8%);
+    }
+
+    5% {
+        clip-path: polygon(0% 29%,
+                44% 29%,
+                44% 83%,
+                94% 83%,
+                94% 56%,
+                11% 56%,
+                11% 64%,
+                94% 64%,
+                94% 70%,
+                88% 70%,
+                88% 32%,
+                18% 32%,
+                18% 96%,
+                10% 96%,
+                10% 62%,
+                9% 62%,
+                9% 84%,
+                68% 84%,
+                68% 50%,
+                52% 50%,
+                52% 55%,
+                35% 55%,
+                35% 87%,
+                25% 87%,
+                25% 39%,
+                15% 39%,
+                15% 88%,
+                52% 88%);
+    }
+
+    30% {
+        clip-path: polygon(0% 53%,
+                93% 53%,
+                93% 62%,
+                68% 62%,
+                68% 37%,
+                97% 37%,
+                97% 89%,
+                13% 89%,
+                13% 45%,
+                51% 45%,
+                51% 88%,
+                17% 88%,
+                17% 54%,
+                81% 54%,
+                81% 75%,
+                79% 75%,
+                79% 76%,
+                38% 76%,
+                38% 28%,
+                61% 28%,
+                61% 12%,
+                55% 12%,
+                55% 62%,
+                68% 62%,
+                68% 51%,
+                0% 51%,
+                0% 92%,
+                63% 92%,
+                63% 4%,
+                65% 4%);
+    }
+
+    45% {
+        clip-path: polygon(0% 33%,
+                2% 33%,
+                2% 69%,
+                58% 69%,
+                58% 94%,
+                55% 94%,
+                55% 25%,
+                33% 25%,
+                33% 85%,
+                16% 85%,
+                16% 19%,
+                5% 19%,
+                5% 20%,
+                79% 20%,
+                79% 96%,
+                93% 96%,
+                93% 50%,
+                5% 50%,
+                5% 74%,
+                55% 74%,
+                55% 57%,
+                96% 57%,
+                96% 59%,
+                87% 59%,
+                87% 65%,
+                82% 65%,
+                82% 39%,
+                63% 39%,
+                63% 92%,
+                4% 92%,
+                4% 36%,
+                24% 36%,
+                24% 70%,
+                1% 70%,
+                1% 43%,
+                15% 43%,
+                15% 28%,
+                23% 28%,
+                23% 71%,
+                90% 71%,
+                90% 86%,
+                97% 86%,
+                97% 1%,
+                60% 1%,
+                60% 67%,
+                71% 67%,
+                71% 91%,
+                17% 91%,
+                17% 14%,
+                39% 14%,
+                39% 30%,
+                58% 30%,
+                58% 11%,
+                52% 11%,
+                52% 83%,
+                68% 83%);
+    }
+
+    76% {
+        clip-path: polygon(0% 26%,
+                15% 26%,
+                15% 73%,
+                72% 73%,
+                72% 70%,
+                77% 70%,
+                77% 75%,
+                8% 75%,
+                8% 42%,
+                4% 42%,
+                4% 61%,
+                17% 61%,
+                17% 12%,
+                26% 12%,
+                26% 63%,
+                73% 63%,
+                73% 43%,
+                90% 43%,
+                90% 67%,
+                50% 67%,
+                50% 41%,
+                42% 41%,
+                42% 46%,
+                50% 46%,
+                50% 84%,
+                96% 84%,
+                96% 78%,
+                49% 78%,
+                49% 25%,
+                63% 25%,
+                63% 14%);
+    }
+
+    90% {
+        clip-path: polygon(0% 41%,
+                13% 41%,
+                13% 6%,
+                87% 6%,
+                87% 93%,
+                10% 93%,
+                10% 13%,
+                89% 13%,
+                89% 6%,
+                3% 6%,
+                3% 8%,
+                16% 8%,
+                16% 79%,
+                0% 79%,
+                0% 99%,
+                92% 99%,
+                92% 90%,
+                5% 90%,
+                5% 60%,
+                0% 60%,
+                0% 48%,
+                89% 48%,
+                89% 13%,
+                80% 13%,
+                80% 43%,
+                95% 43%,
+                95% 19%,
+                80% 19%,
+                80% 85%,
+                38% 85%,
+                38% 62%);
+    }
+
+    1%,
+    7%,
+    33%,
+    47%,
+    78%,
+    93% {
+        clip-path: none;
+    }
+}
+
+.movement {
+    /* Normally this position would be absolute & on the layers, set to relative here so we can see it on the div */
+    position: relative;
+    animation: movement 8s step-end infinite;
+}
+
+@keyframes movement {
+    0% {
+        top: 0px;
+        left: -20px;
+    }
+
+    15% {
+        top: 10px;
+        left: 10px;
+    }
+
+    60% {
+        top: 5px;
+        left: -10px;
+    }
+
+    75% {
+        top: -5px;
+        left: 20px;
+    }
+
+    100% {
+        top: 10px;
+        left: 5px;
+    }
+}
+
+.opacity {
+    animation: opacity 5s step-end infinite;
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0.1;
+    }
+
+    5% {
+        opacity: 0.7;
+    }
+
+    30% {
+        opacity: 0.4;
+    }
+
+    45% {
+        opacity: 0.6;
+    }
+
+    76% {
+        opacity: 0.4;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    1%,
+    7%,
+    33%,
+    47%,
+    78%,
+    93% {
+        opacity: 0;
+    }
+}
+
+.font {
+    animation: font 7s step-end infinite;
+}
+
+@keyframes font {
+    0% {
+        font-weight: 100;
+        color: #e0287d;
+        filter: blur(3px);
+    }
+
+    20% {
+        font-weight: 500;
+        color: #fff;
+        filter: blur(0);
+    }
+
+    50% {
+        font-weight: 300;
+        color: #1bc7fb;
+        filter: blur(2px);
+    }
+
+    60% {
+        font-weight: 700;
+        color: #fff;
+        filter: blur(0);
+    }
+
+    90% {
+        font-weight: 500;
+        color: #e0287d;
+        filter: blur(6px);
+    }
+}
+
+
+.glitch span {
+    animation: paths 5s step-end infinite;
+}
+
+.glitch::before {
+    animation: paths 5s step-end infinite, opacity 5s step-end infinite,
+        font 8s step-end infinite, movement 10s step-end infinite;
+}
+
+.glitch::after {
+    animation: paths 5s step-end infinite, opacity 5s step-end infinite,
+        font 7s step-end infinite, movement 8s step-end infinite;
+}
+
+
+
+h2 {
+    font-size: 1.8em;
+    color: #cfcfea;
+    margin: 20px 0;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #cfcfea;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Paragraph Styles */
+p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #cfcfea;
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+button {
+    background-color: #35393c;
+    color: white;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background-color: #0a090c;
+}
+
+/* Glitch Effect for Section Links */
+section a {
+    position: relative;
+    /* Needed for pseudo-elements */
+    color: #cfcfea;
+    text-transform: uppercase;
+    font-weight: bold;
+    /* Bold text */
+    text-decoration: none;
+    font-size: 1.3em;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    /* Add space under */
+    padding: 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+    display: block;
+}
+
+/* Hover Effect */
+section a:hover {
+    color: #84a98c;
+    transform: scale(1.1);
+}
+
+
+/*scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+    /* Set the width of the scrollbar */
+}
+
+/* Box styling */
+.code-box {
+    background-color: #0a090c;
+    border: 1px solid #3d3d3d;
+    border-radius: 2%;
+    padding: 15px;
+    color: #cfcfea;
+    line-height: 1.5;
+    overflow: auto;
+    width: 50%;
+    margin: 0 auto;
+    /* add space under */
+    margin-bottom: 2%;
+    text-align: center;
+    display: flex;
+    /* shadow for text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Syntax highlighting */
+.keyword {
+    color: #d19a66;
+    font-weight: bold;
+    text-shadow: #000000;
+}
+
+.string {
+    color: #98c379;
+    text-shadow: #000000;
+}
+
+.function {
+    color: #61afef;
+    text-shadow: #000000;
+}
+
+.method {
+    color: #b63434;
+    text-shadow: #000000;
+}
+
+.type {
+    color: #56b6c2;
+    text-shadow: #000000;
+}
+
+.variable {
+    color: #e5c07b;
+    text-shadow: #000000;
+}
+
+.comment {
+    color: #537416;
+    font-style: italic;
+}
+
+
+/* API Response Display */
+pre {
+    background-color: #0a090c;
+    color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    /*hide*/
+    display: none;
+}
+
+
+/* Footer styling */
+footer {
+    background-color: #35393c;
+    padding: 20px 0;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #cfcfea;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.3em;
+    margin: 0 20px;
+    padding: 10px 0;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer a:hover {
+    color: #84a98c;
+    transform: scale(1.1);
+}
+
+footer p {
+    font-size: 1rem;
+    color: #cfcfea;
+}
+
+/* Container for images */
+.image-list {
+    display: inline-flex;
+    /* Arrange items in a row */
+    justify-content: center;
+    /* Center the items horizontally */
+    align-items: center;
+    /* Align items vertically */
+    gap: 5px;
+    /* Minimal space between the images */
+}
+
+/* SheeKryptor image styles */
+.SheeKryptor img,
+.GitHub img {
+    width: 70px;
+    /* Set a fixed width for consistency */
+    height: auto;
+    /* Set the height to match the width */
+    object-fit: cover;
+    /* Ensure the image fills the circular shape */
+    border-radius: 50%;
+    /* Make the images circular */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.534);
+    /* Add a drop shadow */
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    button {
+        font-size: 1em;
+    }
+
+    pre {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    header nav a {
+        font-size: 1em;
+        margin: 0 10px;
+    }
+}
