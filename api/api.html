@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SheeKryptor API</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/index.html" data-text="Home">Home</a>
+            <!-- Add more links as needed -->
+        </nav>
+    </header>
+
+    <h1 class="hero glitch layers" data-text="Sheekovic - API"><span>Sheekovic - API</span></h1>
+    <p>This is an API built with JavaScript hosted on GitHub Pages.</p>
+
+    <h2>API</h2>
+    <button onclick="fetchData()">Get Data</button>
+    <pre id="api-response"></pre>
+
+    <section>
+        <h3>Try SheeKryptor Tools NOW</h3>
+
+        <!-- Add description of SheeKryptor here -->
+        <div class="code-box">
+            <p>
+                <span class="keyword">SheeKryptor</span> is a <span class="string">"secure file encryption and
+                    decryption tool"</span>
+                designed for ease of use.<br>
+                It allows users to securely <span class="function">encrypt</span> and <span
+                    class="function">decrypt</span> files using
+                strong <span class="variable">AES encryption</span>.<br>
+                Additional features include a <span class="function">password generator</span>, which supports both
+                random and
+                <span class="variable">personalized passwords</span>, as well as a <span class="function">2FA
+                    manager</span>
+                for <span class="variable">time-based one-time passwords (TOTP)</span>.<br>
+                Developers can also benefit from <span class="function">API testing</span>, supporting
+                <span class="method">GET</span>, <span class="method">POST</span>, <span class="method">PUT</span>, and
+                <span class="method">DELETE</span> requests.<br>
+                With a sleek <span class="variable">GUI</span>, cross-platform support, and customization options,
+                <span class="keyword">SheeKryptor</span> is perfect for developers, security enthusiasts, and anyone
+                seeking robust data protection.<br>
+                <span class="comment"># Explore it now on GitHub!</span>
+            </p>
+        </div>
+        <ul>
+            <!-- Link to SheeKryptor GitHub Page -->
+            <li><a href="https://github.com/Sheekovic/SheeKryptor" data-text="SheeKryptor!!">SheeKryptor!!</a></li>
+        </ul>
+
+    </section>
+
+
+    <footer>
+        <ul class="image-list">
+            <!-- SheeKryptor Image with GitHub Link -->
+            <a href="https://github.com/Sheekovic/SheeKryptor" class="SheeKryptor">
+                <img id="SheeKryptor" src="/images/sheeko.jpg" alt="SheeKryptor" />
+            </a>
+            <!-- GitHub Image with GitHub Link -->
+            <a href="https://github.com/Sheekovic" class="GitHub">
+                <img id="GitHub"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs7RBrLXYOjplHTngHVVPKKeevxVraRusDnlNLSsDrHLM8QMRRKIb7KHpa81Cjwg4cib4&usqp=CAU"
+                    alt="GitHub" />
+            </a>
+        </ul>
+        <p>&copy; 2025 Sheekovic. All rights reserved.</p>
+    </footer>
+
+
+    <script>
+        function fetchData() {
+            // make pre id api-response visible
+            document.getElementById('api-response').style.display = 'block';
+            // Fetch data from api.json
+            fetch('api.json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('api-response').textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+    </script>
+</body>
+
+</html>
