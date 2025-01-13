@@ -94,7 +94,7 @@ h1 {
 .layers::after {
     content: attr(data-text);
     position: absolute;
-    width: 110%;
+    width: 100%;
     z-index: -1;
 }
 
