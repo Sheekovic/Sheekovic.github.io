@@ -43,4 +43,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 - **GitHub**: [Sheekovic](https://github.com/Sheekovic)
-- **Email**: [Your Email](mailto:sheekovic@gmail.com)
+- **Email**: [Email](mailto:sheekovic@gmail.com)
