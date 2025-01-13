@@ -124,7 +124,6 @@ async function fetchYouTubeStatistics(channelId) {
         const youtubeUrl = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`;
         const youtubeResponse = await fetch(youtubeUrl);
         const youtubeData = await youtubeResponse.json();
-
         if (youtubeData.items && youtubeData.items.length > 0) {
             apiSubCount = parseInt(youtubeData.items[0].statistics.subscriberCount, 10);
         }

@@ -1,6 +1,4 @@
-
 const darkModeToggle = document.getElementById('darkModeToggle');
-
 // Check if dark mode is already enabled
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
