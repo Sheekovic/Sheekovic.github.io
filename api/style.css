@@ -77,7 +77,7 @@ h1 {
 }
 
 .hero {
-    font-size: clamp(20px, 5vw, 50px);
+    font-size: clamp(20px, 5vw, 70px);
     line-height: 1;
     display: block;
     color: #fff;
