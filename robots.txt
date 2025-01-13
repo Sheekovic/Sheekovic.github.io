@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /.github/  # (Only use this if you want to block specific parts of your site)
 Allow: /
+Sitemap: https://sheekovic.github.io/sitemap.xml
