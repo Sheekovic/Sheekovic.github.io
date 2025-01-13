@@ -10,7 +10,6 @@ const githubProvider = new GithubAuthProvider();
 auth.languageCode = 'en';
 const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 
-
 // Get the GitHub sign-up button
 const githubSignUpButton = document.getElementById('github-signup');
 
