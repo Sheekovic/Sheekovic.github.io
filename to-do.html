@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="To-Do Tool - Organize your tasks efficiently with Sheekovic's To-Do Tool. Add, edit, and manage your tasks seamlessly.">
+    <meta name="keywords" content="To-Do Tool, task organizer, task management, productivity, Sheekovic, to-do app">
+    <meta name="author" content="Sheekovic">
+    <meta property="og:title" content="To-Do Tool - Task Management by Sheekovic">
+    <meta property="og:description"
+        content="Boost your productivity with the To-Do Tool. A simple, effective way to organize and complete your tasks.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/todo-preview.png">
+    <meta property="og:url" content="https://sheekovic.github.io/to-do.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="To-Do Tool - Task Management by Sheekovic">
+    <meta name="twitter:description"
+        content="Organize your tasks with ease using the To-Do Tool. Simple, fast, and effective.">
+    <meta name="twitter:image" content="https://sheekovic.github.io/images/todo-preview.png">
+    <link rel="canonical" href="https://sheekovic.github.io/to-do.html">
+    <title>To-Do Tool - Efficient Task Management by Sheekovic</title>
+    <link rel="stylesheet" href="assets/css/to-do.css">
+    <link rel="icon" href="/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="background"></div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/age.html">Age Calculator</a></li>
+                <li><a href="/youtube.html">YouTube Live Subs Counter</a></li>
+                <li><a href="/to-do.html">To-Do</a></li>
+                <li><a href="/forum.html">Forum</a></li>
+            </ul>
+            <div class="settings">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/settings.png" alt="Settings" id="settings-icon" />
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="todo-container">
+            <h2>My To-Do List</h2>
+            <input type="text" placeholder="Enter a task" />
+            <button>Add Task</button>
+            <ul>
+                <li>
+                    Task 1
+                    <button>Delete</button>
+                </li>
+                <li>
+                    Task 2
+                    <button>Delete</button>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sheekovic. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for settings -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <h3>Change Color Palette</h3>
+            <button id="generate-colors">Generate Colors</button>
+            <div id="color-palette" class="color-palette">
+                <!-- Colors will be dynamically added here -->
+            </div>
+            <button id="close-settings">Close</button>
+        </div>
+    </div>
+
+    <script src="assets/js/to-do.js"></script>
+</body>
+</html>

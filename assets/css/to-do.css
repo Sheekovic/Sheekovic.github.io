@@ -1,0 +1,226 @@
+/* background image with blur effect */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center center; /* Center the background image */
+    z-index: -1; /* Place the background behind the content */
+    pointer-events: none; /* Prevent interaction with the background */
+}
+
+/* Adding 50% transparency with a pseudo-element */
+.background::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.096); /* 50% opacity overlay */
+    pointer-events: none; /* Prevent interaction with the overlay */
+}
+
+
+/* General Styles */
+body {
+    font-family: 'Lora', serif; /* Unique and readable font */
+    margin: auto;
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the body covers the full height of the viewport */
+    background-color: #2F3E46;
+    color: #cad2c5;
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+header {
+    position: relative;
+    width: 100%;
+    background-color: #354f529a;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: left;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #cad2c5;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #84A98C;
+}
+
+.settings {
+    position: absolute;
+    top: 10px;
+    right: 7%;
+    cursor: pointer;
+    height: 5px;
+    width: 5px;
+}
+
+/* Main Content Styles */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* To-Do Container */
+.todo-container {
+    background: #354F52;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    color: #cad2c5;
+}
+
+/* Input Styles */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #52796F;
+    border-radius: 4px;
+    font-family: 'Lora', serif;
+    background: #2F3E46;
+    color: #cad2c5;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #84A98C;
+    outline: none;
+}
+
+/* Button Styles */
+button {
+    padding: 10px 20px;
+    background: #52796F;
+    color: #cad2c5;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #84A98C;
+}
+
+/* Task List Styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2F3E46;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    color: #cad2c5;
+    transition: background 0.3s ease;
+}
+
+li:hover {
+    background: #354F52;
+}
+
+li button {
+    padding: 5px 10px;
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+li button:hover {
+    background: #c0392b;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #354F52;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: #cad2c5;
+    position: relative;
+    width: 100%;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #354F52;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+.color-palette {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.color-palette div {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #84A98C;
+}
+
+button:active {
+    background: #52796F;
+}
