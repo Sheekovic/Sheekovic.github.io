@@ -1,0 +1,180 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: OCR A Extended, monospace;
+}
+
+/* Basic body styles */
+body {
+    line-height: 1.6;
+    background-color: #1C1D21;
+    color: #dcdcdc;
+    font-size: 16px;
+    align-items: center;
+}
+
+/* Header styles */
+header {
+    background-color: #101419;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header a {
+    /* make it uppercase */
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 5px;
+    transition: all 0.3s ease;
+}
+
+header a:hover {
+    color: #CBF7ED; /* Change color on hover */
+    font-size: 1.3em;
+    /* add spacing between letters */
+    letter-spacing: 15px;
+    transform: scale(1.1);
+}
+
+/* Navigation styles */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #25283d71;
+}
+
+nav a {
+    color: #fff;
+    padding: 15px 20px;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease, font-size 0.3s ease;
+}
+
+nav a:hover {
+    font-size: 1.2em;
+    transform: scale(1.1);
+    color: #1C1D21; /* Change text color on hover */
+}
+
+/* Section styles */
+section {
+    padding: 20px;
+    margin: 30px auto;
+    background-color: #101419;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* make it rounded */
+    border-radius: 15px;
+    width: 98%;
+}
+
+section a {
+    color: #61afef;
+    text-decoration: none;
+    font-size: 1em;
+    transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+section a:hover {
+    font-size: 1.2em;
+    transform: scale(1.2);
+    color: #CBF7ED; /* Change color on hover */
+}
+
+section .numbered {
+    margin-left: 30px;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Code block styling */
+pre {
+    background-color: #051014;
+    padding: 15px;
+    border-radius: 15px;
+    overflow-x: auto;
+    box-shadow: #141414 0 10px 10px;
+}
+
+/* Python code specific styling */
+code.python-code {
+    background-color: #333;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* Python syntax highlighting */
+.python-code {
+    font-family: "Courier New", Courier, monospace;
+    color: #dcdcdc;
+}
+
+.python-code .keyword {
+    color: #FDB833;
+    /* Purple for keywords */
+}
+
+.python-code .comment {
+    color: #40c9a2;
+    /* Green for comments */
+}
+
+.python-code .string {
+    color: #FE4A49;
+    /* Green for strings */
+}
+
+.python-code .function {
+    color: #61afef;
+    /* Light blue for function names */
+}
+
+.python-code .variable {
+    color: #2AB7CA;
+    /* Red for variables */
+}
+
+.python-code .operator {
+    color: #CBF7ED;
+    /* Teal for operators */
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #25283d94;
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #CBF7ED;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 1em;
+    transition: transform 0.3s ease, font-size 0.3s ease;
+    margin-top: 20px;
+}
+
+footer a:hover {
+    text-decoration: none;
+    transform: scale(1.1);
+    font-size: 1.2em;
+    color: #FDB833; /* Change text color on hover */
+}

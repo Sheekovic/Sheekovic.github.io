@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- add a favicon -->
+     <link rel="icon" href="images/SheeKryptor.ico" type="image/x-icon">
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="SheeKryptor - A powerful encryption and decryption tool, designed for secure data handling and protection with various algorithms.">
+    <meta name="author" content="Sheekovic">
+    <meta name="keywords" content="SheeKryptor, encryption, decryption, tool, security, API testing, two-factor authentication, conversion utilities">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph meta tags for better sharing on social media platforms -->
+    <meta property="og:title" content="SheeKryptor Documentation">
+    <meta property="og:description" content="Explore the documentation of SheeKryptor, a powerful tool for encryption, decryption, API testing, and more.">
+    <meta property="og:image" content="https://example.com/path/to/your/image.jpg"> <!-- Replace with an image URL -->
+    <meta property="og:url" content="https://sheekovic.github.io/sheekryptor"> <!-- Replace with your URL -->
+    <meta property="og:type" content="website">
+
+    <!-- Twitter card meta tags for better presentation on Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SheeKryptor Documentation">
+    <meta name="twitter:description" content="Explore the documentation of SheeKryptor, a powerful tool for encryption, decryption, API testing, and more.">
+    <meta name="twitter:image" content="https://example.com/path/to/your/image.jpg"> <!-- Replace with an image URL -->
+    
+    <title>SheeKryptor Documentation</title>
+
+    <!-- Highlight.js CDN for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="assets/css/sheekryptor.css">
+</head>
+
+
+<body class="python-code">
+
+    <header>
+        <h1><a href="https://github.com/Sheekovic/SheeKryptor" class="keyword">SheeKryptor</a></h1>
+        <p class="comment">Powerful encryption and decryption tool designed for secure data handling</p>
+    </header>
+
+    <nav>
+        <a href="#about" class="variable">About</a>
+        <a href="#features" class="variable">Features</a>
+        <a href="#installation" class="variable">Installation</a>
+        <a href="#usage" class="variable">Usage</a>
+    </nav>
+
+    <section id="about">
+        <h2 class="keyword">About SheeKryptor</h2>
+        <p class="comment"># SheeKryptor is a versatile encryption and decryption tool designed for secure data handling
+        </p>
+        <p class="comment">It supports AES encryption and decryption, offers a password generator for creating strong
+            passwords, and integrates with API testing, two-factor authentication, and other useful tools.</p>
+    </section>
+
+    <section id="features">
+        <h2 class="keyword">Features</h2>
+        <ul>
+            <li><strong class="function">File Encryption</strong>: <h7 class="string">
+                    <h7 class="comment">Encrypt</h7> files securely with <h7 class="variable">AES encryption</h7> (CBC
+                    mode).
+                </h7>
+            </li>
+            <li><strong class="function">File Decryption</strong>: <h7 class="string">
+                    <h7 class="comment">Decrypt</h7>
+                    <h7 class="variable">encrypted files</h7> with the correct password.
+                </h7>
+            </li>
+            <li><strong class="function">Password Generator</strong>: <h7 class="string">
+                    <h7 class="comment">Generate</h7> strong <h7 class="variable">random</h7> or <h7 class="variable">
+                        personalized</h7> passwords.
+                </h7>
+            </li>
+            <li><strong class="function">API Testing</strong>: <h7 class="string">
+                    <h7 class="comment">Test</h7>
+                    <h7 class="variable">API</h7> endpoints with <h7 class="keyword">GET</h7>," <h7 class="keyword">POST
+                    </h7>, <h7 class="keyword">PUT</h7>, and <h7 class="keyword">DELETE</h7> requests.
+                </h7>
+            </li>
+            <li><strong class="function">OTP Generator (2FA)</strong>: <h7 class="string">
+                    <h7 class="comment">Generate</h7> and manage <h7 class="keyword">OTP</h7> codes for <h7
+                        class="variable">time-based one-time passwords (TOTP)</h7> services.
+                </h7>
+            </li>
+            <li><strong class="function">SquashIT</strong>: <h7 class="string">
+                    <h7 class="comment">Compress</h7> and <h7 class="comment">Decompress</h7> files using <h7
+                        class="variable">zlib</h7>, <h7 class="variable">gzip</h7>, and <h7 class="variable">tar.zlib
+                    </h7> formats.
+                </h7>
+            </li>
+            <li><strong class="function">ConvertX</strong>: <h7 class="string">
+                    <h7 class="comment">Convert</h7> file formats (e.g., <h7 class="variable">Image</h7> to <h7
+                        class="variable">Base64</h7>, <h7 class="variable">Text</h7> to <h7 class="variable">Hexadecimal
+                    </h7>).
+                </h7>
+            </li>
+            <li><strong class="function">Temp Mail</strong>: <h7 class="string">
+                    <h7 class="comment">Generate</h7> and manage <h7 class="variable">temporary email addresses</h7> for
+                    testing.
+                </h7>
+            </li>
+            <li><strong class="function">Customizable Settings</strong>: <h7 class="string">
+                    <h7 class="comment">Customize</h7> the theme and font <h7 class="keyword">style</h7>/<h7
+                        class="keyword">color</h7> for a <h7 class="variable">personalized experience</h7>.
+                </h7>
+            </li>
+            <li><strong class="function">Cross-Platform Support</strong>: <h7 class="string">
+                    <h7 class="comment">Works</h7> on <h7 class="keyword">Windows</h7>, <h7 class="keyword">macOS</h7>,
+                    and <h7 class="keyword">Linux</h7>.
+                </h7>
+            </li>
+        </ul>
+    </section>
+
+    <section id="installation">
+        <h2 class="keyword">Installation</h2>
+        <p class="comment">Follow the steps below to install SheeKryptor:</p>
+        <ol class="numbered" id="numbered">
+            <li><span class="function">Clone the repository:</span> <code
+                    class="python-code">git clone https://github.com/sheekovic/SheeKryptor.git</code></li>
+            <li><span class="function">Navigate to the project directory:</span> <code
+                    class="python-code">cd SheeKryptor</code></li>
+            <li><span class="function">Install required dependencies:</span> <code
+                    class="python-code">pip install -r requirements.txt</code></li>
+            <li><span class="function">Run the application:</span> <code
+                    class="python-code">python sheekryptor.py</code></li>
+            <li><span class="function">Or run the setup script:</span> <code
+                    class="python-code">EasySetup(RunFromHere).bat</code></li>
+        </ol>
+    </section>
+
+    <section id="usage">
+        <h2 class="keyword">Usage</h2>
+        <p class="comment">Once installed, you can use SheeKryptor for various encryption, decryption, and security
+            tasks. Here's how to perform some basic actions:</p>
+        <h3 class="keyword">Encrypt a File</h3>
+        <pre class="string">
+    1. Go to the "Encryptor" tab.
+    2. Select the file you wish to encrypt by clicking "Browse".
+    3. Enter a strong password.
+    4. Click the "Encrypt" button to generate the encrypted file.
+    5. The encrypted file will be saved in the encrypted_files folder with _encrypted appended to the filename.
+    6. Added Log Box for viewing the encryption process logs.</pre>
+        <h3 class="keyword">Decrypt a File</h3>
+        <pre class="string">
+    1. Go to the "Decryptor" tab.
+    2. Select the encrypted file by clicking "Browse".
+    3. Enter the password used for encryption.
+    4. Click the "Decrypt" button to retrieve the original file.
+    5. The decrypted file will be saved in the decrypted_files folder with _decrypted appended to the filename.
+    6. Added Log Box for viewing the decryption process logs.</pre>
+        <h3 class="keyword">Password Generator</h3>
+        <pre class="string">
+    1. Go to the "PWD Generator" tab.
+    2. Choose the length for the password you want to generate.
+    3. Click "Generate" to create a random strong password.</pre>
+        <h3 class="keyword">Personalized Password</h3>
+        <pre class="string">
+    1. Go to the "PWD Generator" tab.
+    2. Enter your name and date of birth.
+    3. Choose the password length.
+    4. Click "Generate" to create a personalized password based on your details.</pre>
+        <h3 class="keyword">API Testing</h3>
+        <pre class="string">
+    1. Go to the "API Testing" tab.
+    2. Enter the API endpoint URL.
+    3. Select the HTTP method (GET, POST, PUT, DELETE).
+    4. Enter any required parameters.
+    5. click "Test API" to send the request and view the response.
+    6. Save Results to a text file by clicking "Save Results".</pre>
+        <h3 class="keyword">2FA Tool</h3>
+        <pre class="string">
+    1. Go to the "2FA Tool" tab.
+    2. Enter the name of the provider (e.g., Google, Facebook) in the "Provider" field.
+    3. Enter Your Username/Email.
+    4. Enter Your Secret 2FA Key.
+    5. Select "Time-Based" for Time-Based Authentication (Optional).
+    6. Click the "Add Account" button to save the 2FA details for this account to the database.
+    7. All added accounts will be listed in the table below, showing the provider name, username/email, and the generated OTP (One-Time Password) for that account.
+    8. To delete an account, select the account from the "Select Account" dropdown, and Click "Delete Account" to remove it from the database.   </pre>
+        <h3 class="keyword">SquashIT</h3>
+        <pre class="string">
+    1. SquashIT Tool - File Compression
+    2. Go to the "SquashIT" tab.
+    3. Select the file you want to compress by clicking "Browse".
+    4. Choose the compression method (zlib, gzip, tar.zlib).
+    5. Set the compression level (0-9).
+    6. Click "Compress" to start the compression process.
+    7. UnSquashIT Tool - File Decompression
+    8. Go to the "SquashIT" tab.
+    9. Select the compressed file by clicking "Browse".
+    10. Click "UnSquashIT" to decompress the file.</pre>
+        <h3 class="keyword">ConvertX</h3>
+        <pre class="string">
+    1. Go to the "ConvertX" tab.
+    2. Select the file you want to convert by clicking "Browse".
+    3. Choose the conversion type (image to Base64, Base64 to image, text encoding, Base64 to text).
+    4. Click "Convert" to start the conversion process.
+    5. The converted file will be saved in the same directory as the original file.</pre>
+        <h3 class="keyword">Temp Mail</h3>
+        <pre class="string">
+    1. Go to the "Temp Mail" tab.
+    2. Enter Name and Password.
+    3. Click "Generate" to generate a temporary email address.
+    4. Refresh button to refresh messages.</pre>
+        <p class="comment">For more detailed usage and advanced features, check the <a
+                href="https://github.com/sheekovic/SheeKryptor" target="_blank">official GitHub repository</a>.</p>
+    </section>
+
+    <footer>
+        <p class="comment">SheeKryptor &copy; 2025 Sheekovic | <a href="https://github.com/sheekovic/SheeKryptor"
+                target="_blank">GitHub</a></p>
+        <a href="index.html" class="variable">Home</a>
+        <h7 class="comment">||</h7>
+        <a href="age.html" class="variable">Age Calculator</a>
+        <h7 class="comment">||</h7>
+        <a href="youtube.html" class="variable">YouTube Live Subscribers Counter</a>
+        <h7 class="comment">||</h7>
+        <a href="/api/api.html" class="variable">API</a>
+    </footer>
+
+</body>
+
+</html>
