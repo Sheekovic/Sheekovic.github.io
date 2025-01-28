@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="PixFormat is a powerful and user-friendly image format converter that allows you to easily convert images between popular formats like BMP, JPEG, PNG, TIFF, and more.">
+    <meta name="keywords"
+        content="image format converter, convert images, BMP to JPEG, PNG to TIFF, PixFormat, image converter tool">
+    <meta name="author" content="Sheekovic">
+    <meta property="og:title" content="PixFormat - Image Format Converter">
+    <meta property="og:description"
+        content="Easily convert your images between popular formats with PixFormat. A simple and efficient image converter tool designed for all your conversion needs.">
+    <meta property="og:image" content="/images/pixformat-thumbnail.jpg">
+    <meta property="og:url" content="https://www.sheekovic.com/pixformat">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PixFormat - Image Format Converter">
+    <meta name="twitter:description"
+        content="A powerful image format converter that allows users to convert images between formats like BMP, PNG, and JPEG.">
+    <meta name="twitter:image" content="/images/pixformat-thumbnail.jpg">
+    <meta name="twitter:site" content="@Sheekovic">
+    <title>PixFormat - Image Format Converter</title>
+    <link rel="stylesheet" href="css/pixformat.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">SHEEKOVIC</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+
+    <h1>PixFormat - Image Format Converter</h1>
+
+    <p><strong>PixFormat</strong> is a powerful image format conversion tool designed to convert your images to various
+        formats easily. Whether you are working with BMP, GIF, JPEG, PNG, TIFF, or many other formats, PixFormat
+        simplifies the process with a clean and simple user interface.</p>
+
+    <h2>Features</h2>
+    <ul>
+        <li>Convert images to popular formats like BMP, GIF, JPEG, PNG, TIFF, and more.</li>
+        <li>Simple and intuitive interface for easy conversion.</li>
+        <li>Save time with progress bars showing conversion status.</li>
+    </ul>
+
+    <h2>Supported Formats</h2>
+    <p>PixFormat supports the following formats for conversion:</p>
+    <pre class="highlight">
+        BMP, DDS, EPS, GIF, ICO, IM, JPEG, JPEG2000, MSP, PCX, PNG, PPM, SGI, SPIDER, TGA, TIFF, WEBP, XBM
+    </pre>
+
+    <h2>How to Use</h2>
+    <p>To convert an image:</p>
+    <ol>
+        <li>Select an image file from your computer.</li>
+        <li>Choose the desired output format (e.g., PNG, JPG, TIFF).</li>
+        <li>Click the <span class="button">Convert Image</span> button to start the conversion.</li>
+        <li>Save the converted file to your desired location.</li>
+    </ol>
+
+    <h3>Example Code (Python Script)</h3>
+    <p>If you want to use PixFormat's core functionality in your own projects, here’s a basic example:</p>
+    <pre>
+        import tkinter as tk
+        from tkinter import filedialog, messagebox
+        from PIL import Image
+
+        def convert_image(input_file, output_file, format):
+            try:
+                img = Image.open(input_file)
+                img.save(output_file, format=format)
+                messagebox.showinfo("Success", f"File converted and saved as {output_file}")
+            except Exception as e:
+                messagebox.showerror("Error", f"Failed to convert image: {e}")
+
+        # Usage
+        convert_image("input_image.png", "output_image.jpg", "JPEG")
+    </pre>
+
+    <h2>Installation</h2>
+    <p>PixFormat is designed to be easy to install. If you wish to install the application on your system, simply
+        download it from our <a href="https://github.com/Sheekovic/PixFormat/releases">GITHUB releases</a> and follow
+        the installation instructions provided.</p>
+
+    <h2>Support</h2>
+    <p>If you need assistance or have any questions, feel free to visit my github <a
+            href="https://github.com/Sheekovic">Sheekovic</a> or contact us via email at <a
+            href="mailto:sheekovic@gmail.com">sheekovic@gmail.com</a>.</p>
+
+    <div class="footer">
+        <p>&copy; 2025 PixFormat. All rights reserved.</p>
+        <p>Made with ❤️ by <a href="https://github.com/Sheekovic">Sheekovic</a></p>
+    </div>
+
+</body>
+
+</html>
