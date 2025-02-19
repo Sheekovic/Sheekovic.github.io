@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcrossBoard</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="icon" type="image/x-icon" href="acrossboard.ico">
+</head>
+
+<body>
+    <!-- 🔹 Navbar -->
+    <nav>
+        <div class="nav-left">
+            <a href="/index.html" class="home-btn">Home</a>
+        </div>
+        <div class="nav-right">
+            <button class="donate-btn">Donate</button>
+
+            <div id="donation-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Support Me</h2>
+                    <h3>Thank you for your support!</h3>
+                    <p>This app was built with a passion for making clipboard sharing seamless and accessible for everyone. Our mission is simple: keep this app 100% free, forever. No paywalls, no subscriptions—just a tool you can rely on every day.</p>
+
+                        <p>But maintaining a high-quality app takes time, effort, and resources. With your support, we can:</p>
+                        
+                        <p>Keep the app alive by covering hosting and development costs.</p>
+                            <p>Release exciting new updates that make clipboard sharing faster and smarter.</p>
+                                <p>Stay secure with the latest technology and protection for all users.</p>
+                        
+                                    <p>Every contribution—big or small—helps us stay dedicated to this vision. ❤️</p>
+                        
+                                        <p>Consider donating today to keep the app alive and thriving! Together, we can build an even better future for clipboard sharing. Thank you for being a part of this journey! 🙌</p>
+                    <p><strong>USDT TR20 Address:</strong> <p class="address">TKnkfHCWzk8LcbkuJSXV1RbP8khhkwXQR3 </p></p>
+                    <p><strong>Binance Pay:</strong> <a href="https://s.binance.com/yGqr4KAd"
+                            target="_blank">https://s.binance.com/yGqr4KAd</a></p>
+                    <p><strong>Buy Me a Coffee:</strong> <a href="https://www.buymeacoffee.com/sheekovic"
+                            target="_blank">https://www.buymeacoffee.com/sheekovic</a></p>
+                    <p><strong>Ko-fi:</strong> <a href="https://www.ko-fi.com/sheekovic"
+                            target="_blank">https://www.ko-fi.com/sheekovic</a></p>
+                </div>
+            </div>
+
+            <!-- 🔹 User Info Button in Navbar -->
+            <div id="user-btn" class="user-menu">
+                <img id="user-pic" src="default-avatar.png" alt="User Pic" class="user-pic" />
+                <span id="user-name">User</span>
+                <div id="dropdown-menu" class="dropdown-menu">
+                    <button id="logout-btn">Log Out</button>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- 🔹 Clipboard Input -->
+    <div class="clipboard-container">
+        <input type="text" id="clipboard-input" placeholder="Enter clipboard text...">
+        <button id="add-to-clipboard">Add to Clipboard</button>
+    </div>
+
+    <!-- 🔹 Clipboard Items Display -->
+    <div id="clipboard-items"></div>
+
+    <!-- Firebase & Script -->
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
