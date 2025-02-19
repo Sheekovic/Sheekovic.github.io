@@ -9,11 +9,12 @@ body {
 }
 
 .login-container {
-    background: #3066BE;
+    background: #3066be50;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: center;
+    color: #fffdfd;
 }
 
 input {
