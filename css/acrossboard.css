@@ -95,8 +95,9 @@ header .cta-button:hover {
 
 /* Download Section */
 #download {
-    padding: 40px 20px;
+    padding: 50px 50px;
     text-align: center;
+    margin-top: 20px;
 }
 
 #download h2 {
@@ -111,7 +112,7 @@ header .cta-button:hover {
     font-size: 18px;
     border-radius: 5px;
     text-decoration: none;
-    margin-top: 5rem;
+    margin-top: 20px;
     margin-bottom: 5rem;
 }
 
@@ -122,21 +123,38 @@ header .cta-button:hover {
 /* Footer */
 footer {
     background-color: #333;
-    color: white;
+    color: rgb(72, 123, 190);
     padding: 20px;
     text-align: center;
 }
 
 footer .socials {
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 footer .socials a {
-    color: white;
+    color: rgb(86, 163, 150);
     margin: 0 10px;
     text-decoration: none;
 }
 
 footer .socials a:hover {
+    text-decoration: underline;
+}
+
+footer .privacy-terms {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+footer .privacy-terms a {
+    color: rgb(45, 138, 91);
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer .privacy-terms a:hover {
     text-decoration: underline;
 }
