@@ -1,0 +1,74 @@
+body {
+    font-family: 'Courier New', monospace; /* Developer style font */
+    padding: 20px;
+    background-color: #0f0f0f; /* Dark mode black background */
+    color: #e0e0e0; /* Light gray for contrast */
+}
+
+h1 {
+    color: #536dfe; /* Indigo color for title */
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #536dfe;
+    padding-bottom: 10px;
+}
+
+.release-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.release-item {
+    padding: 15px;
+    background-color: #1a1a1a; /* Darker gray for item backgrounds */
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.release-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+a {
+    text-decoration: none;
+    color: #64b5f6; /* Light blue for links */
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+a:hover {
+    color: #bbdefb; /* Lighter shade of blue for hover effect */
+    text-decoration: underline;
+}
+
+button.download-btn {
+    background-color: #536dfe; /* Indigo button */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button.download-btn:hover {
+    background-color: #3d5afe; /* Slightly lighter indigo on hover */
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #a0a0a0; /* Dimmed text for footer */
+    font-size: 0.9rem;
+    border-top: 1px solid #536dfe;
+    padding-top: 10px;
+}
