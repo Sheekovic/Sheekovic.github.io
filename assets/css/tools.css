@@ -1,0 +1,74 @@
+/* Navbar Styles */
+#navbar {
+    position: absolute;
+    /* Position the navbar at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #1f1f1f;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    /* Optional shadow for separation */
+    z-index: 1000;
+    /* Ensure it stays above other elements */
+}
+
+/* To add spacing below the navbar and ensure content is not hidden under it */
+body {
+    padding-top: 50px;
+    /* Adjust based on the height of the navbar */
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+h1 {
+    text-align: center;
+    color: #bb86fc;
+}
+
+#tool-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    list-style: none;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    background-color: #3f51b5;
+    /* Indigo color */
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+a:hover {
+    background-color: #283593;
+    /* Darker indigo */
+    transform: translateY(-3px);
+    /* Slight lift effect */
+}
+
+#navbar a {
+    color: #bb86fc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#navbar a:hover {
+    text-decoration: underline;
+}
