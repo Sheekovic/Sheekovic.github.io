@@ -7,32 +7,59 @@ const tools = [
   { file: "sheekryptor.html", name: "SheeKryptor", description: "Encrypt, decrypt, password generator, API testing and much more." },
   { file: "acrossboard/app.html", name: "AcrossBoard App", description: "Clipboard-sharing tool for seamless data transfer." },
   { file: "github.html", name: "GitHub Repo Viewer", description: "View your GitHub repositories and user info." },
-  // Add more tool files and descriptions here
 ];
 
 // Sort tools alphabetically by the first character of the name
 tools.sort((a, b) => a.name.localeCompare(b.name));
 
-// Dynamically generate the tool list
+// Function to dynamically generate the tool list
+function generateToolList(filteredTools) {
+  toolListDiv.innerHTML = ""; // Clear the current list
+  filteredTools.forEach(tool => {
+    const link = document.createElement("a");
+    link.href = tool.file;
+    link.classList.add("tool-link");
+
+    const toolName = document.createElement("span");
+    toolName.textContent = tool.name;
+    toolName.classList.add("tool-name");
+
+    const toolDescription = document.createElement("span");
+    toolDescription.textContent = tool.description;
+    toolDescription.classList.add("tool-description");
+
+    link.appendChild(toolName);
+    link.appendChild(toolDescription);
+    toolListDiv.appendChild(link);
+  });
+}
+
 const toolListDiv = document.getElementById("tool-list");
-tools.forEach(tool => {
-  const link = document.createElement("a");
-  link.href = tool.file;
-  link.classList.add("tool-link");
+generateToolList(tools); // Initial list generation
 
-  // Create tool name as a span for styling
-  const toolName = document.createElement("span");
-  toolName.textContent = tool.name;
-  toolName.classList.add("tool-name");
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById("darkModeToggle");
+const themeLink = document.getElementById('themeStylesheet'); // Ensure the <link> element has this ID
+darkModeToggle.addEventListener("click", () => {
+  // if button text is "Dark Mode", change to "Light Mode"
+  if (darkModeToggle.textContent === "Dark Mode") {
+    darkModeToggle.textContent = "Light Mode";
+    themeLink.setAttribute('href', 'assets/css/toolslight.css');
+  }
+  else {
+    // if button text is "Light Mode", change to "Dark Mode"
+    darkModeToggle.textContent = "Dark Mode";
+    themeLink.setAttribute('href', 'assets/css/tools.css');
+  }
+});
 
-  // Create tool description as a span for styling
-  const toolDescription = document.createElement("span");
-  toolDescription.textContent = tool.description;
-  toolDescription.classList.add("tool-description");
-
-  // Append name and description to the link
-  link.appendChild(toolName);
-  link.appendChild(toolDescription);
-
-  toolListDiv.appendChild(link);
+// Search Input
+const searchInput = document.getElementById("searchInput");
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase();
+  const filteredTools = tools.filter(tool => 
+    tool.name.toLowerCase().includes(query) || 
+    tool.description.toLowerCase().includes(query)
+  );
+  generateToolList(filteredTools);
 });
