@@ -10,6 +10,9 @@ const tools = [
   // Add more tool files and descriptions here
 ];
 
+// Sort tools alphabetically by the first character of the name
+tools.sort((a, b) => a.name.localeCompare(b.name));
+
 // Dynamically generate the tool list
 const toolListDiv = document.getElementById("tool-list");
 tools.forEach(tool => {
