@@ -7,6 +7,7 @@ const tools = [
   { file: "sheekryptor.html", name: "SheeKryptor", description: "Encrypt, decrypt, password generator, API testing and much more." },
   { file: "acrossboard/app.html", name: "AcrossBoard App", description: "Clipboard-sharing tool for seamless data transfer." },
   { file: "github.html", name: "GitHub Repo Viewer", description: "View your GitHub repositories and user info." },
+  { file: "password.html", name: "Personalized Password", description: "Generate a personalized password based on your name and date of birth." },
 ];
 
 // Sort tools alphabetically by the first character of the name
