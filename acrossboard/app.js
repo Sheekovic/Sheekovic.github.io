@@ -203,3 +203,8 @@ function deleteClipboardItem(userId, itemId) {
             alert("Error deleting item: " + error.message);
         });
 }
+
+// handle android-download-btn click event
+document.getElementById("android-download-btn").addEventListener("click", () => {
+    window.location.href = "/acrossboard/releases/index.html";
+});

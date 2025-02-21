@@ -44,6 +44,24 @@ nav {
     transform: scale(1.1); /* Smoothly scales the button */
 }
 
+/* 🔹 Donate Button */
+#android-download-btn {
+    background-color: #ffcc00;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#android-download-btn:hover {
+    background-color: #dab222;
+    transform: scale(1.1); /* Smoothly scales the button */
+}
+
+
 
 /* 🔹 Modal Styles */
 .modal {
