@@ -1,0 +1,161 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    /*disable horizontal scrollbar*/
+    overflow-x: hidden;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.navbar {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h2 {
+    margin: 0;
+}
+
+.dark-mode .navbar {
+    background-color: #333;
+}
+
+.container {
+    width: 40%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .container {
+    background-color: #333;
+    color: #ffffff;
+}
+
+#formTitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    display: block;
+    width: 98%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+select {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+#darkModeToggle {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: #005fc5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#darkModeToggle:hover {
+    background-color: #003268;
+}
+
+.dark-mode #darkModeToggle {
+    background-color: #1b1b1b;
+    color: white;
+}
+
+.dark-mode input, .dark-mode select, .dark-mode button {
+    background-color: #333;
+    color: #ffffff;
+}
+
+button {
+    cursor: pointer;
+    background-color: #005fc5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    width: auto;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #003268;
+}
+
+.dark-mode button {
+    background-color: #1b1b1b;
+    color: white;
+}
+
+#passwordOutput {
+    font-weight: bold;
+    color: #007BFF;
+    word-wrap: break-word;
+}
+
+#passwordStrength {
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.dark-mode footer {
+    background-color: #333;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    input, button {
+        font-size: 1em;
+    }
+}

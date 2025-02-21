@@ -7,6 +7,7 @@ const tools = [
     { file: "sheekryptor.html", name: "SheeKryptor", description: "Encrypt, decrypt, password generator, API testing and much more." },
     { file: "acrossboard/app.html", name: "AcrossBoard App", description: "Clipboard-sharing tool for seamless data transfer." },
     { file: "github.html", name: "GitHub Repo Viewer", description: "View your GitHub repositories and user info." },
+    { file: "password.html", name: "Personalized Password", description: "Generate a personalized password based on your name and date of birth." },
 ];
 
 const iconMapping = {
@@ -17,7 +18,8 @@ const iconMapping = {
     "Binance Tracker": { icon: "fa-chart-line", type: "solid" },
     "SheeKryptor": { icon: "fa-lock", type: "solid" },
     "AcrossBoard App": { icon: "fa-clipboard", type: "solid" },
-    "GitHub Repo Viewer": { icon: "fa-github", type: "brands" }
+    "GitHub Repo Viewer": { icon: "fa-github", type: "brands" },
+    "Personalized Password": { icon: "fa-key", type: "solid" },
 };
 
 const iconSize = "fa-3x";
