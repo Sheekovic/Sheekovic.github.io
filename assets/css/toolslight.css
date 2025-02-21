@@ -1,10 +1,9 @@
-/* To add spacing below the navbar and ensure content is not hidden under it */
+/* Light Mode Styles */
 body {
     padding-top: 50px;
-    /* Adjust based on the height of the navbar */
-    font-family: OCR A Extended, monospace;
-    background-color: #121212;
-    color: #e0e0e0;
+    font-family: sans-serif !important;
+    background-color: #F6E8EA;
+    color: #121212;
     margin: 0;
     overflow-x: hidden;
 }
@@ -12,27 +11,24 @@ body {
 /* Navbar Styles */
 #navbar {
     position: absolute;
-    /* Position the navbar at the top */
     top: 0;
     left: 0;
     right: 0;
-    background-color: #1f1f1f;
+    background-color: #FCDDBC;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
-    /* Optional shadow for separation */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    /* Ensure it stays above other elements */
 }
 
 #searchInput {
     padding: 8px;
-    background-color: #121212;
-    color: #e0e0e0;
-    border: 1px solid #3f51b5;
+    background-color: #ffffff;
+    color: #121212;
+    border: 1px solid #EF626C;
     border-radius: 4px;
     width: 25%;
     margin-right: 10px;
@@ -40,14 +36,14 @@ body {
 
 #darkModeToggle {
     margin-right: 30px;
-    background-color: #3f51b5;
+    background-color: #EF626C;
     color: white;
     border: none;
     padding: 8px 14px;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #darkModeToggle:hover {
@@ -56,12 +52,11 @@ body {
 
 h1 {
     text-align: center;
-    color: #3f51b5;
+    color: #EF626C;
     padding: 20px 10px;
     font-size: 3em;
     font-weight: bold;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    /*make all characters capital*/
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     text-transform: uppercase;
 }
 
@@ -77,10 +72,10 @@ h1 {
     display: block;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #283593;
+    border: 1px solid #EF626C;
     border-radius: 8px;
     text-decoration: none;
-    background-color: #3f51b5;
+    background-color: #EF626C;
     color: #ffffff;
 }
 
@@ -96,38 +91,35 @@ h1 {
 
 .tool-description {
     font-size: 14px;
-    color: #b3b3b3;
+    color: #121212;
     margin-top: 4px;
     display: block;
 }
 
-
 a {
     display: block;
     text-decoration: none;
-    background-color: #3f51b5;
-    /* Indigo color */
+    background-color: #EF626C;
     color: white;
     padding: 10px;
     border-radius: 8px;
     text-align: center;
     font-weight: bold;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, transform 0.2s;
 }
 
 a:hover {
     background-color: #283593;
-    /* Darker indigo */
     transform: translateY(-3px);
-    /* Slight lift effect */
 }
 
 #navbar a {
-    color: #f0e4ff;
+    color: #efeff0;
     text-decoration: none;
     font-weight: bold;
     font-size: 1rem;
+    /* ubercase text */
     text-transform: uppercase;
 }
 

@@ -19,8 +19,11 @@ function fetchUserInfo(username) {
         .then(user => {
             const userInfoElement = document.getElementById('user-info');
             if (user.name) {
-                document.title = `My GitHub Repos - ${user.name}`;
+                document.title = `GitHub Repo Viewer - ${user.name}`;
                 document.getElementById('user-repos').textContent = `${user.name}'s GitHub Repos`;
+                // change page favicon to user avatar
+                const faviconLink = document.querySelector('link[rel="icon"]');
+                faviconLink.href = user.avatar_url;
             }
             userInfoElement.innerHTML = `
                 <img src="${user.avatar_url}" alt="${user.name}">
