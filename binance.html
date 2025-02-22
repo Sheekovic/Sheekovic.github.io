@@ -79,9 +79,14 @@
                 <option value="125">125x</option>
             </select>
         </label>
-        <label>Stop-Loss (%): <input type="number" id="stopLossInput" value="10"></label>
+    
+        <!-- New Fields for Take-Profit and Stop-Loss ROI -->
+        <label>Take-Profit ROI (%): <input type="number" id="takeProfitROI" value="20"></label>
+        <label>Stop-Loss ROI (%): <input type="number" id="stopLossROI" value="10"></label>
+    
         <button id="runBacktestButton" onclick="runBacktest()">Run Backtest</button>
     </div>
+    
 
 
     <h2>Trade Results</h2>
@@ -89,19 +94,22 @@
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Day Start Balance</th>
-                <th>Trade Entry Balance</th>
+                <th>Wallet Balance</th>
+                <th>Initial Margin</th>
+                <th>Quantity</th>
                 <th>Trade Open Time</th>
                 <th>Trade Duration</th>
                 <th>Entry Price</th>
                 <th>Stop Loss</th>
-                <th>Target Price</th>
+                <th>Target Profit</th>
+                <th>Liq. Price</th>
+                <th>Trade Position</th>  <!-- New Column -->
                 <th>Outcome</th>
-                <th>Day Profit/Loss</th>
-                <th>End Day Balance</th>
+                <th>PNL</th>
+                <th>New Wallet Balance</th>
             </tr>
         </thead>
-
+        
         <tbody id="tradeResults"></tbody>
     </table>
 

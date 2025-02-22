@@ -49,75 +49,140 @@ function formatDuration(ms) {
     return `${hours}h ${minutes}m ${seconds}s`;
 }
 
-function backtestStrategy(candles, leverage, initialBalance, stopLossPercent, tradeEntryPercent) {
+function backtestStrategy(candles, leverage, initialBalance, tradeEntryPercent, takeProfitROI, stopLossROI) {
     let balance = initialBalance;
     let tradeResults = [];
     let dailyRanges = analyzeDailyRange(filterMorningCandles(candles));
     let balanceHistory = [];
 
     dailyRanges.forEach(day => {
-        let dayStartBalance = balance; // Save balance at start of the day
-        let tradeEntryBalance = dayStartBalance * (tradeEntryPercent / 100); // Trade Entry Balance
-
-        let entryPrice = (day.lowest + day.highest) / 2;
-        let stopLoss = entryPrice * (1 - stopLossPercent / 100);
-        let targetProfit = day.highest;
-        let positionSize = (tradeEntryBalance * leverage) / entryPrice;
-
-        let tradeOpenTime = candles.find(c => c.time.toISOString().split("T")[0] === day.date)?.time;
+        let startWalletBalance = balance;
+        let initialMargin = startWalletBalance * (tradeEntryPercent / 100);  
+        let positionSize = initialMargin;  
+        let tradeOpenTime = null;
         let tradeCloseTime = null;
         let tradeDuration = "N/A";
+        let entryPrice = null;
+        let exitPrice = null;
+        let positionType = null;  // "LONG" or "SHORT"
+        let liqPrice = null;
+        let tpPrice = null;
+        let slPrice = null;
+        let tradeOpened = false;
 
-        for (let candle of candles) {
-            let candleDate = candle.time.toISOString().split("T")[0];
+        // Find candles AFTER 11:01 AM
+        let tradingCandles = candles.filter(c => {
+            let candleDate = c.time.toISOString().split("T")[0];
+            let hour = c.time.getUTCHours();
+            return candleDate === day.date && hour >= 11;
+        });
 
-            if (candleDate === day.date) {
-                if (candle.low <= stopLoss) {
+        for (let candle of tradingCandles) {
+            // Open LONG at Lowest Price
+            if (!tradeOpened && candle.low <= day.lowest) {
+                positionType = "LONG";
+                entryPrice = day.lowest;
+                tradeOpenTime = candle.time;
+                liqPrice = entryPrice / (1 + ((startWalletBalance - initialMargin) / initialMargin) * (1 / leverage));
+                tpPrice = entryPrice * (1 + (takeProfitROI / (100 * leverage)));
+                slPrice = entryPrice * (1 - (stopLossROI / (100 * leverage)));
+                tradeOpened = true;
+            }
+            // Close LONG
+            if (tradeOpened && positionType === "LONG") {
+                if (candle.low <= slPrice) {
+                    exitPrice = slPrice;
                     tradeCloseTime = candle.time;
                     break;
-                } else if (candle.high >= targetProfit) {
+                } else if (candle.high >= tpPrice) {
+                    exitPrice = tpPrice;
                     tradeCloseTime = candle.time;
                     break;
                 }
             }
         }
 
-        if (tradeCloseTime) {
-            let durationMs = tradeCloseTime - tradeOpenTime;
-            tradeDuration = formatDuration(durationMs);
+        if (tradeOpened) {
+            let dayProfitLoss = (positionSize / entryPrice) * (exitPrice - entryPrice) * leverage;
+            balance += dayProfitLoss;
+
+            tradeResults.push({
+                date: day.date,
+                startWalletBalance,
+                initialMargin,
+                leverage,
+                quantity: positionSize * leverage, 
+                tradeOpenTime: tradeOpenTime ? tradeOpenTime.toISOString().split("T")[1].slice(0, 5) + " UTC" : "N/A",
+                tradeDuration,
+                entry: entryPrice,
+                stopLoss: slPrice,
+                takeProfit: tpPrice,
+                liquidationPrice: liqPrice,
+                outcome: dayProfitLoss > 0 ? "WIN" : dayProfitLoss < 0 ? "LOSS" : "NO TRADE",
+                positionType,
+                dayProfitLoss,
+                endWalletBalance: balance
+            });
+
+            tradeOpened = false;  // Reset for Short Trade
         }
 
-        let dayProfitLoss = 0; // Calculate profit/loss for the day
-
-        if (day.lowest <= stopLoss) {
-            dayProfitLoss = -(tradeEntryBalance * (stopLossPercent / 100)); // Loss calculation
-        } else if (day.highest >= targetProfit) {
-            dayProfitLoss = tradeEntryBalance * (leverage / 100); // Profit calculation
+        // Open SHORT at Highest Price after LONG trade completes
+        for (let candle of tradingCandles) {
+            if (!tradeOpened && candle.high >= day.highest) {
+                positionType = "SHORT";
+                entryPrice = day.highest;
+                tradeOpenTime = candle.time;
+                liqPrice = entryPrice / (1 - ((startWalletBalance - initialMargin) / initialMargin) * (1 / leverage));
+                tpPrice = entryPrice * (1 - (takeProfitROI / (100 * leverage)));
+                slPrice = entryPrice * (1 + (stopLossROI / (100 * leverage)));
+                tradeOpened = true;
+            }
+            // Close SHORT
+            if (tradeOpened && positionType === "SHORT") {
+                if (candle.high >= slPrice) {
+                    exitPrice = slPrice;
+                    tradeCloseTime = candle.time;
+                    break;
+                } else if (candle.low <= tpPrice) {
+                    exitPrice = tpPrice;
+                    tradeCloseTime = candle.time;
+                    break;
+                }
+            }
         }
 
-        let endDayBalance = dayStartBalance + dayProfitLoss; // End of day balance
+        if (tradeOpened) {
+            let dayProfitLoss = (positionSize / entryPrice) * (entryPrice - exitPrice) * leverage;
+            balance += dayProfitLoss;
 
-        let tradeResult = {
-            date: day.date,
-            dayStartBalance,
-            tradeEntryBalance,
-            tradeOpenTime: tradeOpenTime ? tradeOpenTime.toISOString().split("T")[1].slice(0, 5) + " UTC" : "N/A",
-            tradeDuration,
-            entry: entryPrice,
-            stopLoss,
-            targetProfit,
-            outcome: dayProfitLoss > 0 ? "WIN" : dayProfitLoss < 0 ? "LOSS" : "NO TRADE",
-            dayProfitLoss,
-            endDayBalance
-        };
+            tradeResults.push({
+                date: day.date,
+                startWalletBalance,
+                initialMargin,
+                leverage,
+                quantity: positionSize * leverage, 
+                tradeOpenTime: tradeOpenTime ? tradeOpenTime.toISOString().split("T")[1].slice(0, 5) + " UTC" : "N/A",
+                tradeDuration,
+                entry: entryPrice,
+                stopLoss: slPrice,
+                takeProfit: tpPrice,
+                liquidationPrice: liqPrice,
+                outcome: dayProfitLoss > 0 ? "WIN" : dayProfitLoss < 0 ? "LOSS" : "NO TRADE",
+                positionType,
+                dayProfitLoss,
+                endWalletBalance: balance
+            });
+        }
 
-        balance = endDayBalance; // Update balance for next day
-        tradeResults.push(tradeResult);
         balanceHistory.push({ date: day.date, balance });
+        
     });
 
     return { finalBalance: balance, trades: tradeResults, balanceHistory };
+    
 }
+
 
 
 
@@ -125,35 +190,45 @@ function backtestStrategy(candles, leverage, initialBalance, stopLossPercent, tr
 async function runBacktest() {
     let candles = await getHistoricalData();
     let leverage = parseInt(document.getElementById("leverageInput").value);
-    let stopLossPercent = parseFloat(document.getElementById("stopLossInput").value);
     let walletBalance = parseFloat(document.getElementById("walletBalanceInput").value);
     let tradeEntryPercent = parseFloat(document.getElementById("tradeEntryInput").value);
+    let takeProfitROI = parseFloat(document.getElementById("takeProfitROI").value);
+    let stopLossROI = parseFloat(document.getElementById("stopLossROI").value);
 
-    let result = backtestStrategy(candles, leverage, walletBalance, tradeEntryPercent, stopLossPercent);
+    // Pass takeProfitROI and stopLossROI to the strategy function
+    let result = backtestStrategy(candles, leverage, walletBalance, tradeEntryPercent, takeProfitROI, stopLossROI);
 
-    document.getElementById("tradeResults").innerHTML = result.trades.map(trade => `
-        <tr>
-            <td>${trade.date}</td>
-            <td>$${trade.dayStartBalance.toFixed(2)}</td>
-            <td>$${trade.tradeEntryBalance.toFixed(2)}</td>
-            <td>${trade.tradeOpenTime}</td>
-            <td>${trade.tradeDuration}</td>
-            <td>${trade.entry.toFixed(2)}</td>
-            <td>${trade.stopLoss.toFixed(2)}</td>
-            <td>${trade.targetProfit.toFixed(2)}</td>
-            <td>${trade.outcome}</td>
-            <td>${trade.dayProfitLoss >= 0 ? "+" : ""}$${trade.dayProfitLoss.toFixed(2)}</td>
-            <td>$${trade.endDayBalance.toFixed(2)}</td>
-        </tr>
-    `).join("");
+    document.getElementById("tradeResults").innerHTML = result.trades.map(trade => {
+        let outcomeColor = trade.outcome === "WIN" ? "green" :
+                           trade.outcome === "LOSS" ? "red" : "gray";
+    
+        return `
+            <tr>
+                <td>${trade.date}</td>
+                <td>$${trade.startWalletBalance.toFixed(2)}</td>
+                <td>$${trade.initialMargin.toFixed(2)}</td>
+                <td>${trade.quantity.toFixed(2)}</td>
+                <td>${trade.tradeOpenTime}</td>
+                <td>${trade.tradeDuration}</td>
+                <td>${trade.entry.toFixed(2)}</td>
+                <td>${trade.stopLoss.toFixed(2)}</td>
+                <td>${trade.takeProfit.toFixed(2)}</td>
+                <td>${trade.liquidationPrice.toFixed(2)}</td>
+                <td style="font-weight: bold; color: ${trade.positionType === "LONG" ? "green" : "red"};">
+                    ${trade.positionType}
+                </td>
+                <td style="color: ${outcomeColor}; font-weight: bold;">${trade.outcome}</td>
+                <td>${trade.dayProfitLoss >= 0 ? "+" : ""}$${trade.dayProfitLoss.toFixed(2)}</td>
+                <td>$${trade.endWalletBalance.toFixed(2)}</td>
+            </tr>
+        `;
+    }).join("");
 
     document.getElementById("backtestSummary").innerHTML = `
     You started with <strong>$${walletBalance.toFixed(2)}</strong> and after the backtest, 
     you ended with <strong>$${result.finalBalance.toFixed(2)}</strong>. 
     ${result.finalBalance > walletBalance ? "🔥 Your strategy showed promising gains!" : "⚠️ Time to tweak your approach!"}
 `;
-
-
 
     updateChart(result.balanceHistory);
 }
