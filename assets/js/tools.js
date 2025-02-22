@@ -3,7 +3,7 @@ const tools = [
   { file: "pixformat.html", name: "PixFormat", description: "Convert images to different formats easily." },
   { file: "youtube.html", name: "YouTube LSC", description: "YouTube Live Subscribers Counter." },
   { file: "to-do.html", name: "To-Do List", description: "Manage your daily tasks with this simple to-do list." },
-  { file: "binance.html", name: "Binance Tracker", description: "Track cryptocurrency prices and market trends." },
+  { file: "binance.html", name: "Binance Strategy Tester", description: "Backtest Binance Futures trading strategies with customizable parameters and performance analysis." },
   { file: "sheekryptor.html", name: "SheeKryptor", description: "Encrypt, decrypt, password generator, API testing and much more." },
   { file: "acrossboard/app.html", name: "AcrossBoard App", description: "Clipboard-sharing tool for seamless data transfer." },
   { file: "github.html", name: "GitHub Repo Viewer", description: "View your GitHub repositories and user info." },
@@ -58,8 +58,8 @@ darkModeToggle.addEventListener("click", () => {
 const searchInput = document.getElementById("searchInput");
 searchInput.addEventListener("input", () => {
   const query = searchInput.value.toLowerCase();
-  const filteredTools = tools.filter(tool => 
-    tool.name.toLowerCase().includes(query) || 
+  const filteredTools = tools.filter(tool =>
+    tool.name.toLowerCase().includes(query) ||
     tool.description.toLowerCase().includes(query)
   );
   generateToolList(filteredTools);
