@@ -15,7 +15,7 @@ const iconMapping = {
     "PixFormat": { icon: "fa-images", type: "solid" },
     "YouTube LSC": { icon: "fa-youtube", type: "brands" },
     "To-Do List": { icon: "fa-tasks", type: "solid" },
-    "Binance Tracker": { icon: "fa-chart-line", type: "solid" },
+    "Binance Strategy Tester": { icon: "fa-chart-line", type: "solid" },
     "SheeKryptor": { icon: "fa-lock", type: "solid" },
     "AcrossBoard App": { icon: "fa-clipboard", type: "solid" },
     "GitHub Repo Viewer": { icon: "fa-github", type: "brands" },
