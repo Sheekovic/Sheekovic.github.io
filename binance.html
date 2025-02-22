@@ -2,101 +2,127 @@
 <html lang="en">
 
 <head>
-
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ac31997b-e5d6-4262-8491-67d7c825e54b"
-        type="text/javascript" async></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-
-    <title>Binance Registration</title>
-
-    <!-- Meta Tags for SEO -->
-    <meta name="description"
-        content="Register on Binance, one of the leading cryptocurrency exchange platforms. Join today to trade cryptocurrencies, explore new markets, and more.">
-    <meta name="keywords"
-        content="Binance, cryptocurrency registration, Binance sign up, crypto exchange, trade crypto">
-    <meta name="author" content="Sheekovic">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Binance Registration">
-    <meta property="og:description"
-        content="Register on Binance, one of the leading cryptocurrency exchange platforms. Join today to trade cryptocurrencies, explore new markets, and more.">
-    <meta property="og:image" content="/images/favicon.ico">
-    <meta property="og:url" content="https://github.com/Sheekovic/Sheekovic.github.io">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Binance Registration">
-    <meta name="twitter:description"
-        content="Register on Binance, one of the leading cryptocurrency exchange platforms. Join today to trade cryptocurrencies, explore new markets, and more.">
-    <meta name="twitter:image" content="/images/favicon.ico">
-    <meta name="twitter:site" content="@Sheekovic">
-
-    <!-- External CSS and JS -->
+    <meta name="description" content="Backtest your Binance futures strategy using historical BTC data.">
+    <title>Binance Strategy Tester</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/binance.ico">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/binance.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/css/binance.css">
-    <script type="module" src="./binance.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
-        integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-
 <body>
+    <nav class="navbar">
+        <a href="index.html">HOME</a>
+        <a href="donate.html" class="donate-btn">Donate</a>
+    </nav>
 
-    <!-- Header -->
-    <header>
-        <nav>
-            <h1 id="logo"><a href="index.html">SHEEKOVIC</a></h1>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="binance.html">Binance Project</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li>
-                    <button id="github-signup" class="button primary">Sign Up with GitHub</button>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <h1>
+        <p class="binance">Binance</p> Futures Strategy Tester
+    </h1>
 
-    <!-- Main Content -->
-    <div class="container">
-        <h1>Binance Registration</h1>
-        <h3>Welcome, <span id="username">YourUsername</span></h3>
-        <input type="text" id="telegram-id" class="form-control" placeholder="Enter your Telegram ID">
-        <button id="register-btn" class="btn btn-primary">Register</button>
-        <!-- register btn result -->
-        <div id="register-result" class="register-result"></div>
+    <section id="strategy-description">
+        <h2>How It Works</h2>
+        <p>
+            This Binance Futures Strategy Tester analyzes Cryptocurrency price action between <b>00:00 AM and 12:00 PM
+                UTC</b>
+            using <b>1-hour candles</b> to generate trading signals.
+        </p>
+
+        <h3>Trade Execution</h3>
+        <ul>
+            <li>🔹 <b>Entry Price</b>: Midpoint between the daily highest and lowest price.</li>
+            <li>🔹 <b>Trade Entry Balance</b>: Percentage of <b>Day Start Balance</b> allocated per trade.</li>
+            <li>🔹 <b>Stop-Loss</b>: Configurable between 0% and 100% of entry price.</li>
+            <li>🔹 <b>Leverage</b>: Choose between <b>10x, 20x, 50x, or 125x</b>.</li>
+            <li>🔹 <b>Take-Profit</b>: The highest price reached within the timeframe.</li>
+        </ul>
+
+        <h3>Backtesting Features</h3>
+        <ul>
+            <li>✅ <b>Test over the last 30 days</b> using real Binance data.</li>
+            <li>✅ <b>Adjustable balance, risk, and leverage settings.</b></li>
+            <li>✅ <b>Trade history with performance metrics</b> including <b>Day Start Balance, Trade Entry Balance, Day
+                    Profit/Loss, and End Day Balance.</b></li>
+        </ul>
+
+        <h3>Why Use This?</h3>
+        <p>
+            This strategy <b>targets intraday breakouts</b> by trading within a defined range.
+            Backtesting over <b>30 days</b> helps refine risk management and optimize profitability.
+        </p>
+    </section>
+
+
+    <div class="config">
+        <label>Cryptocurrency Pair:
+            <select id="cryptoPairInput">
+                <option value="BTCUSDT">BTC/USDT</option>
+                <option value="ETHUSDT">ETH/USDT</option>
+                <option value="BNBUSDT">BNB/USDT</option>
+                <option value="SOLUSDT">SOL/USDT</option>
+                <option value="XRPUSDT">XRP/USDT</option>
+            </select>
+        </label>
+        <label>Wallet Balance ($): <input type="number" id="walletBalanceInput" value="5000"></label>
+        <label>Trade Entry (%): <input type="number" id="tradeEntryInput" value="10"></label>
+        <label>Leverage:
+            <select id="leverageInput">
+                <option value="10">10x</option>
+                <option value="20">20x</option>
+                <option value="50">50x</option>
+                <option value="125">125x</option>
+            </select>
+        </label>
+        <label>Stop-Loss (%): <input type="number" id="stopLossInput" value="10"></label>
+        <button id="runBacktestButton" onclick="runBacktest()">Run Backtest</button>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <ul class="icons">
-            <li><a href="https://twitter.com/Sheekovic" class="icon brands alt fa-twitter"><i
-                        class="fab fa-twitter"></i><span class="label"></span></a></li>
-            <li><a href="https://www.facebook.com/sheekovic" class="icon brands alt fa-facebook-f"><i
-                        class="fab fa-facebook-f"></i><span class="label"></span></a></li>
-            <li><a href="https://www.linkedin.com/in/sheekovic/" class="icon brands alt fa-linkedin-in"><i
-                        class="fab fa-linkedin-in"></i><span class="label"></span></a></li>
-            <li><a href="https://www.instagram.com/sheekovic/" class="icon brands alt fa-instagram"><i
-                        class="fab fa-instagram"></i><span class="label"></span></a></li>
-            <li><a href="https://github.com/Sheekovic" class="icon brands alt fa-github"><i
-                        class="fab fa-github"></i><span class="label"></span></a></li>
-            <li><a href="mailto:ahmeedsheeko@gmail.com" class="icon solid alt fa-envelope"><i
-                        class="fas fa-envelope"></i><span class="label"></span></a></li>
-        </ul>
-        <section class="copyright">
-            <h6>&copy; Beyond. All rights reserved.</h6>
-            <h6>Design: <a href="https://github.com/Sheekovic">Sheekovic</a></h6>
-        </section>
+
+    <h2>Trade Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Day Start Balance</th>
+                <th>Trade Entry Balance</th>
+                <th>Trade Open Time</th>
+                <th>Trade Duration</th>
+                <th>Entry Price</th>
+                <th>Stop Loss</th>
+                <th>Target Price</th>
+                <th>Outcome</th>
+                <th>Day Profit/Loss</th>
+                <th>End Day Balance</th>
+            </tr>
+        </thead>
+
+        <tbody id="tradeResults"></tbody>
+    </table>
+
+    <h2>Balance Over Time</h2>
+    <canvas id="balanceChart"></canvas>
+
+    <h2>Backtest Summary</h2>
+    <p id="backtestSummary" class="summary-text"></p>
+
+    <footer class="footer">
+        <p>Binance Futures Strategy made with ❤️ by <span class="sheekovic">SHEEKOVIC</span></p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/sheekovic" target="_blank"><i class="fab fa-facebook fa-fade fa-lg"></i></a>
+            <a href="https://x.com/Sheekovic" target="_blank"><i class="fa-solid fa-x fa-fade fa-lg"></i></a>
+            <a href="https://www.linkedin.com/in/sheekovic/" target="_blank"><i class="fab fa-linkedin fa-fade fa-lg"></i></a>
+            <a href="https://github.com/Sheekovic" target="_blank"><i class="fab fa-github fa-fade fa-lg"></i></a>
+        </div>
+        <a href="donate.html" class="donate-btn">Donate</a>
     </footer>
-
-
+    <!-- FontAwesome Icons -->
+    <script src="assets/js/binance.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Sheekovic</title>
+    <link rel="stylesheet" href="assets/css/donate.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="donate-container">
+        <h1>🙏 Thank You for Your Support! 🙌</h1>
+        <p>Your support helps me build more amazing tools and projects! 🚀</p>
+
+        <div class="donation-methods">
+            <div class="donation-card">
+                <h3>USDT (TRC20)</h3>
+                <p id="usdtAddress">TKnkfHCWzk8LcbkuJSXV1RbP8khhkwXQR3</p>
+                <button onclick="copyAddress()">Copy Address</button>
+            </div>
+
+            <div class="donation-card">
+                <h3>Binance Pay</h3>
+                <a href="https://s.binance.com/yGqr4KAd" target="_blank">
+                    Click to Pay
+                </a>
+                <div class="qr-container">
+                    <div id="binanceQR"></div>
+                </div>
+            </div>
+
+            <div class="donation-card">
+                <h3>Buy Me a Coffee</h3>
+                <a href="https://www.buymeacoffee.com/sheekovic" target="_blank">
+                    Click to Donate
+                </a>
+                <div class="qr-container">
+                    <div id="buymeacoffeeQR"></div>
+                </div>
+            </div>
+
+            <div class="donation-card">
+                <h3>Ko-fi</h3>
+                <a href="https://www.ko-fi.com/sheekovic" target="_blank">
+                    Click to Donate
+                </a>
+                <div class="qr-container">
+                    <div id="ko-fiQR"></div>
+                </div>
+            </div>
+        </div>
+
+        <a href="binance.html" class="back-btn">⬅ Back to Trading</a>
+    </div>
+
+    <script>
+        function copyAddress() {
+            const usdtAddress = document.getElementById("usdtAddress").textContent;
+            navigator.clipboard.writeText(usdtAddress);
+            alert("USDT Address Copied!");
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="assets/js/generateQR.js"></script>
+</body>
+
+</html>
