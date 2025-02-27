@@ -1,0 +1,19 @@
+[build]
+  functions = "netlify/functions"
+  publish = "public"
+
+# Set the base directory if your project is not in the root directory
+# base = "path/to/project"
+
+[dev]
+  command = "npm start"
+  targetPort = 3000
+
+# Environment variables
+[build.environment]
+  NODE_VERSION = "16"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

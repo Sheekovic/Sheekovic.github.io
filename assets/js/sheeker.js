@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Validation checks
         if (!/^\d{12,19}$/.test(giftCardNumber)) {
-            alert("Invalid Gift Card Number! It should be between 16 digits.");
+            alert("Invalid Gift Card Number! It should be between 12 and 19 digits.");
             return;
         }
         if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
