@@ -3,11 +3,13 @@
     "version": "1.0.0",
     "description": "A portfolio site for Ahmed F. Wahballah (Sheekovic)",
     "main": "app.js",
+    "type": "module",
     "scripts": {
         "start": "node app.js",
         "build": "npm run build",
         "test": "npm test",
-        "firebase-init": "firebase init"
+        "firebase-init": "firebase init",
+        "netlify-dev": "netlify dev"
     },
     "keywords": [
         "portfolio",
