@@ -30,16 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Function to get rmsSessionId
         function getRmsSessionId() {
-            return fetch("https://notification.blackhawknetwork.com/riskService/v1/riskWidget/getRiskProviders", {
+            return fetch("/.netlify/functions/getRiskProviders", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json, text/plain, */*",
-                    "Referer": "https://mygift.giftcardmall.com/",
-                    "Origin": "https://mygift.giftcardmall.com",
-                    "requestid": "6293b3f1-c990-4aeb-affe-a87d2c273e9a",
-                    "unique-id": "6293b3f1-c990-4aeb-affe-a87d2c273e9a",
-                    "clientconfigid": "VNTVQSWJQ54TV27KDCZ7CMH5HW"
                 },
                 body: JSON.stringify({"clientConfigId": "VNTVQSWJQ54TV27KDCZ7CMH5HW"})
             })
