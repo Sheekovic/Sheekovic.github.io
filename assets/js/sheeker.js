@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Validation checks
         if (!/^\d{12,19}$/.test(giftCardNumber)) {
-            alert("Invalid Gift Card Number! It should be between 12 and 19 digits.");
+            alert("Invalid Gift Card Number! It should be between 16 digits.");
             return;
         }
         if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
@@ -38,8 +38,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify({"clientConfigId": "VNTVQSWJQ54TV27KDCZ7CMH5HW"})
             })
-            .then(response => response.json())
-            .then(data => data.rmsId)
+            .then(response => response.text())
+            .then(text => {
+                try {
+                    return JSON.parse(text).rmsId;
+                } catch (error) {
+                    console.error("Error parsing JSON:", error);
+                    console.log("Raw response text:", text);
+                    alert("An error occurred while retrieving session ID. Please try again later.");
+                    return null;
+                }
+            })
             .catch(error => {
                 console.error("Error fetching rmsSessionId:", error);
                 alert("An error occurred while retrieving session ID. Please try again later.");
