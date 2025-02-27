@@ -30,55 +30,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Function to get rmsSessionId
         function getRmsSessionId() {
-            return new Promise((resolve, reject) => {
-                const data = JSON.stringify({
-                    'clientConfigId': 'VNTVQSWJQ54TV27KDCZ7CMH5HW'
-                });
-
-                const xhr = new XMLHttpRequest();
-                xhr.withCredentials = true;
-                xhr.open('POST', 'https://notification.blackhawknetwork.com/riskService/v1/riskWidget/getRiskProviders');
-                xhr.setRequestHeader('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0');
-                xhr.setRequestHeader('accept', 'application/json, text/plain, */*');
-                xhr.setRequestHeader('accept-language', 'en-US,en;q=0.5');
-                xhr.setRequestHeader('referer', 'https://mygift.giftcardmall.com/');
-                xhr.setRequestHeader('content-type', 'application/json');
-                xhr.setRequestHeader('requestid', '6293b3f1-c990-4aeb-affe-a87d2c273e9a');
-                xhr.setRequestHeader('unique-id', '6293b3f1-c990-4aeb-affe-a87d2c273e9a');
-                xhr.setRequestHeader('clientconfigid', 'VNTVQSWJQ54TV27KDCZ7CMH5HW');
-                xhr.setRequestHeader('origin', 'https://mygift.giftcardmall.com');
-                xhr.setRequestHeader('sec-fetch-dest', 'empty');
-                xhr.setRequestHeader('sec-fetch-mode', 'cors');
-                xhr.setRequestHeader('sec-fetch-site', 'cross-site');
-                xhr.setRequestHeader('dnt', '1');
-                xhr.setRequestHeader('sec-gpc', '1');
-                xhr.setRequestHeader('te', 'trailers');
-
-                xhr.onload = function() {
-                    if (xhr.status >= 200 && xhr.status < 300) {
-                        try {
-                            const response = JSON.parse(xhr.responseText);
-                            resolve(response.rmsId);
-                        } catch (error) {
-                            console.error("Error parsing JSON:", error);
-                            console.log("Raw response text:", xhr.responseText);
-                            alert("An error occurred while retrieving session ID. Please try again later.");
-                            reject(null);
-                        }
-                    } else {
-                        console.error("Error fetching rmsSessionId:", xhr.statusText);
-                        alert("An error occurred while retrieving session ID. Please try again later.");
-                        reject(null);
-                    }
-                };
-
-                xhr.onerror = function() {
-                    console.error("Network error while fetching rmsSessionId.");
-                    alert("A network error occurred. Please try again later.");
-                    reject(null);
-                };
-
-                xhr.send(data);
+            return fetch("/.netlify/functions/getRiskProviders", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json, text/plain, */*"
+                },
+                body: JSON.stringify({"clientConfigId": "VNTVQSWJQ54TV27KDCZ7CMH5HW"})
+            })
+            .then(response => response.json())
+            .then(data => data.rmsId)
+            .catch(error => {
+                console.error("Error fetching rmsSessionId:", error);
+                alert("An error occurred while retrieving session ID. Please try again later.");
+                return null;
             });
         }
 
