@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   const response = await fetch('https://notification.blackhawknetwork.com/riskService/v1/riskWidget/getRiskProviders', {
       method: 'POST',
       headers: {
@@ -14,7 +14,6 @@ exports.handler = async (event, context) => {
           'sec-fetch-dest': 'empty',
           'sec-fetch-mode': 'cors',
           'sec-fetch-site': 'cross-site',
-          'access-control-allow-headers': 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, requestId, unique-id, merchantId, tenantId, certificateId, role, clientConfigId',
           'dnt': '1',
           'sec-gpc': '1',
           'te': 'trailers'
