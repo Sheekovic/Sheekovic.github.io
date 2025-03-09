@@ -98,21 +98,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // make request to DataDome proxy in /api/datadome/dd.js
-            const response = await fetch('http://sheekovic.netlify.app/api/datadome', {
+            const response = await fetch('/.netlify/functions/datadome', {
                 method: 'POST',
-                headers: {
-                    'User-Agent': userAgent,
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Referer': 'https://www.fivebackgift.com/',
-                    'Origin': 'https://www.fivebackgift.com',
-                    'Accept': '*/*',
-                    'Accept-Language': 'en-US,en;q=0.5',
-                    'Sec-Fetch-Dest': 'empty',
-                    'Sec-Fetch-Mode': 'cors',
-                    'Sec-Fetch-Site': 'cross-site',
-
-                },
-                body: formData
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userAgent, formData: Object.fromEntries(formData) })
             });
 
             const text = await response.text();
