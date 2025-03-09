@@ -18,20 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
         const chromeVersions = ["114.0.5735.196", "115.0.5790.166"];
         const safariVersions = ["16.5", "17.0"];
-        
+
         const isAndroid = Math.random() > 0.5;
-        const device = isAndroid 
+        const device = isAndroid
             ? androidDevices[Math.floor(Math.random() * androidDevices.length)]
             : iosDevices[Math.floor(Math.random() * iosDevices.length)];
 
         if (isAndroid) {
-            return `Mozilla/5.0 (${device}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${
-                chromeVersions[Math.floor(Math.random() * chromeVersions.length)]
-            } Mobile Safari/537.36`;
+            return `Mozilla/5.0 (${device}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeVersions[Math.floor(Math.random() * chromeVersions.length)]
+                } Mobile Safari/537.36`;
         } else {
-            return `Mozilla/5.0 (${device}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${
-                safariVersions[Math.floor(Math.random() * safariVersions.length)]
-            } Mobile/15E148 Safari/604.1`;
+            return `Mozilla/5.0 (${device}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${safariVersions[Math.floor(Math.random() * safariVersions.length)]
+                } Mobile/15E148 Safari/604.1`;
         }
     }
 
@@ -68,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify({ clientConfigId })
             });
-            
+
             const rmsData = await rmsResponse.json();
             const rmsSessionId = rmsData.rmsId;
 
@@ -94,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             const balanceData = await balanceResponse.json();
-            
+
             if (balanceData.success) {
                 // Get Transactions
                 const transactionsResponse = await fetch("https://www.fivebackgift.com/api/card/getCardTransactions", {
@@ -123,11 +121,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("modal-expiry").textContent = expiry;
                 document.getElementById("modal-cvv").textContent = "***";
                 document.getElementById("modal-balance").textContent = `Balance: ${balanceData.result.balances.pendingBalance} ${balanceData.result.balances.currencyCode}`;
-                
-                const transactionsHTML = transactionsData.result.transactions.map(tx => 
+
+                const transactionsHTML = transactionsData.result.transactions.map(tx =>
                     `<li>${new Date(tx.transactionDate).toLocaleDateString()} - ${tx.detail.merchantName}: ${tx.amount} ${tx.currency}</li>`
                 ).join("");
-                
+
                 document.getElementById("modal-transactions").innerHTML = `<ul>${transactionsHTML}</ul>`;
                 modal.style.display = "block";
             }
