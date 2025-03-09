@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const response = await fetch('https://api-js.datadome.co/js/', {
+            const response = await fetch('/api/datadome/', {
                 method: 'POST',
                 headers: {
                     'User-Agent': userAgent,
