@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Checker</title>
     <link rel="stylesheet" href="assets/css/sheeker.css">
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -26,7 +28,7 @@
         </form>
     </div>
 
-    <!-- Modal -->
+    <!-- Modified Modal Section -->
     <div id="balance-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -35,10 +37,16 @@
             <p><strong>Expiry:</strong> <span id="modal-expiry"></span></p>
             <p><strong>CVV:</strong> <span id="modal-cvv"></span></p>
             <p><strong>Balance:</strong> <span id="modal-balance"></span></p>
-            <p><strong>Transactions:</strong> <span id="modal-Transactions"></span></p>
+
+            <!-- Changed Transactions container -->
+            <div class="transactions-section">
+                <h3>Recent Transactions</h3>
+                <div id="modal-transactions"></div>
+            </div>
         </div>
     </div>
 
     <script src="assets/js/sheeker.js"></script>
 </body>
+
 </html>
