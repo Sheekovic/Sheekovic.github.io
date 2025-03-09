@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "iPad; CPU OS 17_0 like Mac OS X"
         ];
         const isAndroid = Math.random() > 0.5;
-        const device = isAndroid 
+        const device = isAndroid
             ? androidDevices[Math.floor(Math.random() * androidDevices.length)]
             : iosDevices[Math.floor(Math.random() * iosDevices.length)];
 
@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 mp_cy: randomInt(1000, 2000),
                 pr: randomInt(1, 2),
                 plgod: Math.random() > 0.5,
-                glrd: Math.random() > 0.5 ? 
-                    "ANGLE (Microsoft, Microsoft Basic Render Driver Direct3D11 vs_5_0 ps_5_0)" : 
+                glrd: Math.random() > 0.5 ?
+                    "ANGLE (Microsoft, Microsoft Basic Render Driver Direct3D11 vs_5_0 ps_5_0)" :
                     "NVIDIA Corporation",
                 med: Math.random() > 0.5 ? "defined" : "undefined",
                 aco: Math.random() > 0.5 ? "probably" : "maybe",
@@ -103,7 +103,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     'User-Agent': userAgent,
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Referer': 'https://www.fivebackgift.com/',
-                    'Origin': 'https://www.fivebackgift.com'
+                    'Origin': 'https://www.fivebackgift.com',
+                    'Accept': '*/*',
+                    'Accept-Language': 'en-US,en;q=0.5',
+                    'Sec-Fetch-Dest': 'empty',
+                    'Sec-Fetch-Mode': 'cors',
+                    'Sec-Fetch-Site': 'cross-site',
+
                 },
                 body: formData
             });
@@ -119,14 +125,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     form.addEventListener("submit", async function (event) {
         event.preventDefault();
-        
+
         // Generate fresh user agent for each request
         const userAgent = generateUserAgent();
-        
+
         try {
             // Step 1: Validate DataDome
             const datadomeCookie = await validateDataDome(userAgent);
-            
+
             // Step 2: Get RMS Session ID
             const requestUUID = crypto.randomUUID();
             const rmsResponse = await fetch("https://notification.blackhawknetwork.com/riskService/v1/riskWidget/getRiskProviders", {
@@ -141,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify({ clientConfigId })
             });
-            
+
             const rmsData = await rmsResponse.json();
             const rmsSessionId = rmsData.rmsId;
 
@@ -169,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             const balanceData = await balanceResponse.json();
-            
+
             if (balanceData.success) {
                 // Step 5: Get Transactions
                 const transactionsResponse = await fetch("https://www.fivebackgift.com/api/card/getCardTransactions", {
@@ -196,13 +202,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("modal-giftCard").textContent = giftCardNumber;
                 document.getElementById("modal-expiry").textContent = expiry;
                 document.getElementById("modal-cvv").textContent = "***";
-                document.getElementById("modal-balance").textContent = 
+                document.getElementById("modal-balance").textContent =
                     `Balance: ${balanceData.result.balances.pendingBalance} ${balanceData.result.balances.currencyCode}`;
-                
-                const transactionsHTML = transactionsData.result.transactions.map(tx => 
+
+                const transactionsHTML = transactionsData.result.transactions.map(tx =>
                     `<li>${new Date(tx.transactionDate).toLocaleDateString()} - ${tx.detail.merchantName}: ${tx.amount} ${tx.currency}</li>`
                 ).join("");
-                
+
                 document.getElementById("modal-transactions").innerHTML = `<ul>${transactionsHTML}</ul>`;
                 modal.style.display = "block";
             }
