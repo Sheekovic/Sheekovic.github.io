@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // make request to DataDome proxy in /api/datadome/dd.js
-            const response = await fetch('/.netlify/functions/datadome', {
+            const response = await fetch('/netlify/functions/datadome', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userAgent, formData: Object.fromEntries(formData) })
