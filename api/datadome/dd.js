@@ -13,6 +13,7 @@ app.post('/datadome-proxy', async (req, res) => {
         'User-Agent': req.body.userAgent,
         'Content-Type': 'application/x-www-form-urlencoded',
         'Referer': 'https://www.fivebackgift.com/',
+        'Origin': 'https://www.fivebackgift.com'
       },
       body: req.body.formData
     });
