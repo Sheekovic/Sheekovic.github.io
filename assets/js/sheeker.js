@@ -97,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const response = await fetch('/api/datadome/', {
+            // make request to DataDome proxy in /api/datadome/dd.js
+            const response = await fetch('http://localhost:3000/api/datadome', {
                 method: 'POST',
                 headers: {
                     'User-Agent': userAgent,
