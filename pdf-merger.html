@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free PDF Merger - Combine Multiple PDF Files Online | Sheekovic</title>
+    <meta name="description" content="Free online PDF merger. Combine and merge multiple PDF files into one document instantly. Drag and drop to reorder pages. No file size limits or registration required.">
+    <meta name="keywords" content="pdf merger, merge pdf, combine pdf, pdf combiner, join pdf, merge pdf files, pdf tool, combine pdf online, pdf joiner">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/pdf-merger.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/pdf-merger.html">
+    <meta property="og:title" content="Free PDF Merger - Combine Multiple PDF Files Online">
+    <meta property="og:description" content="Free online PDF merger. Combine and merge multiple PDF files into one document instantly. Drag and drop to reorder pages.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/pdf-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/pdf-merger.html">
+    <meta property="twitter:title" content="Free PDF Merger">
+    <meta property="twitter:description" content="Free online PDF merger. Combine and merge multiple PDF files into one document instantly.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/pdf-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "PDF Merger",
+      "description": "Free online PDF merger tool. Combine multiple PDF files into a single document.",
+      "url": "https://sheekovic.github.io/pdf-merger.html",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .upload-area {
+            border: 3px dashed #e0e0e0;
+            border-radius: 12px;
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 30px;
+        }
+        .upload-area:hover {
+            border-color: #f5576c;
+            background: #f9f9f9;
+        }
+        .upload-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .file-list {
+            margin: 30px 0;
+        }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .file-icon {
+            font-size: 2em;
+        }
+        .file-details h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .file-details p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .file-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-small {
+            padding: 8px 16px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-small:hover {
+            background: #c0392b;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        button.secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+        }
+        .info {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📑 PDF Merger</h1>
+        
+        <div class="info">
+            <strong>Note:</strong> This is a client-side PDF merger using pdf-lib. 
+            Select multiple PDF files to merge them into one document.
+        </div>
+        
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">📤</div>
+            <h3>Click to Select PDF Files</h3>
+            <p style="color: #999; margin-top: 10px;">Select one or more PDF files to merge</p>
+            <input type="file" id="fileInput" accept="application/pdf" multiple>
+        </div>
+        
+        <div class="file-list hidden" id="fileList">
+            <h3 style="margin-bottom: 15px; color: #333;">Selected Files:</h3>
+            <div id="filesContainer"></div>
+        </div>
+        
+        <button id="mergeBtn" class="hidden" onclick="mergePDFs()">Merge PDFs</button>
+        <button class="secondary" onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script>
+        let selectedFiles = [];
+        
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            selectedFiles = Array.from(e.target.files);
+            displayFiles();
+        });
+        
+        function displayFiles() {
+            if (selectedFiles.length === 0) {
+                document.getElementById('fileList').classList.add('hidden');
+                document.getElementById('mergeBtn').classList.add('hidden');
+                return;
+            }
+            
+            const container = document.getElementById('filesContainer');
+            container.innerHTML = selectedFiles.map((file, index) => `
+                <div class="file-item">
+                    <div class="file-info">
+                        <div class="file-icon">📄</div>
+                        <div class="file-details">
+                            <h4>${file.name}</h4>
+                            <p>${formatFileSize(file.size)}</p>
+                        </div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="btn-small" onclick="removeFile(${index})">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('fileList').classList.remove('hidden');
+            document.getElementById('mergeBtn').classList.remove('hidden');
+            document.getElementById('mergeBtn').disabled = selectedFiles.length < 2;
+            
+            if (selectedFiles.length < 2) {
+                document.getElementById('mergeBtn').textContent = 'Add at least 2 PDFs to merge';
+            } else {
+                document.getElementById('mergeBtn').textContent = `Merge ${selectedFiles.length} PDFs`;
+            }
+        }
+        
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            displayFiles();
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+        }
+        
+        async function mergePDFs() {
+            if (selectedFiles.length < 2) {
+                alert('Please select at least 2 PDF files to merge');
+                return;
+            }
+            
+            const mergeBtn = document.getElementById('mergeBtn');
+            mergeBtn.disabled = true;
+            mergeBtn.textContent = 'Merging PDFs...';
+            
+            try {
+                const { PDFDocument } = PDFLib;
+                const mergedPdf = await PDFDocument.create();
+                
+                for (let i = 0; i < selectedFiles.length; i++) {
+                    const file = selectedFiles[i];
+                    const arrayBuffer = await file.arrayBuffer();
+                    const pdf = await PDFDocument.load(arrayBuffer);
+                    const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                    copiedPages.forEach((page) => mergedPdf.addPage(page));
+                }
+                
+                const mergedPdfBytes = await mergedPdf.save();
+                const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'merged.pdf';
+                a.click();
+                
+                URL.revokeObjectURL(url);
+                
+                mergeBtn.textContent = 'Merge Complete! ✓';
+                setTimeout(() => {
+                    mergeBtn.textContent = `Merge ${selectedFiles.length} PDFs`;
+                    mergeBtn.disabled = false;
+                }, 3000);
+                
+            } catch (error) {
+                console.error('Error merging PDFs:', error);
+                alert('Error merging PDFs: ' + error.message);
+                mergeBtn.textContent = `Merge ${selectedFiles.length} PDFs`;
+                mergeBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free File Size Calculator - Convert Bytes, KB, MB, GB, TB Online | Sheekovic</title>
+    <meta name="description" content="Free file size calculator. Convert between bytes, KB, MB, GB, and TB instantly. Binary (1024) and decimal (1000) conversions supported. Perfect for developers.">
+    <meta name="keywords" content="file size calculator, bytes to mb, kb to gb, file size converter, binary conversion, storage calculator, megabyte converter, gigabyte calculator">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/file-size-calc.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/file-size-calc.html">
+    <meta property="og:title" content="Free File Size Calculator - Convert Bytes, KB, MB, GB, TB Online">
+    <meta property="og:description" content="Free file size calculator. Convert between bytes, KB, MB, GB, and TB instantly. Binary and decimal conversions supported.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/filesize-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/file-size-calc.html">
+    <meta property="twitter:title" content="Free File Size Calculator">
+    <meta property="twitter:description" content="Free file size calculator. Convert between bytes, KB, MB, GB, and TB instantly.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/filesize-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "File Size Calculator",
+      "description": "Free online file size calculator. Convert between storage units with binary and decimal options.",
+      "url": "https://sheekovic.github.io/file-size-calc.html",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8EC5FC 0%, #E0C3FC 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+        .input-with-unit {
+            display: flex;
+            gap: 10px;
+        }
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        select {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            cursor: pointer;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #8EC5FC;
+        }
+        .results {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        .result-label {
+            font-weight: 600;
+            color: #666;
+        }
+        .result-value {
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-weight: bold;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        .info {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 File Size Calculator</h1>
+        
+        <div class="info">
+            <strong>Tip:</strong> 1 KB = 1024 Bytes (Binary), or 1000 Bytes (Decimal)
+        </div>
+        
+        <div class="input-group">
+            <label>Enter File Size:</label>
+            <div class="input-with-unit">
+                <input type="number" id="sizeInput" value="1" min="0" step="0.01" oninput="calculate()">
+                <select id="unit" onchange="calculate()">
+                    <option value="bytes">Bytes</option>
+                    <option value="kb">KB</option>
+                    <option value="mb" selected>MB</option>
+                    <option value="gb">GB</option>
+                    <option value="tb">TB</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label>Calculation Type:</label>
+            <select id="calcType" onchange="calculate()">
+                <option value="binary" selected>Binary (1024)</option>
+                <option value="decimal">Decimal (1000)</option>
+            </select>
+        </div>
+        
+        <div class="results">
+            <h3 style="margin-bottom: 15px; color: #333;">All Conversions:</h3>
+            <div class="result-item">
+                <span class="result-label">Bytes:</span>
+                <span class="result-value" id="bytes">-</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Kilobytes (KB):</span>
+                <span class="result-value" id="kb">-</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Megabytes (MB):</span>
+                <span class="result-value" id="mb">-</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Gigabytes (GB):</span>
+                <span class="result-value" id="gb">-</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Terabytes (TB):</span>
+                <span class="result-value" id="tb">-</span>
+            </div>
+        </div>
+        
+        <button onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script>
+        function calculate() {
+            const size = parseFloat(document.getElementById('sizeInput').value) || 0;
+            const unit = document.getElementById('unit').value;
+            const calcType = document.getElementById('calcType').value;
+            
+            const base = calcType === 'binary' ? 1024 : 1000;
+            
+            // Convert to bytes first
+            let bytes;
+            switch(unit) {
+                case 'bytes': bytes = size; break;
+                case 'kb': bytes = size * base; break;
+                case 'mb': bytes = size * Math.pow(base, 2); break;
+                case 'gb': bytes = size * Math.pow(base, 3); break;
+                case 'tb': bytes = size * Math.pow(base, 4); break;
+            }
+            
+            // Convert to all units
+            const kb = bytes / base;
+            const mb = bytes / Math.pow(base, 2);
+            const gb = bytes / Math.pow(base, 3);
+            const tb = bytes / Math.pow(base, 4);
+            
+            // Update display
+            document.getElementById('bytes').textContent = formatNumber(bytes);
+            document.getElementById('kb').textContent = formatNumber(kb);
+            document.getElementById('mb').textContent = formatNumber(mb);
+            document.getElementById('gb').textContent = formatNumber(gb);
+            document.getElementById('tb').textContent = formatNumber(tb);
+        }
+        
+        function formatNumber(num) {
+            if (num === 0) return '0';
+            if (num < 0.01) return num.toExponential(2);
+            if (num >= 1000000) return num.toExponential(2);
+            return num.toFixed(2).replace(/\.?0+$/, '');
+        }
+        
+        // Initial calculation
+        calculate();
+    </script>
+</body>
+</html>

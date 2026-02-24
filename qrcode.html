@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free QR Code Generator - Create Custom QR Codes Online | Sheekovic</title>
+    <meta name="description" content="Generate free QR codes instantly! Create custom QR codes for URLs, text, contact info, and more. Download high-quality PNG QR codes. No registration required.">
+    <meta name="keywords" content="qr code generator, free qr code, create qr code, qr code maker, custom qr code, qr code online, generate qr code, qr scanner">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/qrcode.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/qrcode.html">
+    <meta property="og:title" content="Free QR Code Generator - Create Custom QR Codes Online">
+    <meta property="og:description" content="Generate free QR codes instantly! Create custom QR codes for URLs, text, contact info, and more. Download high-quality PNG QR codes.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/qrcode-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/qrcode.html">
+    <meta property="twitter:title" content="Free QR Code Generator - Create Custom QR Codes Online">
+    <meta property="twitter:description" content="Generate free QR codes instantly! Create custom QR codes for URLs, text, contact info, and more. Download high-quality PNG QR codes.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/qrcode-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "QR Code Generator",
+      "description": "Free online QR code generator tool. Create custom QR codes for URLs, text, and more.",
+      "url": "https://sheekovic.github.io/qrcode.html",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            min-height: 200px;
+            align-items: center;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            display: none;
+        }
+        .back-btn {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔲 QR Code Generator</h1>
+        
+        <div class="input-group">
+            <label for="text">Enter Text or URL:</label>
+            <input type="text" id="text" placeholder="https://example.com">
+        </div>
+        
+        <div class="input-group">
+            <label for="size">Size:</label>
+            <select id="size">
+                <option value="128">Small (128x128)</option>
+                <option value="256" selected>Medium (256x256)</option>
+                <option value="512">Large (512x512)</option>
+            </select>
+        </div>
+        
+        <button onclick="generateQR()">Generate QR Code</button>
+        
+        <div id="qrcode"></div>
+        
+        <button class="download-btn" id="downloadBtn" onclick="downloadQR()">Download QR Code</button>
+        <button class="back-btn" onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        function generateQR() {
+            const text = document.getElementById('text').value.trim();
+            const size = parseInt(document.getElementById('size').value);
+            const qrcodeDiv = document.getElementById('qrcode');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            if (!text) {
+                alert('Please enter text or URL');
+                return;
+            }
+            
+            qrcodeDiv.innerHTML = '';
+            
+            QRCode.toCanvas(text, { 
+                width: size,
+                margin: 2,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                }
+            }, function (error, canvas) {
+                if (error) {
+                    console.error(error);
+                    alert('Error generating QR code');
+                    return;
+                }
+                qrcodeDiv.appendChild(canvas);
+                downloadBtn.style.display = 'block';
+            });
+        }
+        
+        function downloadQR() {
+            const canvas = document.querySelector('#qrcode canvas');
+            if (!canvas) return;
+            
+            const url = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = 'qrcode.png';
+            link.href = url;
+            link.click();
+        }
+        
+        document.getElementById('text').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateQR();
+            }
+        });
+    </script>
+</body>
+</html>

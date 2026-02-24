@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free CSS Gradient Generator - Create Linear & Radial Gradients | Sheekovic</title>
+    <meta name="description" content="Free CSS gradient generator. Create beautiful linear and radial gradients visually. Add unlimited color stops, adjust angles, copy CSS code instantly. Perfect for web design.">
+    <meta name="keywords" content="css gradient generator, gradient maker, linear gradient, radial gradient, css gradient, gradient tool, color gradient, background generator">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/gradient-generator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/gradient-generator.html">
+    <meta property="og:title" content="Free CSS Gradient Generator - Create Linear & Radial Gradients">
+    <meta property="og:description" content="Free CSS gradient generator. Create beautiful linear and radial gradients visually. Add color stops, adjust angles, copy CSS instantly.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/gradient-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/gradient-generator.html">
+    <meta property="twitter:title" content="Free CSS Gradient Generator">
+    <meta property="twitter:description" content="Free CSS gradient generator. Create beautiful linear and radial gradients visually.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/gradient-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CSS Gradient Generator",
+      "description": "Free online CSS gradient generator. Create and customize linear and radial gradients with visual editor.",
+      "url": "https://sheekovic.github.io/gradient-generator.html",
+      "applicationCategory": "DesignApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f0f0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .preview {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 3px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+        .controls {
+            display: grid;
+            gap: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        select, input[type="number"], input[type="range"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        input[type="color"] {
+            width: 100%;
+            height: 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .color-stops {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .color-stop {
+            display: grid;
+            grid-template-columns: 1fr 80px 60px;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .remove-btn {
+            padding: 8px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .add-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .code-output {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 20px 0;
+            overflow-x: auto;
+            cursor: pointer;
+            position: relative;
+        }
+        .code-output:hover {
+            background: #363636;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button.secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 CSS Gradient Generator</h1>
+        
+        <div class="preview" id="preview"></div>
+        
+        <div class="controls">
+            <div class="input-group">
+                <label>Gradient Type:</label>
+                <select id="gradientType" onchange="updateGradient()">
+                    <option value="linear">Linear</option>
+                    <option value="radial">Radial</option>
+                </select>
+            </div>
+            
+            <div class="input-group" id="angleGroup">
+                <label>Angle: <span id="angleValue">90</span>°</label>
+                <input type="range" id="angle" min="0" max="360" value="90" oninput="updateGradient()">
+            </div>
+            
+            <div class="color-stops">
+                <h3 style="margin-bottom: 15px;">Color Stops:</h3>
+                <div id="colorStopsList"></div>
+                <button class="add-btn" onclick="addColorStop()">+ Add Color Stop</button>
+            </div>
+        </div>
+        
+        <div class="code-output" onclick="copyCode()" title="Click to copy">
+            <div id="cssCode">background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);</div>
+        </div>
+        
+        <button onclick="copyCode()">Copy CSS Code</button>
+        <button class="secondary" onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script>
+        let colorStops = [
+            { color: '#667eea', position: 0 },
+            { color: '#764ba2', position: 100 }
+        ];
+        
+        function init() {
+            renderColorStops();
+            updateGradient();
+        }
+        
+        function renderColorStops() {
+            const list = document.getElementById('colorStopsList');
+            list.innerHTML = colorStops.map((stop, index) => `
+                <div class="color-stop">
+                    <input type="color" value="${stop.color}" onchange="updateColorStop(${index}, 'color', this.value)">
+                    <input type="number" value="${stop.position}" min="0" max="100" onchange="updateColorStop(${index}, 'position', this.value)">
+                    ${colorStops.length > 2 ? `<button class="remove-btn" onclick="removeColorStop(${index})">×</button>` : '<span></span>'}
+                </div>
+            `).join('');
+        }
+        
+        function updateColorStop(index, property, value) {
+            if (property === 'position') {
+                colorStops[index][property] = parseInt(value);
+            } else {
+                colorStops[index][property] = value;
+            }
+            updateGradient();
+        }
+        
+        function addColorStop() {
+            const lastPosition = colorStops[colorStops.length - 1].position;
+            const newPosition = Math.min(lastPosition + 10, 100);
+            colorStops.push({ color: '#764ba2', position: newPosition });
+            renderColorStops();
+            updateGradient();
+        }
+        
+        function removeColorStop(index) {
+            if (colorStops.length > 2) {
+                colorStops.splice(index, 1);
+                renderColorStops();
+                updateGradient();
+            }
+        }
+        
+        function updateGradient() {
+            const type = document.getElementById('gradientType').value;
+            const angle = document.getElementById('angle').value;
+            document.getElementById('angleValue').textContent = angle;
+            
+            // Show/hide angle control
+            document.getElementById('angleGroup').style.display = type === 'linear' ? 'block' : 'none';
+            
+            // Sort color stops by position
+            const sortedStops = [...colorStops].sort((a, b) => a.position - b.position);
+            
+            // Generate gradient string
+            const stopsString = sortedStops.map(stop => `${stop.color} ${stop.position}%`).join(', ');
+            
+            let gradient;
+            if (type === 'linear') {
+                gradient = `linear-gradient(${angle}deg, ${stopsString})`;
+            } else {
+                gradient = `radial-gradient(circle, ${stopsString})`;
+            }
+            
+            // Update preview
+            document.getElementById('preview').style.background = gradient;
+            
+            // Update code
+            document.getElementById('cssCode').textContent = `background: ${gradient};`;
+        }
+        
+        function copyCode() {
+            const code = document.getElementById('cssCode').textContent;
+            const temp = document.createElement('textarea');
+            temp.value = code;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            alert('CSS code copied to clipboard!');
+        }
+        
+        // Initialize
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Color Converter - HEX, RGB, HSL, CMYK Color Converter | Sheekovic</title>
+    <meta name="description" content="Free color converter tool. Convert between HEX, RGB, HSL, and CMYK color formats instantly. Color picker included. Perfect for designers and developers.">
+    <meta name="keywords" content="color converter, hex to rgb, rgb to hex, color picker, hsl converter, cmyk converter, color code converter, hex color, rgb color">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/color-converter.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/color-converter.html">
+    <meta property="og:title" content="Free Color Converter - HEX, RGB, HSL, CMYK Color Converter">
+    <meta property="og:description" content="Free color converter tool. Convert between HEX, RGB, HSL, and CMYK color formats instantly. Color picker included.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/color-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/color-converter.html">
+    <meta property="twitter:title" content="Free Color Converter - HEX, RGB, HSL, CMYK">
+    <meta property="twitter:description" content="Free color converter tool. Convert between HEX, RGB, HSL, and CMYK color formats instantly.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/color-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Color Converter",
+      "description": "Free online color converter. Convert between HEX, RGB, HSL, and CMYK color formats with color picker.",
+      "url": "https://sheekovic.github.io/color-converter.html",
+      "applicationCategory": "DesignApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fddb92 0%, #d1fdff 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .color-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 3px solid #e0e0e0;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input[type="color"] {
+            width: 100%;
+            height: 60px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #fddb92;
+        }
+        .color-formats {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .format-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .format-item:hover {
+            background: #f0f0f0;
+        }
+        .format-label {
+            font-weight: 600;
+            color: #666;
+        }
+        .format-value {
+            font-family: 'Courier New', monospace;
+            color: #333;
+        }
+        .rgb-inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .hsl-inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Color Converter</h1>
+        
+        <div class="color-preview" id="colorPreview"></div>
+        
+        <div class="input-group">
+            <label>Color Picker:</label>
+            <input type="color" id="colorPicker" value="#3498db" oninput="updateFromPicker()">
+        </div>
+        
+        <div class="input-group">
+            <label>HEX:</label>
+            <input type="text" id="hexInput" value="#3498db" oninput="updateFromHex()">
+        </div>
+        
+        <div class="input-group">
+            <label>RGB:</label>
+            <div class="rgb-inputs">
+                <input type="number" id="r" min="0" max="255" placeholder="R" oninput="updateFromRGB()">
+                <input type="number" id="g" min="0" max="255" placeholder="G" oninput="updateFromRGB()">
+                <input type="number" id="b" min="0" max="255" placeholder="B" oninput="updateFromRGB()">
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label>HSL:</label>
+            <div class="hsl-inputs">
+                <input type="number" id="h" min="0" max="360" placeholder="H" oninput="updateFromHSL()">
+                <input type="number" id="s" min="0" max="100" placeholder="S%" oninput="updateFromHSL()">
+                <input type="number" id="l" min="0" max="100" placeholder="L%" oninput="updateFromHSL()">
+            </div>
+        </div>
+        
+        <div class="color-formats">
+            <h3 style="margin-bottom: 15px; color: #333;">All Formats (Click to Copy):</h3>
+            <div class="format-item" onclick="copyFormat('hex')">
+                <span class="format-label">HEX:</span>
+                <span class="format-value" id="hexValue">#3498db</span>
+            </div>
+            <div class="format-item" onclick="copyFormat('rgb')">
+                <span class="format-label">RGB:</span>
+                <span class="format-value" id="rgbValue">rgb(52, 152, 219)</span>
+            </div>
+            <div class="format-item" onclick="copyFormat('hsl')">
+                <span class="format-label">HSL:</span>
+                <span class="format-value" id="hslValue">hsl(204, 70%, 53%)</span>
+            </div>
+            <div class="format-item" onclick="copyFormat('cmyk')">
+                <span class="format-label">CMYK:</span>
+                <span class="format-value" id="cmykValue">cmyk(76%, 31%, 0%, 14%)</span>
+            </div>
+        </div>
+        
+        <button onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script>
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+        
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+        
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                    case g: h = ((b - r) / d + 2) / 6; break;
+                    case b: h = ((r - g) / d + 4) / 6; break;
+                }
+            }
+            return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+        }
+        
+        function hslToRgb(h, s, l) {
+            h /= 360; s /= 100; l /= 100;
+            let r, g, b;
+            
+            if (s === 0) {
+                r = g = b = l;
+            } else {
+                const hue2rgb = (p, q, t) => {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1/6) return p + (q - p) * 6 * t;
+                    if (t < 1/2) return q;
+                    if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                    return p;
+                };
+                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                const p = 2 * l - q;
+                r = hue2rgb(p, q, h + 1/3);
+                g = hue2rgb(p, q, h);
+                b = hue2rgb(p, q, h - 1/3);
+            }
+            return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
+        }
+        
+        function rgbToCmyk(r, g, b) {
+            let c = 1 - (r / 255);
+            let m = 1 - (g / 255);
+            let y = 1 - (b / 255);
+            let k = Math.min(c, m, y);
+            
+            c = ((c - k) / (1 - k)) || 0;
+            m = ((m - k) / (1 - k)) || 0;
+            y = ((y - k) / (1 - k)) || 0;
+            
+            return {
+                c: Math.round(c * 100),
+                m: Math.round(m * 100),
+                y: Math.round(y * 100),
+                k: Math.round(k * 100)
+            };
+        }
+        
+        function updateDisplay(r, g, b) {
+            const hex = rgbToHex(r, g, b);
+            const hsl = rgbToHsl(r, g, b);
+            const cmyk = rgbToCmyk(r, g, b);
+            
+            document.getElementById('colorPreview').style.backgroundColor = hex;
+            document.getElementById('colorPicker').value = hex;
+            document.getElementById('hexInput').value = hex;
+            document.getElementById('r').value = r;
+            document.getElementById('g').value = g;
+            document.getElementById('b').value = b;
+            document.getElementById('h').value = hsl.h;
+            document.getElementById('s').value = hsl.s;
+            document.getElementById('l').value = hsl.l;
+            
+            document.getElementById('hexValue').textContent = hex;
+            document.getElementById('rgbValue').textContent = `rgb(${r}, ${g}, ${b})`;
+            document.getElementById('hslValue').textContent = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+            document.getElementById('cmykValue').textContent = `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`;
+        }
+        
+        function updateFromPicker() {
+            const hex = document.getElementById('colorPicker').value;
+            const rgb = hexToRgb(hex);
+            updateDisplay(rgb.r, rgb.g, rgb.b);
+        }
+        
+        function updateFromHex() {
+            const hex = document.getElementById('hexInput').value;
+            if (/^#[0-9A-F]{6}$/i.test(hex)) {
+                const rgb = hexToRgb(hex);
+                updateDisplay(rgb.r, rgb.g, rgb.b);
+            }
+        }
+        
+        function updateFromRGB() {
+            const r = parseInt(document.getElementById('r').value) || 0;
+            const g = parseInt(document.getElementById('g').value) || 0;
+            const b = parseInt(document.getElementById('b').value) || 0;
+            updateDisplay(r, g, b);
+        }
+        
+        function updateFromHSL() {
+            const h = parseInt(document.getElementById('h').value) || 0;
+            const s = parseInt(document.getElementById('s').value) || 0;
+            const l = parseInt(document.getElementById('l').value) || 0;
+            const rgb = hslToRgb(h, s, l);
+            updateDisplay(rgb.r, rgb.g, rgb.b);
+        }
+        
+        function copyFormat(format) {
+            let text;
+            switch(format) {
+                case 'hex': text = document.getElementById('hexValue').textContent; break;
+                case 'rgb': text = document.getElementById('rgbValue').textContent; break;
+                case 'hsl': text = document.getElementById('hslValue').textContent; break;
+                case 'cmyk': text = document.getElementById('cmykValue').textContent; break;
+            }
+            
+            const temp = document.createElement('textarea');
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            alert('Copied: ' + text);
+        }
+        
+        // Initialize
+        updateFromPicker();
+    </script>
+</body>
+</html>

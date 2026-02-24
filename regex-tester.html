@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Regex Tester - Test Regular Expressions Online | Sheekovic</title>
+    <meta name="description" content="Free online regex tester and debugger. Test regular expressions with live highlighting. Supports global, case-insensitive, and multiline flags. Perfect for developers.">
+    <meta name="keywords" content="regex tester, regular expression tester, regex tool, regex debugger, regex online, test regex, regex matcher, pattern tester">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/regex-tester.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/regex-tester.html">
+    <meta property="og:title" content="Free Regex Tester - Test Regular Expressions Online">
+    <meta property="og:description" content="Free online regex tester and debugger. Test regular expressions with live highlighting and multiple flags support.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/regex-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/regex-tester.html">
+    <meta property="twitter:title" content="Free Regex Tester">
+    <meta property="twitter:description" content="Free online regex tester and debugger. Test regular expressions with live highlighting.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/regex-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Regex Tester",
+      "description": "Free online regular expression tester and debugger with live match highlighting.",
+      "url": "https://sheekovic.github.io/regex-tester.html",
+      "applicationCategory": "DeveloperApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .flags {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .flag-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .flag-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .results {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .match-info {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .match-count {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .match-item {
+            background: #e7f3ff;
+            padding: 10px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .match-text {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #333;
+        }
+        .match-position {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .highlighted-text {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f5c6cb;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 RegEx Tester</h1>
+        
+        <div class="input-group">
+            <label>Regular Expression:</label>
+            <input type="text" id="regex" placeholder="^\w+@\w+\.\w+$" oninput="testRegex()">
+        </div>
+        
+        <div class="input-group">
+            <label>Flags:</label>
+            <div class="flags">
+                <div class="flag-item">
+                    <input type="checkbox" id="flag-g" checked onchange="testRegex()">
+                    <label for="flag-g">g (global)</label>
+                </div>
+                <div class="flag-item">
+                    <input type="checkbox" id="flag-i" onchange="testRegex()">
+                    <label for="flag-i">i (case insensitive)</label>
+                </div>
+                <div class="flag-item">
+                    <input type="checkbox" id="flag-m" onchange="testRegex()">
+                    <label for="flag-m">m (multiline)</label>
+                </div>
+                <div class="flag-item">
+                    <input type="checkbox" id="flag-s" onchange="testRegex()">
+                    <label for="flag-s">s (dotAll)</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label>Test String:</label>
+            <textarea id="testString" placeholder="Enter text to test against the regex...">email@example.com
+test@test.org
+invalid-email
+another@domain.co.uk</textarea>
+        </div>
+        
+        <div class="results" id="results"></div>
+        
+        <button onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script>
+        function testRegex() {
+            const regexInput = document.getElementById('regex').value;
+            const testString = document.getElementById('testString').value;
+            const results = document.getElementById('results');
+            
+            if (!regexInput) {
+                results.innerHTML = '<div class="error">Please enter a regular expression</div>';
+                return;
+            }
+            
+            try {
+                // Build flags
+                let flags = '';
+                if (document.getElementById('flag-g').checked) flags += 'g';
+                if (document.getElementById('flag-i').checked) flags += 'i';
+                if (document.getElementById('flag-m').checked) flags += 'm';
+                if (document.getElementById('flag-s').checked) flags += 's';
+                
+                const regex = new RegExp(regexInput, flags);
+                const matches = [...testString.matchAll(regex)];
+                
+                if (matches.length === 0) {
+                    results.innerHTML = `
+                        <div class="match-info">
+                            <div class="match-count">No matches found</div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let html = `
+                    <div class="match-info">
+                        <div class="match-count">${matches.length} match${matches.length !== 1 ? 'es' : ''} found</div>
+                        ${matches.map((match, i) => `
+                            <div class="match-item">
+                                <div class="match-text">"${match[0]}"</div>
+                                <div class="match-position">Position: ${match.index} - ${match.index + match[0].length - 1}</div>
+                                ${match.length > 1 ? '<div class="match-position">Groups: ' + match.slice(1).map((g, gi) => `${gi + 1}: "${g}"`).join(', ') + '</div>' : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="highlighted-text">${highlightMatches(testString, matches)}</div>
+                `;
+                
+                results.innerHTML = html;
+                
+            } catch (e) {
+                results.innerHTML = `<div class="error">Invalid RegEx: ${e.message}</div>`;
+            }
+        }
+        
+        function highlightMatches(text, matches) {
+            if (matches.length === 0) return text;
+            
+            let result = '';
+            let lastIndex = 0;
+            
+            matches.forEach(match => {
+                result += escapeHtml(text.substring(lastIndex, match.index));
+                result += '<span class="highlight">' + escapeHtml(match[0]) + '</span>';
+                lastIndex = match.index + match[0].length;
+            });
+            
+            result += escapeHtml(text.substring(lastIndex));
+            return result;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Add input listener to test string
+        document.getElementById('testString').addEventListener('input', testRegex);
+        
+        // Initial test
+        document.getElementById('regex').value = '\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b';
+        testRegex();
+    </script>
+</body>
+</html>

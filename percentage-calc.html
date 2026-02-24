@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Percentage Calculator - Calculate Percentages Online | Sheekovic</title>
+    <meta name="description" content="Free percentage calculator. Calculate percentages, percentage changes, percentage increases/decreases, and find what percentage one number is of another instantly.">
+    <meta name="keywords" content="percentage calculator, calculate percentage, percentage change, percent calculator, percentage increase, percentage decrease, math calculator">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/percentage-calc.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/percentage-calc.html">
+    <meta property="og:title" content="Free Percentage Calculator - Calculate Percentages Online">
+    <meta property="og:description" content="Free percentage calculator. Calculate percentages, percentage changes, increases, decreases, and more instantly.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/percentage-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/percentage-calc.html">
+    <meta property="twitter:title" content="Free Percentage Calculator">
+    <meta property="twitter:description" content="Free percentage calculator. Calculate percentages, changes, increases, and decreases instantly.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/percentage-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Percentage Calculator",
+      "description": "Free online percentage calculator. Perform various percentage calculations including changes, increases, and decreases.",
+      "url": "https://sheekovic.github.io/percentage-calc.html",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .calc-type {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .type-btn {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .type-btn.active {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            border-color: transparent;
+        }
+        .calculator-section {
+            display: none;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 12px;
+        }
+        .calculator-section.active {
+            display: block;
+        }
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+        .operator {
+            font-size: 20px;
+            font-weight: bold;
+            color: #666;
+        }
+        .result {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .result-value {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Percentage Calculator</h1>
+        
+        <div class="calc-type">
+            <button class="type-btn active" onclick="switchCalc('basic')">What is X% of Y?</button>
+            <button class="type-btn" onclick="switchCalc('is')">X is what % of Y?</button>
+            <button class="type-btn" onclick="switchCalc('change')">% Change</button>
+            <button class="type-btn" onclick="switchCalc('increase')">Increase/Decrease by %</button>
+        </div>
+        
+        <!-- What is X% of Y? -->
+        <div id="basic" class="calculator-section active">
+            <label>What is</label>
+            <div class="input-row">
+                <input type="number" id="basic-x" placeholder="20" oninput="calcBasic()">
+                <span class="operator">%</span>
+                <span class="operator">of</span>
+                <input type="number" id="basic-y" placeholder="100" oninput="calcBasic()">
+            </div>
+            <div class="result">
+                <div class="result-value" id="basic-result">0</div>
+            </div>
+        </div>
+        
+        <!-- X is what % of Y? -->
+        <div id="is" class="calculator-section">
+            <div class="input-row">
+                <input type="number" id="is-x" placeholder="25" oninput="calcIs()">
+                <span class="operator">is what %</span>
+                <span class="operator">of</span>
+                <input type="number" id="is-y" placeholder="100" oninput="calcIs()">
+            </div>
+            <div class="result">
+                <div class="result-value" id="is-result">0%</div>
+            </div>
+        </div>
+        
+        <!-- % Change -->
+        <div id="change" class="calculator-section">
+            <label>Calculate percentage change from one value to another</label>
+            <div class="input-row">
+                <span class="operator">From</span>
+                <input type="number" id="change-from" placeholder="50" oninput="calcChange()">
+                <span class="operator">to</span>
+                <input type="number" id="change-to" placeholder="75" oninput="calcChange()">
+            </div>
+            <div class="result">
+                <div class="result-value" id="change-result">0%</div>
+                <div style="margin-top: 10px; font-size: 0.9em;" id="change-label">No change</div>
+            </div>
+        </div>
+        
+        <!-- Increase/Decrease by % -->
+        <div id="increase" class="calculator-section">
+            <label>Increase or decrease a number by a percentage</label>
+            <div class="input-row">
+                <input type="number" id="inc-value" placeholder="100" oninput="calcIncrease()">
+                <select id="inc-type" onchange="calcIncrease()" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                    <option value="increase">Increased by</option>
+                    <option value="decrease">Decreased by</option>
+                </select>
+                <input type="number" id="inc-percent" placeholder="10" oninput="calcIncrease()">
+                <span class="operator">%</span>
+            </div>
+            <div class="result">
+                <div class="result-value" id="inc-result">0</div>
+                <div style="margin-top: 10px; font-size: 0.9em;" id="inc-details">-</div>
+            </div>
+        </div>
+        
+        <button onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script>
+        function switchCalc(type) {
+            document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.calculator-section').forEach(sec => sec.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(type).classList.add('active');
+        }
+        
+        function calcBasic() {
+            const x = parseFloat(document.getElementById('basic-x').value) || 0;
+            const y = parseFloat(document.getElementById('basic-y').value) || 0;
+            const result = (x / 100) * y;
+            document.getElementById('basic-result').textContent = result.toFixed(2);
+        }
+        
+        function calcIs() {
+            const x = parseFloat(document.getElementById('is-x').value) || 0;
+            const y = parseFloat(document.getElementById('is-y').value) || 0;
+            const result = y !== 0 ? (x / y) * 100 : 0;
+            document.getElementById('is-result').textContent = result.toFixed(2) + '%';
+        }
+        
+        function calcChange() {
+            const from = parseFloat(document.getElementById('change-from').value) || 0;
+            const to = parseFloat(document.getElementById('change-to').value) || 0;
+            
+            if (from === 0) {
+                document.getElementById('change-result').textContent = '0%';
+                document.getElementById('change-label').textContent = 'No change';
+                return;
+            }
+            
+            const change = ((to - from) / from) * 100;
+            document.getElementById('change-result').textContent = 
+                (change >= 0 ? '+' : '') + change.toFixed(2) + '%';
+            
+            if (change > 0) {
+                document.getElementById('change-label').textContent = 'Increase';
+            } else if (change < 0) {
+                document.getElementById('change-label').textContent = 'Decrease';
+            } else {
+                document.getElementById('change-label').textContent = 'No change';
+            }
+        }
+        
+        function calcIncrease() {
+            const value = parseFloat(document.getElementById('inc-value').value) || 0;
+            const percent = parseFloat(document.getElementById('inc-percent').value) || 0;
+            const type = document.getElementById('inc-type').value;
+            
+            const change = (percent / 100) * value;
+            const result = type === 'increase' ? value + change : value - change;
+            
+            document.getElementById('inc-result').textContent = result.toFixed(2);
+            document.getElementById('inc-details').textContent = 
+                `${type === 'increase' ? '+' : '-'}${change.toFixed(2)}`;
+        }
+        
+        // Initial calculations
+        calcBasic();
+    </script>
+</body>
+</html>

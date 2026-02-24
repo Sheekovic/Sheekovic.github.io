@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Base64 Encoder/Decoder Online - Encode & Decode Text & Files | Sheekovic</title>
+    <meta name="description" content="Free Base64 encoder and decoder tool. Encode or decode text, images, and files to/from Base64 format instantly. Supports drag-and-drop file uploads. No limits.">
+    <meta name="keywords" content="base64 encoder, base64 decoder, base64 online, encode base64, decode base64, base64 converter, base64 tool, file to base64">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/base64.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/base64.html">
+    <meta property="og:title" content="Free Base64 Encoder/Decoder Online - Encode & Decode Text & Files">
+    <meta property="og:description" content="Free Base64 encoder and decoder tool. Encode or decode text, images, and files to/from Base64 format instantly.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/base64-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/base64.html">
+    <meta property="twitter:title" content="Free Base64 Encoder/Decoder Online">
+    <meta property="twitter:description" content="Free Base64 encoder and decoder tool. Encode or decode text, images, and files to/from Base64 format instantly.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/base64-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Base64 Encoder/Decoder",
+      "description": "Free online Base64 encoder and decoder. Convert text and files to and from Base64 format.",
+      "url": "https://sheekovic.github.io/base64.html",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        button {
+            flex: 1;
+            padding: 14px;
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button.secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+        }
+        label {
+            display: block;
+            margin: 20px 0 8px;
+            color: #555;
+            font-weight: 600;
+        }
+        .file-input {
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            margin-top: 30px;
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Base64 Encoder/Decoder</h1>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('text')">Text</button>
+            <button class="tab" onclick="switchTab('file')">File</button>
+        </div>
+        
+        <!-- Text Tab -->
+        <div id="text-tab" class="tab-content active">
+            <label>Input:</label>
+            <textarea id="textInput" placeholder="Enter text here..."></textarea>
+            
+            <div class="button-group">
+                <button onclick="encodeText()">Encode to Base64</button>
+                <button onclick="decodeText()">Decode from Base64</button>
+            </div>
+            
+            <label>Output:</label>
+            <textarea id="textOutput" readonly></textarea>
+            
+            <div class="button-group">
+                <button class="secondary" onclick="copyOutput()">Copy Output</button>
+                <button class="secondary" onclick="clearAll()">Clear All</button>
+            </div>
+        </div>
+        
+        <!-- File Tab -->
+        <div id="file-tab" class="tab-content">
+            <label>Select File:</label>
+            <input type="file" id="fileInput" class="file-input">
+            
+            <div class="button-group">
+                <button onclick="encodeFile()">Encode File to Base64</button>
+            </div>
+            
+            <label>Base64 Output:</label>
+            <textarea id="fileOutput" readonly></textarea>
+            
+            <div class="button-group">
+                <button class="secondary" onclick="copyFileOutput()">Copy Output</button>
+                <button class="secondary" onclick="downloadBase64()">Download as .txt</button>
+            </div>
+        </div>
+        
+        <button class="back-btn" onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            if (tab === 'text') {
+                document.querySelectorAll('.tab')[0].classList.add('active');
+                document.getElementById('text-tab').classList.add('active');
+            } else {
+                document.querySelectorAll('.tab')[1].classList.add('active');
+                document.getElementById('file-tab').classList.add('active');
+            }
+        }
+        
+        function encodeText() {
+            const input = document.getElementById('textInput').value;
+            if (!input) {
+                alert('Please enter text to encode');
+                return;
+            }
+            try {
+                const encoded = btoa(unescape(encodeURIComponent(input)));
+                document.getElementById('textOutput').value = encoded;
+            } catch (e) {
+                alert('Error encoding text: ' + e.message);
+            }
+        }
+        
+        function decodeText() {
+            const input = document.getElementById('textInput').value;
+            if (!input) {
+                alert('Please enter Base64 text to decode');
+                return;
+            }
+            try {
+                const decoded = decodeURIComponent(escape(atob(input)));
+                document.getElementById('textOutput').value = decoded;
+            } catch (e) {
+                alert('Invalid Base64 string');
+            }
+        }
+        
+        function copyOutput() {
+            const output = document.getElementById('textOutput');
+            output.select();
+            document.execCommand('copy');
+            alert('Copied to clipboard!');
+        }
+        
+        function clearAll() {
+            document.getElementById('textInput').value = '';
+            document.getElementById('textOutput').value = '';
+        }
+        
+        function encodeFile() {
+            const fileInput = document.getElementById('fileInput');
+            if (!fileInput.files[0]) {
+                alert('Please select a file');
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const base64 = e.target.result.split(',')[1];
+                document.getElementById('fileOutput').value = base64;
+            };
+            
+            reader.readAsDataURL(file);
+        }
+        
+        function copyFileOutput() {
+            const output = document.getElementById('fileOutput');
+            output.select();
+            document.execCommand('copy');
+            alert('Copied to clipboard!');
+        }
+        
+        function downloadBase64() {
+            const output = document.getElementById('fileOutput').value;
+            if (!output) {
+                alert('No Base64 data to download');
+                return;
+            }
+            
+            const blob = new Blob([output], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'base64.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
