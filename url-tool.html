@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free URL Encoder/Decoder - Encode & Decode URLs Online | Sheekovic</title>
+    <meta name="description" content="Free URL encoder and decoder tool. Encode or decode URLs and query strings instantly. Convert special characters to percent-encoding. Perfect for developers and SEO.">
+    <meta name="keywords" content="url encoder, url decoder, encode url, decode url, url encode online, percent encoding, url escape, query string encoder">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/url-tool.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/url-tool.html">
+    <meta property="og:title" content="Free URL Encoder/Decoder - Encode & Decode URLs Online">
+    <meta property="og:description" content="Free URL encoder and decoder tool. Encode or decode URLs and query strings instantly. Convert special characters to percent-encoding.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/url-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/url-tool.html">
+    <meta property="twitter:title" content="Free URL Encoder/Decoder">
+    <meta property="twitter:description" content="Free URL encoder and decoder tool. Encode or decode URLs and query strings instantly.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/url-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "URL Encoder/Decoder",
+      "description": "Free online URL encoder and decoder. Encode and decode URLs with percent-encoding.",
+      "url": "https://sheekovic.github.io/url-tool.html",
+      "applicationCategory": "DeveloperApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        label {
+            display: block;
+            margin: 20px 0 8px;
+            color: #555;
+            font-weight: 600;
+        }
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #a8edea;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        button {
+            flex: 1;
+            min-width: 150px;
+            padding: 14px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button.secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+        }
+        .info {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 URL Encoder/Decoder</h1>
+        
+        <div class="info">
+            <strong>Info:</strong> URL encoding converts special characters to a format that can be transmitted over the Internet. 
+            For example, spaces become %20.
+        </div>
+        
+        <label>Input:</label>
+        <textarea id="input" placeholder="Enter URL or text..."></textarea>
+        
+        <div class="button-group">
+            <button onclick="encodeURL()">Encode URL</button>
+            <button onclick="decodeURL()">Decode URL</button>
+            <button onclick="encodeComponent()">Encode Component</button>
+            <button onclick="decodeComponent()">Decode Component</button>
+        </div>
+        
+        <label>Output:</label>
+        <textarea id="output" readonly></textarea>
+        
+        <div class="button-group">
+            <button class="secondary" onclick="copyOutput()">Copy Output</button>
+            <button class="secondary" onclick="clearAll()">Clear All</button>
+            <button class="secondary" onclick="location.href='tools.html'">← Back to Tools</button>
+        </div>
+    </div>
+
+    <script>
+        function encodeURL() {
+            const input = document.getElementById('input').value;
+            if (!input) {
+                alert('Please enter text to encode');
+                return;
+            }
+            try {
+                document.getElementById('output').value = encodeURI(input);
+            } catch (e) {
+                alert('Error encoding URL: ' + e.message);
+            }
+        }
+        
+        function decodeURL() {
+            const input = document.getElementById('input').value;
+            if (!input) {
+                alert('Please enter URL to decode');
+                return;
+            }
+            try {
+                document.getElementById('output').value = decodeURI(input);
+            } catch (e) {
+                alert('Error decoding URL: ' + e.message);
+            }
+        }
+        
+        function encodeComponent() {
+            const input = document.getElementById('input').value;
+            if (!input) {
+                alert('Please enter text to encode');
+                return;
+            }
+            try {
+                document.getElementById('output').value = encodeURIComponent(input);
+            } catch (e) {
+                alert('Error encoding: ' + e.message);
+            }
+        }
+        
+        function decodeComponent() {
+            const input = document.getElementById('input').value;
+            if (!input) {
+                alert('Please enter text to decode');
+                return;
+            }
+            try {
+                document.getElementById('output').value = decodeURIComponent(input);
+            } catch (e) {
+                alert('Error decoding: ' + e.message);
+            }
+        }
+        
+        function copyOutput() {
+            const output = document.getElementById('output');
+            if (!output.value) {
+                alert('No output to copy');
+                return;
+            }
+            output.select();
+            document.execCommand('copy');
+            alert('Copied to clipboard!');
+        }
+        
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').value = '';
+        }
+    </script>
+</body>
+</html>

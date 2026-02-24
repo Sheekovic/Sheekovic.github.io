@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free CSS Box Shadow Generator - Create Box Shadows Online | Sheekovic</title>
+    <meta name="description" content="Free CSS box shadow generator. Create beautiful box shadows with visual editor. Adjust offset, blur, spread, color, and inset. Copy CSS code instantly for web design.">
+    <meta name="keywords" content="box shadow generator, css box shadow, shadow generator, css shadow, box shadow tool, shadow maker, css generator, web design tool">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/box-shadow-generator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/box-shadow-generator.html">
+    <meta property="og:title" content="Free CSS Box Shadow Generator - Create Box Shadows Online">
+    <meta property="og:description" content="Free CSS box shadow generator. Create beautiful box shadows with visual editor. Adjust offset, blur, spread, and color.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/shadow-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/box-shadow-generator.html">
+    <meta property="twitter:title" content="Free CSS Box Shadow Generator">
+    <meta property="twitter:description" content="Free CSS box shadow generator. Create beautiful box shadows with visual editor.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/shadow-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Box Shadow Generator",
+      "description": "Free online CSS box shadow generator. Create and customize box shadows with visual editor and instant CSS code.",
+      "url": "https://sheekovic.github.io/box-shadow-generator.html",
+      "applicationCategory": "DesignApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .preview-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .preview-box {
+            width: 200px;
+            height: 200px;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .slider-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        input[type="range"] {
+            flex: 1;
+        }
+        .value-display {
+            min-width: 50px;
+            text-align: right;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #667eea;
+        }
+        input[type="color"] {
+            width: 100%;
+            height: 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .code-output {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 20px 0;
+            overflow-x: auto;
+            cursor: pointer;
+        }
+        .code-output:hover {
+            background: #363636;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button.secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+        }
+        @media (max-width: 768px) {
+            .controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 Box Shadow Generator</h1>
+        
+        <div class="preview-container">
+            <div class="preview-box" id="previewBox"></div>
+        </div>
+        
+        <div class="controls">
+            <div class="input-group">
+                <label>Horizontal Offset:</label>
+                <div class="slider-container">
+                    <input type="range" id="hOffset" min="-100" max="100" value="0" oninput="updateShadow()">
+                    <span class="value-display" id="hOffsetValue">0px</span>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>Vertical Offset:</label>
+                <div class="slider-container">
+                    <input type="range" id="vOffset" min="-100" max="100" value="10" oninput="updateShadow()">
+                    <span class="value-display" id="vOffsetValue">10px</span>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>Blur Radius:</label>
+                <div class="slider-container">
+                    <input type="range" id="blur" min="0" max="100" value="30" oninput="updateShadow()">
+                    <span class="value-display" id="blurValue">30px</span>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>Spread Radius:</label>
+                <div class="slider-container">
+                    <input type="range" id="spread" min="-50" max="50" value="0" oninput="updateShadow()">
+                    <span class="value-display" id="spreadValue">0px</span>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>Shadow Color:</label>
+                <input type="color" id="color" value="#000000" oninput="updateShadow()">
+            </div>
+            
+            <div class="input-group">
+                <label>Opacity:</label>
+                <div class="slider-container">
+                    <input type="range" id="opacity" min="0" max="100" value="30" oninput="updateShadow()">
+                    <span class="value-display" id="opacityValue">0.3</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <div class="checkbox-group">
+                <input type="checkbox" id="inset" onchange="updateShadow()">
+                <label for="inset" style="margin: 0;">Inset Shadow</label>
+            </div>
+        </div>
+        
+        <div class="code-output" onclick="copyCode()" title="Click to copy">
+            <div id="cssCode">box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.3);</div>
+        </div>
+        
+        <button onclick="copyCode()">Copy CSS Code</button>
+        <button class="secondary" onclick="resetShadow()">Reset to Default</button>
+        <button class="secondary" onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script>
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+        
+        function updateShadow() {
+            const hOffset = document.getElementById('hOffset').value;
+            const vOffset = document.getElementById('vOffset').value;
+            const blur = document.getElementById('blur').value;
+            const spread = document.getElementById('spread').value;
+            const color = document.getElementById('color').value;
+            const opacity = document.getElementById('opacity').value / 100;
+            const inset = document.getElementById('inset').checked;
+            
+            // Update value displays
+            document.getElementById('hOffsetValue').textContent = hOffset + 'px';
+            document.getElementById('vOffsetValue').textContent = vOffset + 'px';
+            document.getElementById('blurValue').textContent = blur + 'px';
+            document.getElementById('spreadValue').textContent = spread + 'px';
+            document.getElementById('opacityValue').textContent = opacity.toFixed(2);
+            
+            // Convert hex to rgba
+            const rgb = hexToRgb(color);
+            const rgbaColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
+            
+            // Generate box-shadow CSS
+            const shadowValue = `${inset ? 'inset ' : ''}${hOffset}px ${vOffset}px ${blur}px ${spread}px ${rgbaColor}`;
+            
+            // Update preview
+            document.getElementById('previewBox').style.boxShadow = shadowValue;
+            
+            // Update code
+            document.getElementById('cssCode').textContent = `box-shadow: ${shadowValue};`;
+        }
+        
+        function copyCode() {
+            const code = document.getElementById('cssCode').textContent;
+            const temp = document.createElement('textarea');
+            temp.value = code;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            alert('CSS code copied to clipboard!');
+        }
+        
+        function resetShadow() {
+            document.getElementById('hOffset').value = 0;
+            document.getElementById('vOffset').value = 10;
+            document.getElementById('blur').value = 30;
+            document.getElementById('spread').value = 0;
+            document.getElementById('color').value = '#000000';
+            document.getElementById('opacity').value = 30;
+            document.getElementById('inset').checked = false;
+            updateShadow();
+        }
+        
+        // Initialize
+        updateShadow();
+    </script>
+</body>
+</html>

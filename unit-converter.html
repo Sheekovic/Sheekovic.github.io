@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Unit Converter - Length, Weight, Temperature, Area, Volume | Sheekovic</title>
+    <meta name="description" content="Free online unit converter. Convert length, weight, temperature, area, and volume units instantly. Supports metric and imperial units. Accurate conversion calculator.">
+    <meta name="keywords" content="unit converter, convert units, length converter, weight converter, temperature converter, metric converter, imperial converter, measurement converter">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/unit-converter.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/unit-converter.html">
+    <meta property="og:title" content="Free Unit Converter - Length, Weight, Temperature, Area, Volume">
+    <meta property="og:description" content="Free online unit converter. Convert length, weight, temperature, area, and volume units instantly. Supports metric and imperial units.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/unit-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/unit-converter.html">
+    <meta property="twitter:title" content="Free Unit Converter">
+    <meta property="twitter:description" content="Free online unit converter. Convert length, weight, temperature, area, and volume units instantly.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/unit-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Unit Converter",
+      "description": "Free online unit converter for length, weight, temperature, area, and volume measurements.",
+      "url": "https://sheekovic.github.io/unit-converter.html",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .category-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            flex: 1;
+            min-width: 100px;
+            padding: 10px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: white;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #ff9a9e;
+        }
+        .converter-section {
+            display: none;
+        }
+        .converter-section.active {
+            display: block;
+        }
+        .result {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📏 Unit Converter</h1>
+        
+        <div class="category-tabs">
+            <button class="tab active" onclick="switchCategory('length')">Length</button>
+            <button class="tab" onclick="switchCategory('weight')">Weight</button>
+            <button class="tab" onclick="switchCategory('temperature')">Temperature</button>
+            <button class="tab" onclick="switchCategory('area')">Area</button>
+            <button class="tab" onclick="switchCategory('volume')">Volume</button>
+        </div>
+        
+        <div id="length" class="converter-section active">
+            <div class="input-group">
+                <label>Value:</label>
+                <input type="number" id="lengthValue" oninput="convertLength()" placeholder="Enter value">
+            </div>
+            <div class="input-group">
+                <label>From:</label>
+                <select id="lengthFrom" onchange="convertLength()">
+                    <option value="m">Meters</option>
+                    <option value="km">Kilometers</option>
+                    <option value="cm">Centimeters</option>
+                    <option value="mm">Millimeters</option>
+                    <option value="mi">Miles</option>
+                    <option value="yd">Yards</option>
+                    <option value="ft">Feet</option>
+                    <option value="in">Inches</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>To:</label>
+                <select id="lengthTo" onchange="convertLength()">
+                    <option value="m">Meters</option>
+                    <option value="km">Kilometers</option>
+                    <option value="cm">Centimeters</option>
+                    <option value="mm">Millimeters</option>
+                    <option value="mi">Miles</option>
+                    <option value="yd">Yards</option>
+                    <option value="ft" selected>Feet</option>
+                    <option value="in">Inches</option>
+                </select>
+            </div>
+            <div class="result" id="lengthResult">-</div>
+        </div>
+        
+        <div id="weight" class="converter-section">
+            <div class="input-group">
+                <label>Value:</label>
+                <input type="number" id="weightValue" oninput="convertWeight()" placeholder="Enter value">
+            </div>
+            <div class="input-group">
+                <label>From:</label>
+                <select id="weightFrom" onchange="convertWeight()">
+                    <option value="kg">Kilograms</option>
+                    <option value="g">Grams</option>
+                    <option value="mg">Milligrams</option>
+                    <option value="lb">Pounds</option>
+                    <option value="oz">Ounces</option>
+                    <option value="ton">Metric Tons</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>To:</label>
+                <select id="weightTo" onchange="convertWeight()">
+                    <option value="kg">Kilograms</option>
+                    <option value="g">Grams</option>
+                    <option value="mg">Milligrams</option>
+                    <option value="lb" selected>Pounds</option>
+                    <option value="oz">Ounces</option>
+                    <option value="ton">Metric Tons</option>
+                </select>
+            </div>
+            <div class="result" id="weightResult">-</div>
+        </div>
+        
+        <div id="temperature" class="converter-section">
+            <div class="input-group">
+                <label>Value:</label>
+                <input type="number" id="tempValue" oninput="convertTemp()" placeholder="Enter value">
+            </div>
+            <div class="input-group">
+                <label>From:</label>
+                <select id="tempFrom" onchange="convertTemp()">
+                    <option value="c">Celsius</option>
+                    <option value="f">Fahrenheit</option>
+                    <option value="k">Kelvin</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>To:</label>
+                <select id="tempTo" onchange="convertTemp()">
+                    <option value="c">Celsius</option>
+                    <option value="f" selected>Fahrenheit</option>
+                    <option value="k">Kelvin</option>
+                </select>
+            </div>
+            <div class="result" id="tempResult">-</div>
+        </div>
+        
+        <div id="area" class="converter-section">
+            <div class="input-group">
+                <label>Value:</label>
+                <input type="number" id="areaValue" oninput="convertArea()" placeholder="Enter value">
+            </div>
+            <div class="input-group">
+                <label>From:</label>
+                <select id="areaFrom" onchange="convertArea()">
+                    <option value="sqm">Square Meters</option>
+                    <option value="sqkm">Square Kilometers</option>
+                    <option value="sqft">Square Feet</option>
+                    <option value="sqmi">Square Miles</option>
+                    <option value="acre">Acres</option>
+                    <option value="hectare">Hectares</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>To:</label>
+                <select id="areaTo" onchange="convertArea()">
+                    <option value="sqm">Square Meters</option>
+                    <option value="sqkm">Square Kilometers</option>
+                    <option value="sqft" selected>Square Feet</option>
+                    <option value="sqmi">Square Miles</option>
+                    <option value="acre">Acres</option>
+                    <option value="hectare">Hectares</option>
+                </select>
+            </div>
+            <div class="result" id="areaResult">-</div>
+        </div>
+        
+        <div id="volume" class="converter-section">
+            <div class="input-group">
+                <label>Value:</label>
+                <input type="number" id="volumeValue" oninput="convertVolume()" placeholder="Enter value">
+            </div>
+            <div class="input-group">
+                <label>From:</label>
+                <select id="volumeFrom" onchange="convertVolume()">
+                    <option value="l">Liters</option>
+                    <option value="ml">Milliliters</option>
+                    <option value="gal">Gallons (US)</option>
+                    <option value="qt">Quarts</option>
+                    <option value="pt">Pints</option>
+                    <option value="cup">Cups</option>
+                    <option value="tbsp">Tablespoons</option>
+                    <option value="tsp">Teaspoons</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>To:</label>
+                <select id="volumeTo" onchange="convertVolume()">
+                    <option value="l">Liters</option>
+                    <option value="ml">Milliliters</option>
+                    <option value="gal" selected>Gallons (US)</option>
+                    <option value="qt">Quarts</option>
+                    <option value="pt">Pints</option>
+                    <option value="cup">Cups</option>
+                    <option value="tbsp">Tablespoons</option>
+                    <option value="tsp">Teaspoons</option>
+                </select>
+            </div>
+            <div class="result" id="volumeResult">-</div>
+        </div>
+        
+        <button onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script>
+        const lengthUnits = {
+            m: 1, km: 0.001, cm: 100, mm: 1000,
+            mi: 0.000621371, yd: 1.09361, ft: 3.28084, in: 39.3701
+        };
+        
+        const weightUnits = {
+            kg: 1, g: 1000, mg: 1000000,
+            lb: 2.20462, oz: 35.274, ton: 0.001
+        };
+        
+        const areaUnits = {
+            sqm: 1, sqkm: 0.000001, sqft: 10.7639,
+            sqmi: 3.861e-7, acre: 0.000247105, hectare: 0.0001
+        };
+        
+        const volumeUnits = {
+            l: 1, ml: 1000, gal: 0.264172, qt: 1.05669,
+            pt: 2.11338, cup: 4.22675, tbsp: 67.628, tsp: 202.884
+        };
+        
+        function switchCategory(category) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.converter-section').forEach(s => s.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(category).classList.add('active');
+        }
+        
+        function convertLength() {
+            const value = parseFloat(document.getElementById('lengthValue').value);
+            const from = document.getElementById('lengthFrom').value;
+            const to = document.getElementById('lengthTo').value;
+            
+            if (isNaN(value)) {
+                document.getElementById('lengthResult').textContent = '-';
+                return;
+            }
+            
+            const meters = value / lengthUnits[from];
+            const result = meters * lengthUnits[to];
+            document.getElementById('lengthResult').textContent = result.toFixed(6);
+        }
+        
+        function convertWeight() {
+            const value = parseFloat(document.getElementById('weightValue').value);
+            const from = document.getElementById('weightFrom').value;
+            const to = document.getElementById('weightTo').value;
+            
+            if (isNaN(value)) {
+                document.getElementById('weightResult').textContent = '-';
+                return;
+            }
+            
+            const kg = value / weightUnits[from];
+            const result = kg * weightUnits[to];
+            document.getElementById('weightResult').textContent = result.toFixed(6);
+        }
+        
+        function convertTemp() {
+            const value = parseFloat(document.getElementById('tempValue').value);
+            const from = document.getElementById('tempFrom').value;
+            const to = document.getElementById('tempTo').value;
+            
+            if (isNaN(value)) {
+                document.getElementById('tempResult').textContent = '-';
+                return;
+            }
+            
+            let celsius;
+            if (from === 'c') celsius = value;
+            else if (from === 'f') celsius = (value - 32) * 5/9;
+            else celsius = value - 273.15;
+            
+            let result;
+            if (to === 'c') result = celsius;
+            else if (to === 'f') result = celsius * 9/5 + 32;
+            else result = celsius + 273.15;
+            
+            document.getElementById('tempResult').textContent = result.toFixed(2);
+        }
+        
+        function convertArea() {
+            const value = parseFloat(document.getElementById('areaValue').value);
+            const from = document.getElementById('areaFrom').value;
+            const to = document.getElementById('areaTo').value;
+            
+            if (isNaN(value)) {
+                document.getElementById('areaResult').textContent = '-';
+                return;
+            }
+            
+            const sqm = value / areaUnits[from];
+            const result = sqm * areaUnits[to];
+            document.getElementById('areaResult').textContent = result.toFixed(6);
+        }
+        
+        function convertVolume() {
+            const value = parseFloat(document.getElementById('volumeValue').value);
+            const from = document.getElementById('volumeFrom').value;
+            const to = document.getElementById('volumeTo').value;
+            
+            if (isNaN(value)) {
+                document.getElementById('volumeResult').textContent = '-';
+                return;
+            }
+            
+            const liters = value / volumeUnits[from];
+            const result = liters * volumeUnits[to];
+            document.getElementById('volumeResult').textContent = result.toFixed(6);
+        }
+    </script>
+</body>
+</html>

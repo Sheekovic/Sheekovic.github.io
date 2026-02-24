@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Hash Generator - MD5, SHA-1, SHA-256, SHA-512 Online | Sheekovic</title>
+    <meta name="description" content="Free online hash generator. Generate MD5, SHA-1, SHA-256, and SHA-512 hashes instantly. Secure cryptographic hash functions for text and data verification.">
+    <meta name="keywords" content="hash generator, md5 generator, sha256 generator, sha512, hash calculator, cryptographic hash, hash online, checksum generator">
+    <meta name="author" content="Sheekovic">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sheekovic.github.io/hash-generator.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sheekovic.github.io/hash-generator.html">
+    <meta property="og:title" content="Free Hash Generator - MD5, SHA-1, SHA-256, SHA-512 Online">
+    <meta property="og:description" content="Free online hash generator. Generate MD5, SHA-1, SHA-256, and SHA-512 hashes instantly. Secure cryptographic hash functions.">
+    <meta property="og:image" content="https://sheekovic.github.io/images/hash-tool.png">
+    <meta property="og:site_name" content="Sheekovic Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sheekovic.github.io/hash-generator.html">
+    <meta property="twitter:title" content="Free Hash Generator - MD5, SHA-256, SHA-512">
+    <meta property="twitter:description" content="Free online hash generator. Generate MD5, SHA-1, SHA-256, and SHA-512 hashes instantly.">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/hash-tool.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Hash Generator",
+      "description": "Free online cryptographic hash generator. Generate MD5, SHA-1, SHA-256, and SHA-512 hashes for text and data.",
+      "url": "https://sheekovic.github.io/hash-generator.html",
+      "applicationCategory": "SecurityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sheekovic"
+      }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .input-section {
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #fa709a;
+        }
+        .hash-result {
+            margin-bottom: 20px;
+        }
+        .hash-result h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .hash-output {
+            width: 100%;
+            padding: 12px;
+            background: #f5f5f5;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            word-break: break-all;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .hash-output:hover {
+            background: #e8e8e8;
+        }
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .back-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            padding: 14px;
+            font-size: 14px;
+        }
+        .file-input {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Hash Generator</h1>
+        
+        <div class="input-section">
+            <label>Input Text:</label>
+            <textarea id="input" placeholder="Enter text to hash..."></textarea>
+        </div>
+        
+        <div class="file-input">
+            <label>Or Select a File:</label>
+            <input type="file" id="fileInput">
+        </div>
+        
+        <div class="hash-result">
+            <h3>MD5: <button onclick="copyHash('md5')">Copy</button></h3>
+            <div class="hash-output" id="md5" onclick="copyHash('md5')">-</div>
+        </div>
+        
+        <div class="hash-result">
+            <h3>SHA-1: <button onclick="copyHash('sha1')">Copy</button></h3>
+            <div class="hash-output" id="sha1" onclick="copyHash('sha1')">-</div>
+        </div>
+        
+        <div class="hash-result">
+            <h3>SHA-256: <button onclick="copyHash('sha256')">Copy</button></h3>
+            <div class="hash-output" id="sha256" onclick="copyHash('sha256')">-</div>
+        </div>
+        
+        <div class="hash-result">
+            <h3>SHA-512: <button onclick="copyHash('sha512')">Copy</button></h3>
+            <div class="hash-output" id="sha512" onclick="copyHash('sha512')">-</div>
+        </div>
+        
+        <button class="back-btn" onclick="location.href='tools.html'">← Back to Tools</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        const input = document.getElementById('input');
+        const fileInput = document.getElementById('fileInput');
+        
+        function generateHashes() {
+            const text = input.value;
+            
+            if (!text) {
+                document.getElementById('md5').textContent = '-';
+                document.getElementById('sha1').textContent = '-';
+                document.getElementById('sha256').textContent = '-';
+                document.getElementById('sha512').textContent = '-';
+                return;
+            }
+            
+            document.getElementById('md5').textContent = CryptoJS.MD5(text).toString();
+            document.getElementById('sha1').textContent = CryptoJS.SHA1(text).toString();
+            document.getElementById('sha256').textContent = CryptoJS.SHA256(text).toString();
+            document.getElementById('sha512').textContent = CryptoJS.SHA512(text).toString();
+        }
+        
+        input.addEventListener('input', generateHashes);
+        
+        fileInput.addEventListener('change', function() {
+            const file = fileInput.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                const wordArray = CryptoJS.lib.WordArray.create(new Uint8Array(content));
+                
+                document.getElementById('md5').textContent = CryptoJS.MD5(wordArray).toString();
+                document.getElementById('sha1').textContent = CryptoJS.SHA1(wordArray).toString();
+                document.getElementById('sha256').textContent = CryptoJS.SHA256(wordArray).toString();
+                document.getElementById('sha512').textContent = CryptoJS.SHA512(wordArray).toString();
+            };
+            reader.readAsArrayBuffer(file);
+        });
+        
+        function copyHash(type) {
+            const element = document.getElementById(type);
+            const text = element.textContent;
+            
+            if (text === '-') {
+                alert('No hash to copy');
+                return;
+            }
+            
+            const temp = document.createElement('textarea');
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            alert(type.toUpperCase() + ' hash copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
