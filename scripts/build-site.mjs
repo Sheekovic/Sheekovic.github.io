@@ -234,6 +234,13 @@ async function assertBuild() {
   }
 }
 
+const qrBundleDetails = await stat(qrCodeStylingBundle).catch(() => null);
+if (!qrBundleDetails?.isFile()) {
+  throw new Error(
+    "Missing qr-code-styling browser bundle. Run npm ci before building the site.",
+  );
+}
+
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(join(outputRoot, "assets/js"), { recursive: true });
 await mkdir(join(outputRoot, "assets/css"), { recursive: true });
