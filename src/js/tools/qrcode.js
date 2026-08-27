@@ -62,7 +62,9 @@ function currentFields() {
 
 function contrastRatio(first, second) {
   const luminance = (hex) => {
-    const channels = hex.match(/[a-f\d]{2}/gi).map((channel) => {
+    const color = /^#([a-f\d]{6})$/i.exec(hex)?.[1];
+    if (!color) return Number.NaN;
+    const channels = color.match(/[a-f\d]{2}/gi).map((channel) => {
       const normalized = Number.parseInt(channel, 16) / 255;
       return normalized <= 0.03928
         ? normalized / 12.92
@@ -81,6 +83,11 @@ function updateContrastMessage() {
   if (control('gradient').checked) colors.push(value('secondaryColor'));
   const ratio = Math.min(...colors.map((color) => contrastRatio(color, background)));
   const message = document.getElementById('contrast-message');
+  if (!Number.isFinite(ratio)) {
+    message.dataset.level = 'warning';
+    message.textContent = 'Contrast is unavailable — choose valid colors to check scan reliability.';
+    return;
+  }
   message.dataset.level = ratio >= 4.5 ? 'good' : ratio >= 3 ? 'okay' : 'warning';
   message.textContent = ratio >= 4.5
     ? `Strong contrast (${ratio.toFixed(1)}:1) — good for scanning.`
