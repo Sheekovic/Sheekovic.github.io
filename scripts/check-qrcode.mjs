@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {
+  assertQrCapacity,
   buildQrPayload,
   buildVCard,
   buildWifi,
@@ -13,6 +14,11 @@ assert.equal(normalizeWebUrl('example.com:8080/path'), 'https://example.com:8080
 assert.equal(normalizeWebUrl('localhost:3000'), 'https://localhost:3000/');
 assert.throws(() => normalizeWebUrl('javascript:alert(1)'), /HTTP or HTTPS/);
 assert.throws(() => normalizeWebUrl('mailto:test@example.com'), /HTTP or HTTPS/);
+
+assert.equal(assertQrCapacity('a'.repeat(1273), 'H'), 1273);
+assert.throws(() => assertQrCapacity('a'.repeat(1274), 'H'), /supports up to 1,273/);
+assert.equal(assertQrCapacity('مرحبا', 'H'), 10);
+assert.equal(assertQrCapacity('a'.repeat(2953), 'L'), 2953);
 
 assert.equal(escapeVCard('One, Two; Three\nFour'), 'One\\, Two\\; Three\\nFour');
 

@@ -1,4 +1,4 @@
-import { buildQrPayload, normalizeWebUrl } from './qrcode-data.js';
+import { assertQrCapacity, buildQrPayload, normalizeWebUrl } from './qrcode-data.js';
 
 const form = document.getElementById('qr-form');
 const preview = document.getElementById('qr-preview');
@@ -235,6 +235,7 @@ function renderQr({ announce = false } = {}) {
 
   try {
     const payload = buildQrPayload(type, fields);
+    assertQrCapacity(payload, value('errorLevel'));
     preview.replaceChildren();
     qrCode = new window.QRCodeStyling(qrOptions(payload));
     qrCode.append(preview);

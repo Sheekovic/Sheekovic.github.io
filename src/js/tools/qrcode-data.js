@@ -4,6 +4,20 @@ function required(value, label) {
   return normalized;
 }
 
+const byteCapacityByRecoveryLevel = Object.freeze({ L: 2953, M: 2331, Q: 1663, H: 1273 });
+
+export function assertQrCapacity(payload, recoveryLevel) {
+  const level = byteCapacityByRecoveryLevel[recoveryLevel] ? recoveryLevel : 'H';
+  const byteLength = new TextEncoder().encode(String(payload || '')).byteLength;
+  const capacity = byteCapacityByRecoveryLevel[level];
+  if (byteLength > capacity) {
+    throw new Error(
+      `Content uses ${byteLength.toLocaleString()} UTF-8 bytes; ${level} recovery supports up to ${capacity.toLocaleString()}. Shorten the content or choose a lower recovery level.`,
+    );
+  }
+  return byteLength;
+}
+
 export function normalizeWebUrl(value, label = 'URL') {
   let candidate = required(value, label);
   const scheme = candidate.match(/^([a-z][a-z\d+.-]*):/i)?.[1].toLowerCase();
