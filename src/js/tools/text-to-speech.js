@@ -7,9 +7,12 @@ let synth = window.speechSynthesis;
             voices = synth.getVoices();
             const voiceSelect = document.getElementById('voiceSelect');
 
-            voiceSelect.innerHTML = voices.map((voice, index) =>
-                `<option value="${index}">${voice.name} (${voice.lang})</option>`
-            ).join('');
+            voiceSelect.replaceChildren(...voices.map((voice, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = `${voice.name} (${voice.lang})`;
+                return option;
+            }));
         }
 
         // Load voices when they're ready

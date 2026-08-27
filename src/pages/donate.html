@@ -1,73 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Sheekovic</title>
-    <link rel="stylesheet" href="assets/css/donate.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support Sheekovic Lab</title>
+  <meta name="description" content="Optional ways to support ongoing experiments and browser tools in Sheekovic Lab.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sheekovic.github.io/donate.html">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/donate.css">
 </head>
-
 <body>
-
-    <div class="donate-container">
-        <h1>🙏 Thank You for Your Support! 🙌</h1>
-        <p>Your support helps me build more amazing tools and projects! 🚀</p>
-
-        <div class="donation-methods">
-            <div class="donation-card">
-                <h3>USDT (TRC20)</h3>
-                <p id="usdtAddress">TKnkfHCWzk8LcbkuJSXV1RbP8khhkwXQR3</p>
-                <button onclick="copyAddress()">Copy Address</button>
-            </div>
-
-            <div class="donation-card">
-                <h3>Binance Pay</h3>
-                <a href="https://s.binance.com/yGqr4KAd" target="_blank">
-                    Click to Pay
-                </a>
-                <div class="qr-container">
-                    <div id="binanceQR"></div>
-                </div>
-            </div>
-
-            <div class="donation-card">
-                <h3>Buy Me a Coffee</h3>
-                <a href="https://www.buymeacoffee.com/sheekovic" target="_blank">
-                    Click to Donate
-                </a>
-                <div class="qr-container">
-                    <div id="buymeacoffeeQR"></div>
-                </div>
-            </div>
-
-            <div class="donation-card">
-                <h3>Ko-fi</h3>
-                <a href="https://www.ko-fi.com/sheekovic" target="_blank">
-                    Click to Donate
-                </a>
-                <div class="qr-container">
-                    <div id="ko-fiQR"></div>
-                </div>
-            </div>
-        </div>
-
-        <a href="binance.html" class="back-btn">⬅ Back to Trading</a>
-    </div>
-
-    <script>
-        function copyAddress() {
-            const usdtAddress = document.getElementById("usdtAddress").textContent;
-            navigator.clipboard.writeText(usdtAddress);
-            alert("USDT Address Copied!");
-        }
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-        integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU"
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="assets/js/generateQR.js"></script>
+  <main class="donate-page">
+    <section class="donate-intro" aria-labelledby="donate-title">
+      <p class="eyebrow"><span></span> Optional support</p>
+      <h1 id="donate-title">Help fund the next experiment.</h1>
+      <p>The tools stay free. If this workspace has been useful, these links help cover time and project costs.</p>
+    </section>
+    <section class="donation-methods" aria-label="Support methods">
+      <article class="donation-card">
+        <h2>USDT (TRC20)</h2>
+        <p id="usdt-address" class="wallet-address">TKnkfHCWzk8LcbkuJSXV1RbP8khhkwXQR3</p>
+        <button id="copy-address" type="button">Copy address</button>
+        <span id="copy-status" role="status" aria-live="polite"></span>
+      </article>
+      <article class="donation-card"><h2>Binance Pay</h2><a class="site-button" href="https://s.binance.com/yGqr4KAd" target="_blank" rel="noopener noreferrer">Open Binance Pay</a><div class="qr-container" data-qr="https://s.binance.com/yGqr4KAd"></div></article>
+      <article class="donation-card"><h2>Buy Me a Coffee</h2><a class="site-button" href="https://www.buymeacoffee.com/sheekovic" target="_blank" rel="noopener noreferrer">Open page</a><div class="qr-container" data-qr="https://www.buymeacoffee.com/sheekovic"></div></article>
+      <article class="donation-card"><h2>Ko-fi</h2><a class="site-button" href="https://www.ko-fi.com/sheekovic" target="_blank" rel="noopener noreferrer">Open page</a><div class="qr-container" data-qr="https://www.ko-fi.com/sheekovic"></div></article>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/assets/js/donate.js"></script>
 </body>
-
 </html>

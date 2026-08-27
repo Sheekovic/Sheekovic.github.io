@@ -1,87 +1,104 @@
-let colorStops = [
-            { color: '#667eea', position: 0 },
-            { color: '#764ba2', position: 100 }
-        ];
+const colorStops = [
+  { color: '#667eea', position: 0 },
+  { color: '#764ba2', position: 100 },
+];
 
-        function init() {
-            renderColorStops();
-            updateGradient();
-        }
+const list = document.getElementById('colorStopsList');
+const typeInput = document.getElementById('gradientType');
+const angleInput = document.getElementById('angle');
+const angleValue = document.getElementById('angleValue');
+const angleGroup = document.getElementById('angleGroup');
+const preview = document.getElementById('preview');
+const cssCode = document.getElementById('cssCode');
 
-        function renderColorStops() {
-            const list = document.getElementById('colorStopsList');
-            list.innerHTML = colorStops.map((stop, index) => `
-                <div class="color-stop">
-                    <input type="color" value="${stop.color}" onchange="updateColorStop(${index}, 'color', this.value)">
-                    <input type="number" value="${stop.position}" min="0" max="100" onchange="updateColorStop(${index}, 'position', this.value)">
-                    ${colorStops.length > 2 ? `<button class="remove-btn" onclick="removeColorStop(${index})">×</button>` : '<span></span>'}
-                </div>
-            `).join('');
-        }
+function updateGradient() {
+  const type = typeInput.value;
+  const angle = Number.parseInt(angleInput.value, 10);
+  angleValue.textContent = angle;
+  angleGroup.hidden = type !== 'linear';
 
-        function updateColorStop(index, property, value) {
-            if (property === 'position') {
-                colorStops[index][property] = parseInt(value);
-            } else {
-                colorStops[index][property] = value;
-            }
-            updateGradient();
-        }
+  const stops = [...colorStops]
+    .sort((a, b) => a.position - b.position)
+    .map((stop) => `${stop.color} ${stop.position}%`)
+    .join(', ');
+  const gradient = type === 'linear'
+    ? `linear-gradient(${angle}deg, ${stops})`
+    : `radial-gradient(circle, ${stops})`;
 
-        function addColorStop() {
-            const lastPosition = colorStops[colorStops.length - 1].position;
-            const newPosition = Math.min(lastPosition + 10, 100);
-            colorStops.push({ color: '#764ba2', position: newPosition });
-            renderColorStops();
-            updateGradient();
-        }
+  preview.style.background = gradient;
+  cssCode.textContent = `background: ${gradient};`;
+}
 
-        function removeColorStop(index) {
-            if (colorStops.length > 2) {
-                colorStops.splice(index, 1);
-                renderColorStops();
-                updateGradient();
-            }
-        }
+function renderColorStops() {
+  const fragment = document.createDocumentFragment();
 
-        function updateGradient() {
-            const type = document.getElementById('gradientType').value;
-            const angle = document.getElementById('angle').value;
-            document.getElementById('angleValue').textContent = angle;
+  colorStops.forEach((stop, index) => {
+    const row = document.createElement('div');
+    const color = document.createElement('input');
+    const position = document.createElement('input');
+    row.className = 'color-stop';
 
-            // Show/hide angle control
-            document.getElementById('angleGroup').style.display = type === 'linear' ? 'block' : 'none';
+    color.type = 'color';
+    color.value = stop.color;
+    color.setAttribute('aria-label', `Color stop ${index + 1}`);
+    color.addEventListener('input', () => {
+      stop.color = color.value;
+      updateGradient();
+    });
 
-            // Sort color stops by position
-            const sortedStops = [...colorStops].sort((a, b) => a.position - b.position);
+    position.type = 'number';
+    position.min = '0';
+    position.max = '100';
+    position.value = stop.position;
+    position.setAttribute('aria-label', `Position for color stop ${index + 1}`);
+    position.addEventListener('input', () => {
+      stop.position = Math.min(100, Math.max(0, Number.parseInt(position.value, 10) || 0));
+      updateGradient();
+    });
 
-            // Generate gradient string
-            const stopsString = sortedStops.map(stop => `${stop.color} ${stop.position}%`).join(', ');
+    row.append(color, position);
+    if (colorStops.length > 2) {
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'remove-btn';
+      remove.textContent = '×';
+      remove.setAttribute('aria-label', `Remove color stop ${index + 1}`);
+      remove.addEventListener('click', () => {
+        colorStops.splice(index, 1);
+        renderColorStops();
+        updateGradient();
+      });
+      row.appendChild(remove);
+    } else {
+      row.appendChild(document.createElement('span'));
+    }
+    fragment.appendChild(row);
+  });
 
-            let gradient;
-            if (type === 'linear') {
-                gradient = `linear-gradient(${angle}deg, ${stopsString})`;
-            } else {
-                gradient = `radial-gradient(circle, ${stopsString})`;
-            }
+  list.replaceChildren(fragment);
+}
 
-            // Update preview
-            document.getElementById('preview').style.background = gradient;
+async function copyCode() {
+  await navigator.clipboard.writeText(cssCode.textContent);
+  const original = document.getElementById('copy-gradient').textContent;
+  document.getElementById('copy-gradient').textContent = 'Copied';
+  window.setTimeout(() => {
+    document.getElementById('copy-gradient').textContent = original;
+  }, 1200);
+}
 
-            // Update code
-            document.getElementById('cssCode').textContent = `background: ${gradient};`;
-        }
+document.getElementById('add-color-stop').addEventListener('click', () => {
+  const lastPosition = colorStops.at(-1).position;
+  colorStops.push({ color: '#764ba2', position: Math.min(lastPosition + 10, 100) });
+  renderColorStops();
+  updateGradient();
+});
+document.getElementById('copy-gradient').addEventListener('click', copyCode);
+document.getElementById('back-to-tools').addEventListener('click', () => {
+  window.location.href = '/tools.html';
+});
+typeInput.addEventListener('change', updateGradient);
+angleInput.addEventListener('input', updateGradient);
 
-        function copyCode() {
-            const code = document.getElementById('cssCode').textContent;
-            const temp = document.createElement('textarea');
-            temp.value = code;
-            document.body.appendChild(temp);
-            temp.select();
-            document.execCommand('copy');
-            document.body.removeChild(temp);
-            alert('CSS code copied to clipboard!');
-        }
-
-        // Initialize
-        init();
+renderColorStops();
+updateGradient();

@@ -78,10 +78,12 @@ function loadClipboardItems(userId) {
     const clipboardRef = ref(db, `users/${userId}/clipboard`);
     onValue(clipboardRef, (snapshot) => {
         const container = document.getElementById("clipboard-items");
-        container.innerHTML = ""; // Clear previous items
+        container.replaceChildren();
 
         if (!snapshot.exists()) {
-            container.innerHTML = "<p>No clipboard items found.</p>";
+            const emptyMessage = document.createElement('p');
+            emptyMessage.textContent = 'No clipboard items found.';
+            container.append(emptyMessage);
             return;
         }
 
@@ -107,11 +109,13 @@ function loadClipboardItems(userId) {
             // Dropdown menu
             const menu = document.createElement("div");
             menu.classList.add("menu-options");
-            menu.innerHTML = `
-                <button class="share-btn">Share</button>
-                <button class="copy-btn">Copy</button>
-                <button class="delete-btn">Delete</button>
-            `;
+            for (const [className, label] of [['share-btn', 'Share'], ['copy-btn', 'Copy'], ['delete-btn', 'Delete']]) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = className;
+                button.textContent = label;
+                menu.append(button);
+            }
 
             // Append everything
             menuContainer.appendChild(dots);

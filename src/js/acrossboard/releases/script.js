@@ -4,7 +4,7 @@ const releases = [
 
 function loadReleases() {
     const releaseList = document.getElementById("release-list");
-    releaseList.innerHTML = "";
+    releaseList.replaceChildren();
 
     releases.sort((a, b) => {
         const versionA = a.match(/v(\d+\.\d+\.\d+)/);

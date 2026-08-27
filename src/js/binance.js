@@ -198,40 +198,63 @@ async function runBacktest() {
     // Pass takeProfitROI and stopLossROI to the strategy function
     let result = backtestStrategy(candles, leverage, walletBalance, tradeEntryPercent, takeProfitROI, stopLossROI);
 
-    document.getElementById("tradeResults").innerHTML = result.trades.map(trade => {
+    const tableBody = document.getElementById("tradeResults");
+    const rows = document.createDocumentFragment();
+    result.trades.forEach(trade => {
         let outcomeColor = trade.outcome === "WIN" ? "green" :
                            trade.outcome === "LOSS" ? "red" : "gray";
-    
-        return `
-            <tr>
-                <td>${trade.date}</td>
-                <td>$${trade.startWalletBalance.toFixed(2)}</td>
-                <td>$${trade.initialMargin.toFixed(2)}</td>
-                <td>${trade.quantity.toFixed(2)}</td>
-                <td>${trade.tradeOpenTime}</td>
-                <td>${trade.tradeDuration}</td>
-                <td>${trade.entry.toFixed(2)}</td>
-                <td>${trade.stopLoss.toFixed(2)}</td>
-                <td>${trade.takeProfit.toFixed(2)}</td>
-                <td>${trade.liquidationPrice.toFixed(2)}</td>
-                <td style="font-weight: bold; color: ${trade.positionType === "LONG" ? "green" : "red"};">
-                    ${trade.positionType}
-                </td>
-                <td style="color: ${outcomeColor}; font-weight: bold;">${trade.outcome}</td>
-                <td>${trade.dayProfitLoss >= 0 ? "+" : ""}$${trade.dayProfitLoss.toFixed(2)}</td>
-                <td>$${trade.endWalletBalance.toFixed(2)}</td>
-            </tr>
-        `;
-    }).join("");
 
-    document.getElementById("backtestSummary").innerHTML = `
-    You started with <strong>$${walletBalance.toFixed(2)}</strong> and after the backtest, 
-    you ended with <strong>$${result.finalBalance.toFixed(2)}</strong>. 
-    ${result.finalBalance > walletBalance ? "🔥 Your strategy showed promising gains!" : "⚠️ Time to tweak your approach!"}
-`;
+        const row = document.createElement("tr");
+        const values = [
+            trade.date,
+            `$${trade.startWalletBalance.toFixed(2)}`,
+            `$${trade.initialMargin.toFixed(2)}`,
+            trade.quantity.toFixed(2),
+            trade.tradeOpenTime,
+            trade.tradeDuration,
+            trade.entry.toFixed(2),
+            trade.stopLoss.toFixed(2),
+            trade.takeProfit.toFixed(2),
+            trade.liquidationPrice.toFixed(2),
+            trade.positionType,
+            trade.outcome,
+            `${trade.dayProfitLoss >= 0 ? "+" : ""}$${trade.dayProfitLoss.toFixed(2)}`,
+            `$${trade.endWalletBalance.toFixed(2)}`,
+        ];
+        values.forEach((value, index) => {
+            const cell = document.createElement("td");
+            cell.textContent = value;
+            if (index === 10) {
+                cell.style.color = trade.positionType === "LONG" ? "green" : "red";
+                cell.style.fontWeight = "bold";
+            }
+            if (index === 11) {
+                cell.style.color = outcomeColor;
+                cell.style.fontWeight = "bold";
+            }
+            row.appendChild(cell);
+        });
+        rows.appendChild(row);
+    });
+    tableBody.replaceChildren(rows);
+
+    const summary = document.getElementById("backtestSummary");
+    const startBalance = document.createElement("strong");
+    const endBalance = document.createElement("strong");
+    startBalance.textContent = `$${walletBalance.toFixed(2)}`;
+    endBalance.textContent = `$${result.finalBalance.toFixed(2)}`;
+    summary.replaceChildren(
+        "You started with ",
+        startBalance,
+        " and after the backtest, you ended with ",
+        endBalance,
+        `. ${result.finalBalance > walletBalance ? "Your strategy showed promising gains." : "Time to tweak your approach."}`,
+    );
 
     updateChart(result.balanceHistory);
 }
+
+document.getElementById("runBacktestButton").addEventListener("click", runBacktest);
 
 
 

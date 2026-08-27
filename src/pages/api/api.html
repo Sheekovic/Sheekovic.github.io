@@ -3,9 +3,6 @@
 
 <head>
 
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ac31997b-e5d6-4262-8491-67d7c825e54b"
-        type="text/javascript" async></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SheeKryptor API</title>
@@ -49,7 +46,7 @@
     <p>This is an API built with JavaScript hosted on GitHub Pages.</p>
 
     <h2>API</h2>
-    <button onclick="fetchData()">Get Data</button>
+    <button id="fetch-api-data" type="button">Get Data</button>
     <pre id="api-response"></pre>
 
     <section>
@@ -95,7 +92,7 @@
             <!-- GitHub Image with GitHub Link -->
             <a href="https://github.com/Sheekovic" class="GitHub">
                 <img id="GitHub"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs7RBrLXYOjplHTngHVVPKKeevxVraRusDnlNLSsDrHLM8QMRRKIb7KHpa81Cjwg4cib4&usqp=CAU"
+                    src="/images/github.png"
                     alt="GitHub" />
             </a>
         </ul>
@@ -103,19 +100,7 @@
     </footer>
 
 
-    <script>
-        function fetchData() {
-            // make pre id api-response visible
-            document.getElementById('api-response').style.display = 'block';
-            // Fetch data from api.json
-            fetch('api.json')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('api-response').textContent = JSON.stringify(data, null, 2);
-                })
-                .catch(error => console.error('Error fetching data:', error));
-        }
-    </script>
+    <script src="/assets/js/api.js"></script>
 </body>
 
 </html>

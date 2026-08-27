@@ -5,10 +5,11 @@
     "type": "module",
     "scripts": {
         "build": "node scripts/build-site.mjs",
-        "check": "npm run check:secrets && npm run check:syntax && npm run check:youtube && npm run build",
+        "check": "npm run check:secrets && npm run check:syntax && npm run check:youtube && npm run check:sitemap && npm run build",
         "check:secrets": "node scripts/check-secrets.mjs",
         "check:syntax": "node scripts/check-js-syntax.mjs",
-        "check:youtube": "node scripts/check-youtube-counter.mjs"
+        "check:youtube": "node scripts/check-youtube-counter.mjs",
+        "check:sitemap": "node scripts/check-sitemap.mjs"
     },
     "keywords": [
         "portfolio",
@@ -16,7 +17,7 @@
         "developer"
     ],
     "author": "Ahmed F. Wahballah",
-    "license": "ISC",
+    "license": "MIT",
     "engines": {
         "node": ">=22.x"
     }

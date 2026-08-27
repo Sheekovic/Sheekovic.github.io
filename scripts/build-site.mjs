@@ -8,21 +8,6 @@ const publicRoot = resolve(projectRoot, "public");
 const javascriptRoot = resolve(projectRoot, "src/js");
 const stylesRoot = resolve(projectRoot, "src/styles");
 
-const browserOnlyExcludes = new Set([
-  "auth_github_provider_create.js",
-  "auth_github_signin_popup.js",
-  "auth_github_signin_redirect_result.js",
-  "auth_sign_out.js",
-  "auth_signin_redirect.js",
-  "check-sqlite.js",
-  "create_user_data_db.js",
-  "github-login.js",
-  "pop-upHandler.js",
-  "protection.js",
-  "server.js",
-  "sqlapp.js",
-]);
-
 const sharedStylesheet = '<link rel="stylesheet" href="/assets/css/site.css">';
 const sharedScript = '<script type="module" src="/assets/js/site.js"></script>';
 
@@ -65,7 +50,7 @@ function siteHeader(details) {
         ${navigationLink("/tools.html", "Tools", toolsActive)}
         ${navigationLink("/github.html", "Projects", details.filename === "github.html")}
         ${navigationLink("/acrossboard.html", "AcrossBoard", details.normalized.startsWith("acrossboard"))}
-        <a href="https://github.com/Sheekovic" target="_blank">GitHub</a>
+        <a href="https://github.com/Sheekovic" target="_blank" rel="noopener noreferrer">GitHub</a>
         <button class="site-theme-button" id="site-theme-toggle" type="button" aria-label="Switch color theme"><span aria-hidden="true">◐</span><span class="site-theme-label">Theme</span></button>
       </nav>
     </div>
@@ -76,7 +61,7 @@ function siteFooter() {
   return `<footer class="site-footer" data-site-shell>
     <div class="site-footer__inner">
       <div><strong>Sheekovic Lab</strong><p>A personal space for learning, building, and useful experiments.</p></div>
-      <nav aria-label="Footer navigation"><a href="/tools.html">Tools</a><a href="/sitemap.html">Sitemap</a><a href="https://github.com/Sheekovic" target="_blank">GitHub</a></nav>
+      <nav aria-label="Footer navigation"><a href="/tools.html">Tools</a><a href="/sitemap.html">Sitemap</a><a href="https://github.com/Sheekovic" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
       <small>© ${new Date().getUTCFullYear()} Ahmed F. Wahballah</small>
     </div>
   </footer>`;
@@ -181,13 +166,53 @@ async function assertBuild() {
     if (extension !== ".html") continue;
 
     const html = await readFile(file, "utf8");
+    const htmlPath = relative(outputRoot, file);
+    const isDocument = /<html\b/i.test(html);
+
+    // Ownership-verification files intentionally contain only a provider token.
+    if (!isDocument) continue;
+
+    if (!/<meta\s+name=["']viewport["']/i.test(html)) {
+      throw new Error(`Missing viewport metadata in ${htmlPath}`);
+    }
+
+    const normalizedHtml = html.toLowerCase();
+    for (const match of html.matchAll(/<script\b([^>]*)>/gi)) {
+      const attributes = match[1];
+      const contentStart = match.index + match[0].length;
+      const contentEnd = normalizedHtml.indexOf("</script", contentStart);
+      if (contentEnd === -1) {
+        throw new Error(`Unclosed script element in ${htmlPath}`);
+      }
+      const contents = html.slice(contentStart, contentEnd).trim();
+      const isStructuredData = /type\s*=\s*["']application\/ld\+json["']/i.test(attributes);
+      if (!/\bsrc\s*=/i.test(attributes) && contents && !isStructuredData) {
+        throw new Error(`Inline JavaScript is not allowed in ${htmlPath}`);
+      }
+    }
+
+    for (const match of html.matchAll(/<a\b([^>]*)>/gi)) {
+      const attributes = match[1];
+      if (!/target\s*=\s*["']_blank["']/i.test(attributes)) continue;
+      const rel = attributes.match(/rel\s*=\s*["']([^"']*)["']/i)?.[1].toLowerCase().split(/\s+/) || [];
+      if (!rel.includes("noopener") || !rel.includes("noreferrer")) {
+        throw new Error(`Unsafe target=_blank link in ${htmlPath}`);
+      }
+    }
+
     for (const match of html.matchAll(/(?:href|src)\s*=\s*["']([^"']+)["']/gi)) {
       const rawReference = match[1];
-      if (/^(?:#|[a-z]+:|\/\/)/i.test(rawReference)) continue;
+      if (/^(?:#|\/\/)/i.test(rawReference)) continue;
+      if (/^[a-z]+:/i.test(rawReference)) {
+        const siteOrigin = "https://sheekovic.github.io/";
+        if (!rawReference.startsWith(siteOrigin)) continue;
+      }
       const reference = rawReference.split(/[?#]/, 1)[0];
       if (!reference || reference.includes('${')) continue;
 
-      const decodedReference = decodeURIComponent(reference);
+      const decodedReference = decodeURIComponent(
+        reference.replace("https://sheekovic.github.io/", "/"),
+      );
       const target = decodedReference.startsWith("/")
         ? join(outputRoot, decodedReference.slice(1))
         : resolve(dirname(file), decodedReference);
@@ -209,10 +234,7 @@ await mkdir(join(outputRoot, "assets/js"), { recursive: true });
 await mkdir(join(outputRoot, "assets/css"), { recursive: true });
 
 await copyDirectory(publicRoot, outputRoot);
-await copyDirectory(javascriptRoot, join(outputRoot, "assets/js"), (_path, name) => {
-  const normalized = name.split(sep).join("/");
-  return !browserOnlyExcludes.has(normalized);
-});
+await copyDirectory(javascriptRoot, join(outputRoot, "assets/js"));
 await copyDirectory(stylesRoot, join(outputRoot, "assets/css"));
 await buildPages();
 await assertBuild();

@@ -10,10 +10,7 @@
     <link rel="icon" type="image/x-icon" href="images/binance.ico">
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/binance.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
 </head>
 
 <body>
@@ -84,7 +81,7 @@
         <label>Take-Profit ROI (%): <input type="number" id="takeProfitROI" value="20"></label>
         <label>Stop-Loss ROI (%): <input type="number" id="stopLossROI" value="10"></label>
     
-        <button id="runBacktestButton" onclick="runBacktest()">Run Backtest</button>
+        <button id="runBacktestButton" type="button">Run Backtest</button>
     </div>
     
 
@@ -122,14 +119,13 @@
     <footer class="footer">
         <p>Binance Futures Strategy made with ❤️ by <span class="sheekovic">SHEEKOVIC</span></p>
         <div class="social-links">
-            <a href="https://www.facebook.com/sheekovic" target="_blank"><i class="fab fa-facebook fa-fade fa-lg"></i></a>
-            <a href="https://x.com/Sheekovic" target="_blank"><i class="fa-solid fa-x fa-fade fa-lg"></i></a>
-            <a href="https://www.linkedin.com/in/sheekovic/" target="_blank"><i class="fab fa-linkedin fa-fade fa-lg"></i></a>
-            <a href="https://github.com/Sheekovic" target="_blank"><i class="fab fa-github fa-fade fa-lg"></i></a>
+            <a href="https://www.facebook.com/sheekovic" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://x.com/Sheekovic" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://www.linkedin.com/in/sheekovic/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/Sheekovic" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
         <a href="donate.html" class="donate-btn">Donate</a>
     </footer>
-    <!-- FontAwesome Icons -->
     <script src="assets/js/binance.js"></script>
 </body>
 
