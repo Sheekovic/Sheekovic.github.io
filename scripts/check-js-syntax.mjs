@@ -34,7 +34,7 @@ for (const file of sourceFiles) {
   execFileSync(process.execPath, ["--check", file], { stdio: "inherit" });
 }
 
-const inlineScriptPattern = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
+const inlineScriptPattern = /<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi;
 let inlineScriptCount = 0;
 
 for (const file of htmlFiles) {
