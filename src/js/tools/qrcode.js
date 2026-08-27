@@ -54,7 +54,7 @@ function selectedType() {
 function currentFields() {
   return {
     url: value('url'),
-    text: value('text'),
+    text: rawValue('text'),
     name: value('name'),
     organization: value('organization'),
     jobTitle: value('jobTitle'),
