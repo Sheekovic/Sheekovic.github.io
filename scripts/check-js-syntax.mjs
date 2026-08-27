@@ -10,6 +10,7 @@ const htmlFiles = [
   "pdf-merger.html",
   "regex-tester.html",
   "sheekryptor.html",
+  "youtube.html",
 ];
 
 const sourceFiles = [];
