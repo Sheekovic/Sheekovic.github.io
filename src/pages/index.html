@@ -1,222 +1,68 @@
-<!DOCTYPE HTML>
-<!--
-	Landed by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-
-	<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ac31997b-e5d6-4262-8491-67d7c825e54b"
-		type="text/javascript" async></script>
-
-	<title>Sheekovic</title>
-	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-	<!-- Meta Tags for SEO -->
-	<meta name="description"
-		content="Sheekovic is a platform offering a variety of tools, services, and information on tech, game hacking, and coding. Explore more about Sheekovic!" />
-	<meta name="keywords" content="Sheekovic, tech tools, game hacking, coding, programming, development" />
-	<meta name="author" content="Sheekovic" />
-	<meta name="robots" content="index, follow" />
-
-	<!-- Open Graph Meta Tags for Social Media -->
-	<meta property="og:title" content="Sheekovic" />
-	<meta property="og:description"
-		content="Sheekovic offers a variety of tools, services, and content related to game hacking, coding, and tech." />
-	<meta property="og:image" content="/images/og-image.jpg" />
-	<meta property="og:url" content="https://sheekovic.github.io/" />
-	<meta property="og:type" content="website" />
-
-	<!-- Twitter Card Meta Tags -->
-	<meta name="twitter:title" content="Sheekovic" />
-	<meta name="twitter:description"
-		content="Sheekovic offers a variety of tools, services, and content related to game hacking, coding, and tech." />
-	<meta name="twitter:image" content="/images/og-image.jpg" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="google-site-verification" content="o_WnDHIESvTSWdhCMVRPCRGg7G76jLV12ytZd27guOg" />
-
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-		integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sheekovic Lab — Build, Learn, Experiment</title>
+  <meta name="description" content="Ahmed F. Wahballah's personal lab for learning, building useful web tools, and sharing software experiments.">
+  <meta name="author" content="Ahmed F. Wahballah">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sheekovic.github.io/">
+  <link rel="icon" href="/images/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sheekovic Lab">
+  <meta property="og:description" content="A personal space for useful tools, code experiments, and continuous learning.">
+  <meta property="og:url" content="https://sheekovic.github.io/">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/78682787?v=4">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
+<body>
+  <main>
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero__copy">
+        <p class="eyebrow"><span></span> Personal learning space</p>
+        <h1 id="home-title">Ideas become<br><em>working tools.</em></h1>
+        <p class="home-hero__lead">I'm Ahmed F. Wahballah — a developer and musician using this space to learn in public, test ideas, and turn small experiments into useful software.</p>
+        <div class="button-row">
+          <a class="site-button site-button--primary" href="/tools.html">Explore the tools <span aria-hidden="true">→</span></a>
+          <a class="site-button" href="https://github.com/Sheekovic" target="_blank">View GitHub</a>
+        </div>
+        <ul class="hero-stats" aria-label="Site highlights">
+          <li><strong>31+</strong><span>browser tools</span></li>
+          <li><strong>100%</strong><span>GitHub Pages</span></li>
+          <li><strong>Always</strong><span>learning</span></li>
+        </ul>
+      </div>
+      <div class="home-hero__visual" aria-label="Ahmed F. Wahballah profile">
+        <div class="profile-orbit" aria-hidden="true"></div>
+        <img src="https://avatars.githubusercontent.com/u/78682787?v=4" alt="Ahmed F. Wahballah" width="460" height="460" fetchpriority="high">
+        <div class="status-card"><span></span><div><small>Current mode</small><strong>Building & learning</strong></div></div>
+        <div class="code-card" aria-hidden="true"><span>experiment.js</span><code>idea → build → learn → repeat</code></div>
+      </div>
+    </section>
 
+    <section class="home-section" aria-labelledby="featured-tools-title">
+      <div class="section-heading">
+        <div><p class="eyebrow"><span></span> Useful experiments</p><h2 id="featured-tools-title">Featured tools</h2></div>
+        <a href="/tools.html">View all tools <span aria-hidden="true">→</span></a>
+      </div>
+      <div id="tool-list" class="tool-grid" data-tool-limit="6"></div>
+    </section>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3E4W2ESB42"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag() { dataLayer.push(arguments); }
-	gtag('js', new Date());
+    <section class="home-section learning-section" aria-labelledby="learning-title">
+      <div><p class="eyebrow"><span></span> The point of this place</p><h2 id="learning-title">Performance and reliability before feature count.</h2></div>
+      <div class="learning-grid">
+        <article><span>01</span><h3>Build small</h3><p>Start with a clear problem and the smallest useful version.</p></article>
+        <article><span>02</span><h3>Measure honestly</h3><p>Test the real behavior, especially on mobile and slower connections.</p></article>
+        <article><span>03</span><h3>Share the lesson</h3><p>Keep the code open so every experiment can teach something.</p></article>
+      </div>
+    </section>
 
-	gtag('config', 'G-3E4W2ESB42');
-</script>
-
-
-
-<body class="is-preload landing">
-	<div id="page-wrapper">
-
-		<!-- Header -->
-		<header id="header">
-			<h1 id="logo"><a href="index.html">SHEEKOVIC</a></h1>
-			<nav id="nav">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="tools.html">Our Tools</a></li>
-					<li><a href="profile.html">Profile</a></li>
-					<li>
-						<!-- GitHub Sign Up Button -->
-						<section>
-							<button id="github-signup" class="button primary">Sign Up with GitHub</button>
-						</section>
-					</li>
-				</ul>
-			</nav>
-		</header>
-
-		<!-- Banner -->
-		<section id="banner">
-			<div class="content">
-				<header>
-					<h2>Ahmed F. Wahballah (Sheekovic)</h2>
-					<p><span id="dynamic-age"></span>-year-old coder, programmer, and musician.<br />
-						Merging the art of logic with the soul of sound.</p>
-				</header>
-				<span class="image"><img src="https://avatars.githubusercontent.com/u/78682787?v=4"
-						alt="Ahmed F. Wahballah (Sheekovic)" /></span>
-			</div>
-			<a href="#one" class="goto-next scrolly">Discover More</a>
-		</section>
-
-		<!-- One -->
-		<section id="one" class="spotlight style1 bottom">
-			<span class="image fit main"><img src="images/github-projects.jpg" alt="GitHub Projects" /></span>
-			<div class="content">
-				<div class="container">
-					<div class="row">
-						<div class="col-4 col-12-medium">
-							<header>
-								<h2>Explore My GitHub Projects</h2>
-								<p>A showcase of my coding journey and innovative solutions.</p>
-							</header>
-						</div>
-						<div class="col-4 col-12-medium">
-							<p>From game hacking scripts to powerful automation tools, my repositories are a mix of
-								creativity and logic. Each project is built with the goal of solving real-world problems
-								or experimenting with new ideas.</p>
-						</div>
-						<div class="col-4 col-12-medium">
-							<p>Whether it’s working with Python libraries, creating bots, or building tools for Unreal
-								Engine, my GitHub is a reflection of my passion for development and my constant drive to
-								learn and grow.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<a href="#two" class="goto-next scrolly">Next</a>
-		</section>
-
-		<!-- Two -->
-		<section id="two" class="spotlight style2 right">
-			<span class="image fit main"><img src="images/github-contributions.jpg" alt="GitHub Contributions" /></span>
-			<div class="content">
-				<header>
-					<h2>Contributions That Matter</h2>
-					<p>Creating tools and libraries that developers can rely on.</p>
-				</header>
-				<p>Check out repositories featuring automation, game scripts, and tools built with Python, TypeScript,
-					and more. My work on GitHub reflects my ability to deliver reliable, efficient, and innovative
-					solutions to complex problems.</p>
-				<ul class="actions">
-					<li><a href="https://github.com/Sheekovic" target="_blank" class="button">Visit My GitHub</a></li>
-				</ul>
-			</div>
-			<a href="#three" class="goto-next scrolly">Next</a>
-		</section>
-
-		<!-- Three -->
-		<section id="three" class="spotlight style3 left">
-			<span class="image fit main bottom"><img src="images/github-project-ideas.jpg" alt="Project Ideas" /></span>
-			<div class="content">
-				<header>
-					<h2>Innovative Project Ideas</h2>
-					<p>Turning concepts into code that solves challenges.</p>
-				</header>
-				<p>My repositories highlight unique ideas, including tools for developers, gaming utilities, and
-					advanced integrations. Every project represents my commitment to quality, innovation, and
-					functionality.</p>
-				<ul class="actions">
-					<li><a href="https://github.com/Sheekovic" target="_blank" class="button">Explore Projects</a></li>
-				</ul>
-			</div>
-			<a href="#four" class="goto-next scrolly">Next</a>
-		</section>
-
-		<!-- Four -->
-		<section id="four" class="wrapper style1 special fade-up">
-			<div class="container">
-				<header class="major">
-					<h2>OUR TOOLS</h2>
-					<p>Your gateway to innovative and practical solutions.</p>
-					<!-- Search bar for finding tools -->
-					<input type="text" id="searchInput" placeholder="Search tools">
-				</header>
-				<div class="box alt">
-					<div id="tool-list" class="row gtr-uniform">
-						<!-- Tools will be dynamically inserted here -->
-					</div>
-				</div>
-				<footer class="major">
-					<ul class="actions special">
-						<li><a href="https://github.com/Sheekovic" target="_blank" class="button">Visit My GitHub</a>
-						</li>
-					</ul>
-				</footer>
-			</div>
-		</section>
-
-		<!-- Footer -->
-		<footer id="footer">
-			<ul class="icons">
-				<li><a href="https://x.com/Sheekovic" class="icon brands alt fa-twitter"><span
-							class="label">X</span></a></li>
-				<li><a href="https://www.facebook.com/sheekovic" class="icon brands alt fa-facebook-f"><span
-							class="label">Facebook</span></a></li>
-				<li><a href="https://www.linkedin.com/in/sheekovic/" class="icon brands alt fa-linkedin-in"><span
-							class="label">LinkedIn</span></a></li>
-				<li><a href="https://www.instagram.com/sheekovic/" class="icon brands alt fa-instagram"><span
-							class="label">Instagram</span></a></li>
-				<li><a href="https://github.com/Sheekovic" class="icon brands alt fa-github"><span
-							class="label">GitHub</span></a></li>
-				<li><a href="mailto:ahmeedsheeko@gmail.com" class="icon solid alt fa-envelope"><span
-							class="label">Email</span></a></li>
-			</ul>
-			<ul class="copyright">
-				<li>&copy; Beyond. All rights reserved.</li>
-				<li>Design: <a href="https://github.com/Sheekovic">Sheekovic</a></li>
-			</ul>
-		</footer>
-
-	</div>
-
-	<!-- Scripts -->
-	<script src="assets/js/toolsforindex.js"></script>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/jquery.dropotron.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="assets/js/firebase-session.js" defer type="module"></script>
-	<script src="assets/js/dynamicAge.js"></script>
+    <section class="home-cta" aria-labelledby="cta-title">
+      <div><p class="eyebrow"><span></span> Open source workspace</p><h2 id="cta-title">See what I'm building next.</h2></div>
+      <a class="site-button site-button--primary" href="https://github.com/Sheekovic" target="_blank">Follow on GitHub <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+  <script type="module" src="/assets/js/tools.js"></script>
 </body>
-
 </html>

@@ -26,6 +26,72 @@ const browserOnlyExcludes = new Set([
 const sharedStylesheet = '<link rel="stylesheet" href="/assets/css/site.css">';
 const sharedScript = '<script type="module" src="/assets/js/site.js"></script>';
 
+const toolPages = new Set([
+  "age.html", "base64.html", "binance.html", "bmi-calculator.html",
+  "box-shadow-generator.html", "code-beautifier.html", "color-converter.html",
+  "currency-converter.html", "file-size-calc.html", "gradient-generator.html",
+  "hash-generator.html", "image-compressor.html", "json-formatter.html",
+  "loan-calculator.html", "lorem-ipsum.html", "markdown-preview.html",
+  "password.html", "pdf-merger.html", "percentage-calc.html", "qrcode.html",
+  "regex-tester.html", "text-to-speech.html", "tip-calculator.html", "to-do.html",
+  "unit-converter.html", "url-tool.html", "youtube.html",
+]);
+
+function pageDetails(pagePath) {
+  const normalized = pagePath.split(sep).join("/");
+  const filename = normalized.split("/").at(-1);
+  const slug = normalized.replace(/\/index\.html$/, "").replace(/\.html$/, "").replaceAll("/", "-") || "home";
+  let kind = "content";
+  if (normalized === "index.html") kind = "home";
+  else if (normalized === "tools.html") kind = "tools";
+  else if (toolPages.has(filename)) kind = "tool";
+  else if (normalized === "acrossboard/app.html") kind = "app";
+  else if (["login.html", "profile.html", "acrossboard/index.html"].includes(normalized)) kind = "auth";
+  return { normalized, filename, slug, kind };
+}
+
+function navigationLink(href, label, active) {
+  return `<a href="${href}"${active ? ' aria-current="page"' : ""}>${label}</a>`;
+}
+
+function siteHeader(details) {
+  const toolsActive = details.kind === "tool" || details.kind === "tools";
+  return `<header class="site-header" data-site-shell>
+    <div class="site-header__inner">
+      <a class="site-brand" href="/" aria-label="Sheekovic home"><span class="site-brand__mark" aria-hidden="true">S</span><span>Sheekovic <small>Lab</small></span></a>
+      <button class="site-menu-button" type="button" aria-expanded="false" aria-controls="site-navigation"><span class="sr-only">Toggle navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+      <nav class="site-navigation" id="site-navigation" aria-label="Primary navigation">
+        ${navigationLink("/", "Home", details.kind === "home")}
+        ${navigationLink("/tools.html", "Tools", toolsActive)}
+        ${navigationLink("/github.html", "Projects", details.filename === "github.html")}
+        ${navigationLink("/acrossboard.html", "AcrossBoard", details.normalized.startsWith("acrossboard"))}
+        <a href="https://github.com/Sheekovic" target="_blank">GitHub</a>
+        <button class="site-theme-button" id="site-theme-toggle" type="button" aria-label="Switch color theme"><span aria-hidden="true">◐</span><span class="site-theme-label">Theme</span></button>
+      </nav>
+    </div>
+  </header>`;
+}
+
+function siteFooter() {
+  return `<footer class="site-footer" data-site-shell>
+    <div class="site-footer__inner">
+      <div><strong>Sheekovic Lab</strong><p>A personal space for learning, building, and useful experiments.</p></div>
+      <nav aria-label="Footer navigation"><a href="/tools.html">Tools</a><a href="/sitemap.html">Sitemap</a><a href="https://github.com/Sheekovic" target="_blank">GitHub</a></nav>
+      <small>© ${new Date().getUTCFullYear()} Ahmed F. Wahballah</small>
+    </div>
+  </footer>`;
+}
+
+function decorateBody(html, details) {
+  const classes = `site-unified site-${details.kind}-page page-${details.slug}`;
+  return html.replace(/<body([^>]*)>/i, (tag, attributes) => {
+    if (/\bclass\s*=/.test(attributes)) {
+      return tag.replace(/\bclass\s*=\s*(["'])(.*?)\1/i, (_match, quote, value) => `class=${quote}${value} ${classes}${quote}`);
+    }
+    return `<body${attributes} class="${classes}">`;
+  });
+}
+
 async function copyDirectory(source, destination, filter = () => true) {
   await cp(source, destination, {
     recursive: true,
@@ -45,15 +111,17 @@ async function walk(directory) {
   return files;
 }
 
-function injectSharedAssets(html) {
-  let output = html;
+function injectSharedAssets(html, pagePath) {
+  const details = pageDetails(pagePath);
+  let output = decorateBody(html, details);
 
   if (!output.includes('/assets/css/site.css')) {
     output = output.replace(/<\/head>/i, `  ${sharedStylesheet}\n</head>`);
   }
 
   if (!output.includes('/assets/js/site.js')) {
-    output = output.replace(/<\/body>/i, `  ${sharedScript}\n</body>`);
+    output = output.replace(/<body[^>]*>/i, (body) => `${body}\n  ${siteHeader(details)}`);
+    output = output.replace(/<\/body>/i, `  ${siteFooter()}\n  ${sharedScript}\n</body>`);
   }
 
   return output;
@@ -66,7 +134,7 @@ async function buildPages() {
 
     if (extname(sourcePath).toLowerCase() === ".html") {
       const html = await readFile(sourcePath, "utf8");
-      await writeFile(destinationPath, injectSharedAssets(html), "utf8");
+      await writeFile(destinationPath, injectSharedAssets(html, relative(pagesRoot, sourcePath)), "utf8");
     } else {
       await cp(sourcePath, destinationPath);
     }
@@ -114,17 +182,23 @@ async function assertBuild() {
 
     const html = await readFile(file, "utf8");
     for (const match of html.matchAll(/(?:href|src)\s*=\s*["']([^"']+)["']/gi)) {
-      const reference = match[1].split(/[?#]/, 1)[0];
-      if (!/\.(?:css|js)$/i.test(reference) || /^(?:[a-z]+:|\/\/)/i.test(reference)) continue;
+      const rawReference = match[1];
+      if (/^(?:#|[a-z]+:|\/\/)/i.test(rawReference)) continue;
+      const reference = rawReference.split(/[?#]/, 1)[0];
+      if (!reference || reference.includes('${')) continue;
 
-      const target = reference.startsWith("/")
-        ? join(outputRoot, reference.slice(1))
-        : resolve(dirname(file), reference);
-      const details = await stat(target).catch(() => null);
-      if (!details?.isFile()) {
-        throw new Error(
-          `Broken local asset in ${relative(outputRoot, file)}: ${reference}`,
-        );
+      const decodedReference = decodeURIComponent(reference);
+      const target = decodedReference.startsWith("/")
+        ? join(outputRoot, decodedReference.slice(1))
+        : resolve(dirname(file), decodedReference);
+      const candidates = [target];
+      if (!extname(target)) candidates.push(`${target}.html`, join(target, "index.html"));
+      const exists = await Promise.all(candidates.map(async (candidate) => {
+        const details = await stat(candidate).catch(() => null);
+        return details?.isFile() || (details?.isDirectory() && (await stat(join(candidate, "index.html")).catch(() => null))?.isFile());
+      }));
+      if (!exists.some(Boolean)) {
+        throw new Error(`Broken local reference in ${relative(outputRoot, file)}: ${reference}`);
       }
     }
   }

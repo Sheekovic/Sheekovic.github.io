@@ -32,7 +32,7 @@ window.addEventListener("click", (event) => {
 // 🔹 Show User Info in Navbar
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        document.getElementById("user-pic").src = user.photoURL || "default-avatar.png";
+        document.getElementById("user-pic").src = user.photoURL || "/acrossboard/CompressJPEG.Online_img(512x512).png";
         document.getElementById("user-name").textContent = user.displayName || "User";
 
         // 🔹 Load all clipboard items from `users/{user.uid}/clipboard`

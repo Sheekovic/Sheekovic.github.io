@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Sign-Out
-document.getElementById('sign-out').addEventListener('click', () => {
+document.getElementById('sign-out')?.addEventListener('click', () => {
   auth.signOut()
     .then(() => console.log("Sign-Out Successful"))
     .catch(error => console.error("Sign-Out Error:", error));
