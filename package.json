@@ -5,7 +5,8 @@
     "type": "module",
     "scripts": {
         "check:secrets": "node scripts/check-secrets.mjs",
-        "check:syntax": "node scripts/check-js-syntax.mjs"
+        "check:syntax": "node scripts/check-js-syntax.mjs",
+        "check:youtube": "node scripts/check-youtube-counter.mjs"
     },
     "keywords": [
         "portfolio",
