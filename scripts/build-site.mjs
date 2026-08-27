@@ -7,6 +7,10 @@ const pagesRoot = resolve(projectRoot, "src/pages");
 const publicRoot = resolve(projectRoot, "public");
 const javascriptRoot = resolve(projectRoot, "src/js");
 const stylesRoot = resolve(projectRoot, "src/styles");
+const qrCodeStylingBundle = resolve(
+  projectRoot,
+  "node_modules/qr-code-styling/lib/qr-code-styling.js",
+);
 
 const sharedStylesheet = '<link rel="stylesheet" href="/assets/css/site.css">';
 const sharedScript = '<script type="module" src="/assets/js/site.js"></script>';
@@ -135,6 +139,7 @@ async function assertBuild() {
     "assets/css/site.css",
     "assets/js/site.js",
     "assets/js/youtube.js",
+    "assets/vendor/qr-code-styling.js",
     "acrossboard/app.html",
     "api/api.html",
   ];
@@ -232,10 +237,12 @@ async function assertBuild() {
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(join(outputRoot, "assets/js"), { recursive: true });
 await mkdir(join(outputRoot, "assets/css"), { recursive: true });
+await mkdir(join(outputRoot, "assets/vendor"), { recursive: true });
 
 await copyDirectory(publicRoot, outputRoot);
 await copyDirectory(javascriptRoot, join(outputRoot, "assets/js"));
 await copyDirectory(stylesRoot, join(outputRoot, "assets/css"));
+await cp(qrCodeStylingBundle, join(outputRoot, "assets/vendor/qr-code-styling.js"));
 await buildPages();
 await assertBuild();
 

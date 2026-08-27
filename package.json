@@ -5,11 +5,12 @@
     "type": "module",
     "scripts": {
         "build": "node scripts/build-site.mjs",
-        "check": "npm run check:secrets && npm run check:syntax && npm run check:youtube && npm run check:sitemap && npm run build",
+        "check": "npm run check:secrets && npm run check:syntax && npm run check:youtube && npm run check:sitemap && npm run check:qrcode && npm run build",
         "check:secrets": "node scripts/check-secrets.mjs",
         "check:syntax": "node scripts/check-js-syntax.mjs",
         "check:youtube": "node scripts/check-youtube-counter.mjs",
-        "check:sitemap": "node scripts/check-sitemap.mjs"
+        "check:sitemap": "node scripts/check-sitemap.mjs",
+        "check:qrcode": "node scripts/check-qrcode.mjs"
     },
     "keywords": [
         "portfolio",
@@ -20,5 +21,8 @@
     "license": "MIT",
     "engines": {
         "node": ">=22.x"
+    },
+    "dependencies": {
+        "qr-code-styling": "1.9.2"
     }
 }
