@@ -165,12 +165,24 @@ function updateAudioPreview(fields, type) {
 }
 
 function saveStyle() {
-  const settings = {};
-  for (const name of styleFields) {
-    const field = control(name);
-    settings[name] = field.type === 'checkbox' ? field.checked : field.value;
+  try {
+    const settings = {};
+    for (const name of styleFields) {
+      const field = control(name);
+      settings[name] = field.type === 'checkbox' ? field.checked : field.value;
+    }
+    localStorage.setItem(styleStorageKey, JSON.stringify(settings));
+  } catch {
+    // Style persistence is optional; QR generation must work without storage access.
   }
-  localStorage.setItem(styleStorageKey, JSON.stringify(settings));
+}
+
+function clearSavedStyle() {
+  try {
+    localStorage.removeItem(styleStorageKey);
+  } catch {
+    // Storage can be unavailable in privacy-restricted browser contexts.
+  }
 }
 
 function restoreStyle() {
@@ -183,7 +195,7 @@ function restoreStyle() {
       else field.value = settings[name];
     }
   } catch {
-    localStorage.removeItem(styleStorageKey);
+    clearSavedStyle();
   }
 }
 
@@ -301,7 +313,7 @@ form.addEventListener('change', (event) => {
 
 form.addEventListener('reset', () => {
   window.setTimeout(() => {
-    localStorage.removeItem(styleStorageKey);
+    clearSavedStyle();
     setLogo();
     updateVisiblePanel();
     renderQr({ announce: true });
