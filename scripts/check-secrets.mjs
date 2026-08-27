@@ -1,13 +1,12 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 const patterns = [
   { name: "Google API key", regex: /AIza[0-9A-Za-z_-]{35}/g },
   { name: "GitHub token", regex: /(?:github_pat_|gh[pousr]_)[0-9A-Za-z_]{20,}/g },
   { name: "OpenAI-style key", regex: /sk-[0-9A-Za-z_-]{20,}/g },
   { name: "AWS access key", regex: /AKIA[0-9A-Z]{16}/g },
-  { name: "Private key", regex: /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/g },
-
+  { name: "Private key", regex: /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/g }
 ];
 
 const trackedFiles = execFileSync(
@@ -20,6 +19,7 @@ const trackedFiles = execFileSync(
 const findings = [];
 
 for (const file of trackedFiles) {
+  if (!existsSync(file)) continue;
   const buffer = readFileSync(file);
   if (buffer.includes(0)) continue;
   const source = buffer.toString("utf8");

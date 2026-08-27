@@ -42,12 +42,12 @@ context and Functions scope. Mark them as secret values.
 
 ## Rotation checklist
 
-1. Revoke all values listed in the local `HARD_CODED_SECRETS.local.md` file.
+1. Revoke all legacy values reported by GitHub Secret Scanning.
 2. Create replacement keys with API and application restrictions.
 3. Update both GitHub and Netlify secret stores with the replacements.
 4. Trigger the GitHub Pages workflow and a Netlify production deploy.
 5. Verify Firebase sign-in and the YouTube counter from the public site.
-6. Delete the local inventory after rotation is complete.
+6. Resolve the corresponding GitHub Secret Scanning alerts as revoked.
 
 Run `node scripts/check-secrets.mjs` before every commit. The CI and Pages
 workflows run the same redacted scan automatically.
