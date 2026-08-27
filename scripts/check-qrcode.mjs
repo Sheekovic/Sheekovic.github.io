@@ -51,6 +51,14 @@ assert.equal(
   buildWifi({ ssid: 'Open Network', security: 'nopass', password: '', hidden: false }),
   'WIFI:T:nopass;S:Open Network;P:;H:false;;',
 );
+assert.equal(
+  buildWifi({ ssid: ' Lab Wi-Fi ', security: 'WPA', password: ' pass phrase ', hidden: false }),
+  'WIFI:T:WPA;S: Lab Wi-Fi ;P: pass phrase ;H:false;;',
+);
+assert.throws(
+  () => buildWifi({ ssid: '   ', security: 'WPA', password: 'password', hidden: false }),
+  /Network name is required/,
+);
 
 assert.equal(buildQrPayload('url', { url: 'example.com' }), 'https://example.com/');
 assert.equal(buildQrPayload('text', { text: 'Hello QR' }), 'Hello QR');

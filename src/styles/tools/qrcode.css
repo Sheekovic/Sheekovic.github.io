@@ -406,6 +406,13 @@
   cursor: pointer;
 }
 
+.qr-builder-actions button:disabled,
+.qr-download-grid button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none;
+}
+
 .qr-preview-panel {
   position: sticky;
   top: 6.5rem;
@@ -428,6 +435,11 @@
 .qr-ready-indicator[data-state="error"] {
   background: color-mix(in srgb, var(--site-danger) 14%, transparent);
   color: var(--site-danger);
+}
+
+.qr-ready-indicator[data-state="pending"] {
+  background: color-mix(in srgb, var(--site-blue) 14%, transparent);
+  color: var(--site-blue);
 }
 
 .qr-canvas-wrap {

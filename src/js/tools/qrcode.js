@@ -8,6 +8,10 @@ const audioPreview = document.getElementById('audio-preview');
 const logoInput = document.getElementById('logo-file');
 const logoPreview = document.getElementById('logo-preview');
 const removeLogoButton = document.getElementById('remove-logo');
+const exportButtons = [
+  ...document.querySelectorAll('[data-download]'),
+  document.getElementById('copy-payload'),
+];
 const styleStorageKey = 'sheekovic-qr-style-v1';
 const typeNames = { url: 'Link', text: 'Text', contact: 'Contact', audio: 'Audio', wifi: 'Wi-Fi' };
 const styleFields = [
@@ -29,6 +33,7 @@ let latestPayload = '';
 let renderTimer;
 let logoReadGeneration = 0;
 let activeLogoReader;
+let logoReadPending = false;
 
 function control(name) {
   return form.elements.namedItem(name);
@@ -36,6 +41,10 @@ function control(name) {
 
 function value(name) {
   return control(name)?.value?.trim() || '';
+}
+
+function rawValue(name) {
+  return control(name)?.value || '';
 }
 
 function selectedType() {
@@ -55,9 +64,9 @@ function currentFields() {
     address: value('address'),
     note: value('note'),
     audioUrl: value('audioUrl'),
-    ssid: value('ssid'),
+    ssid: rawValue('ssid'),
     security: value('security'),
-    password: value('password'),
+    password: rawValue('password'),
     hidden: control('hidden').checked,
   };
 }
@@ -150,7 +159,9 @@ function payloadSummary(payload) {
 function setStatus(message, state = 'ready') {
   status.textContent = message;
   status.dataset.state = state;
-  readyIndicator.textContent = state === 'error' ? 'Needs input' : 'Ready';
+  readyIndicator.textContent = state === 'error'
+    ? 'Needs input'
+    : state === 'pending' ? 'Processing' : 'Ready';
   readyIndicator.dataset.state = state;
 }
 
@@ -225,6 +236,11 @@ function updateVisiblePanel() {
   if (openNetwork) password.value = '';
 }
 
+function updateExportAvailability() {
+  const disabled = logoReadPending || !qrCode || !latestPayload;
+  for (const button of exportButtons) button.disabled = disabled;
+}
+
 function renderQr({ announce = false } = {}) {
   const type = selectedType();
   const fields = currentFields();
@@ -253,6 +269,7 @@ function renderQr({ announce = false } = {}) {
     document.getElementById('summary-payload').textContent = 'Waiting for valid content';
     setStatus(error instanceof Error ? error.message : String(error), 'error');
   }
+  updateExportAvailability();
 }
 
 function scheduleRender() {
@@ -292,6 +309,8 @@ function cancelPendingLogoRead() {
   logoReadGeneration += 1;
   if (activeLogoReader?.readyState === FileReader.LOADING) activeLogoReader.abort();
   activeLogoReader = undefined;
+  logoReadPending = false;
+  updateExportAvailability();
 }
 
 logoInput.addEventListener('change', () => {
@@ -311,15 +330,21 @@ logoInput.addEventListener('change', () => {
   const reader = new FileReader();
   const generation = logoReadGeneration;
   activeLogoReader = reader;
+  logoReadPending = true;
+  updateExportAvailability();
+  setStatus('Reading the selected logo…', 'pending');
   reader.addEventListener('load', () => {
     if (generation !== logoReadGeneration) return;
     activeLogoReader = undefined;
+    logoReadPending = false;
     setLogo(String(reader.result));
     renderQr({ announce: true });
   });
   reader.addEventListener('error', () => {
     if (generation !== logoReadGeneration) return;
     activeLogoReader = undefined;
+    logoReadPending = false;
+    updateExportAvailability();
     setStatus('Unable to read that logo.', 'error');
   });
   reader.readAsDataURL(file);
@@ -384,7 +409,7 @@ for (const button of document.querySelectorAll('[data-download]')) {
     } catch (error) {
       setStatus(`Download failed: ${error instanceof Error ? error.message : String(error)}`, 'error');
     } finally {
-      button.disabled = false;
+      updateExportAvailability();
     }
   });
 }
@@ -403,6 +428,7 @@ document.getElementById('copy-payload').addEventListener('click', async () => {
   }
 });
 
+updateExportAvailability();
 if (typeof window.QRCodeStyling !== 'function') {
   setStatus('The QR rendering engine could not be loaded.', 'error');
 } else {

@@ -4,6 +4,12 @@ function required(value, label) {
   return normalized;
 }
 
+function requiredExact(value, label) {
+  const raw = String(value ?? '');
+  if (!raw.trim()) throw new Error(`${label} is required.`);
+  return raw;
+}
+
 const byteCapacityByRecoveryLevel = Object.freeze({ L: 2953, M: 2331, Q: 1663, H: 1273 });
 
 export function assertQrCapacity(payload, recoveryLevel) {
@@ -84,11 +90,11 @@ function escapeWifi(value) {
 }
 
 export function buildWifi(fields) {
-  const ssid = required(fields.ssid, 'Network name');
+  const ssid = requiredExact(fields.ssid, 'Network name');
   const security = ['WPA', 'WEP', 'nopass'].includes(fields.security)
     ? fields.security
     : 'WPA';
-  const password = security === 'nopass' ? '' : required(fields.password, 'Wi-Fi password');
+  const password = security === 'nopass' ? '' : requiredExact(fields.password, 'Wi-Fi password');
   return `WIFI:T:${security};S:${escapeWifi(ssid)};P:${escapeWifi(password)};H:${fields.hidden ? 'true' : 'false'};;`;
 }
 
