@@ -50,7 +50,7 @@ function siteHeader(details) {
         ${navigationLink("/tools.html", "Tools", toolsActive)}
         ${navigationLink("/github.html", "Projects", details.filename === "github.html")}
         ${navigationLink("/acrossboard.html", "AcrossBoard", details.normalized.startsWith("acrossboard"))}
-        <a href="https://github.com/Sheekovic" target="_blank">GitHub</a>
+        <a href="https://github.com/Sheekovic" target="_blank" rel="noopener noreferrer">GitHub</a>
         <button class="site-theme-button" id="site-theme-toggle" type="button" aria-label="Switch color theme"><span aria-hidden="true">◐</span><span class="site-theme-label">Theme</span></button>
       </nav>
     </div>
@@ -61,7 +61,7 @@ function siteFooter() {
   return `<footer class="site-footer" data-site-shell>
     <div class="site-footer__inner">
       <div><strong>Sheekovic Lab</strong><p>A personal space for learning, building, and useful experiments.</p></div>
-      <nav aria-label="Footer navigation"><a href="/tools.html">Tools</a><a href="/sitemap.html">Sitemap</a><a href="https://github.com/Sheekovic" target="_blank">GitHub</a></nav>
+      <nav aria-label="Footer navigation"><a href="/tools.html">Tools</a><a href="/sitemap.html">Sitemap</a><a href="https://github.com/Sheekovic" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
       <small>© ${new Date().getUTCFullYear()} Ahmed F. Wahballah</small>
     </div>
   </footer>`;
@@ -188,6 +188,15 @@ async function assertBuild() {
       const isStructuredData = /type\s*=\s*["']application\/ld\+json["']/i.test(attributes);
       if (!/\bsrc\s*=/i.test(attributes) && contents && !isStructuredData) {
         throw new Error(`Inline JavaScript is not allowed in ${htmlPath}`);
+      }
+    }
+
+    for (const match of html.matchAll(/<a\b([^>]*)>/gi)) {
+      const attributes = match[1];
+      if (!/target\s*=\s*["']_blank["']/i.test(attributes)) continue;
+      const rel = attributes.match(/rel\s*=\s*["']([^"']*)["']/i)?.[1].toLowerCase().split(/\s+/) || [];
+      if (!rel.includes("noopener") || !rel.includes("noreferrer")) {
+        throw new Error(`Unsafe target=_blank link in ${htmlPath}`);
       }
     }
 
