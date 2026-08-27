@@ -6,7 +6,14 @@ function required(value, label) {
 
 export function normalizeWebUrl(value, label = 'URL') {
   let candidate = required(value, label);
-  if (!/^[a-z][a-z\d+.-]*:/i.test(candidate)) candidate = `https://${candidate}`;
+  const scheme = candidate.match(/^([a-z][a-z\d+.-]*):/i)?.[1].toLowerCase();
+  const usesWebScheme = scheme === 'http' || scheme === 'https';
+  const looksLikeHostPort = /^(?:\[[a-f\d:]+\]|[^/?#:\s]+):\d+(?:[/?#]|$)/i.test(candidate);
+
+  if (scheme && !usesWebScheme && !looksLikeHostPort) {
+    throw new Error(`${label} must use HTTP or HTTPS.`);
+  }
+  if (!usesWebScheme) candidate = `https://${candidate}`;
 
   let url;
   try {

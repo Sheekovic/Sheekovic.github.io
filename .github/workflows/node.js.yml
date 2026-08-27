@@ -37,5 +37,9 @@ jobs:
       run: npm run check:syntax
     - name: Test YouTube counter client
       run: npm run check:youtube
+    - name: Test sitemap catalog
+      run: npm run check:sitemap
+    - name: Test advanced QR payloads
+      run: npm run check:qrcode
     - name: Build and validate static site
       run: npm run build

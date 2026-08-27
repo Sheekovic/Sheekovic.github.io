@@ -9,7 +9,10 @@ import {
 
 assert.equal(normalizeWebUrl('example.com'), 'https://example.com/');
 assert.equal(normalizeWebUrl('http://example.com/path'), 'http://example.com/path');
+assert.equal(normalizeWebUrl('example.com:8080/path'), 'https://example.com:8080/path');
+assert.equal(normalizeWebUrl('localhost:3000'), 'https://localhost:3000/');
 assert.throws(() => normalizeWebUrl('javascript:alert(1)'), /HTTP or HTTPS/);
+assert.throws(() => normalizeWebUrl('mailto:test@example.com'), /HTTP or HTTPS/);
 
 assert.equal(escapeVCard('One, Two; Three\nFour'), 'One\\, Two\\; Three\\nFour');
 
