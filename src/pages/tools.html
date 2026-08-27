@@ -1,41 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tools - Sheekovic's Utility Hub</title>
-  <link id="themeStylesheet" rel="stylesheet" href="/assets/css/tools.css">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Explore a comprehensive collection of online tools for image conversion, text manipulation, and more.">
-  <meta name="keywords" content="tools, online tools, converters, text to image, image format conversion, text manipulation, utility tools">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tools — Sheekovic Lab</title>
+  <meta name="description" content="Explore free browser-based calculators, converters, developer utilities, and creative tools from Sheekovic Lab.">
   <meta name="author" content="Sheekovic">
-  
-  <!-- Open Graph Meta Tags for social media sharing -->
-  <meta property="og:title" content="Tools - Sheekovic's Utility Hub">
-  <meta property="og:description" content="Explore various utility tools for image conversion, text formatting, and more.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sheekovic.github.io/tools.html">
+  <link rel="icon" href="/images/favicon.ico">
+  <meta property="og:title" content="Tools — Sheekovic Lab">
+  <meta property="og:description" content="Fast, focused browser tools for everyday work and experimentation.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sheekovic.github.io/tools.html">
-  <meta property="og:image" content="https://sheekovic.github.io/images/tools-banner.png">
-  
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tools - Sheekovic's Utility Hub">
-  <meta name="twitter:description" content="Explore various online tools for image and text conversions.">
-  <meta name="twitter:image" content="https://sheekovic.github.io/images/tools-banner.png">
 </head>
 <body>
-  <nav id="navbar">
-    <a href="index.html">Home</a>
-    <!-- search bar for finding tools -->
-    <input type="text" id="searchInput" placeholder="Search tools">
-    <!-- light/dark mode toggle -->
-    <button id="darkModeToggle">Dark Mode</button>
-  </nav>
-
-  <h1>All Tools</h1>
-  <div id="tool-list"></div>
-  <script src="assets/js/tools.js"></script>
+  <main class="tools-page">
+    <section class="tools-hero" aria-labelledby="tools-title">
+      <p class="eyebrow"><span></span> Browser-based utilities</p>
+      <h1 id="tools-title">A cleaner toolbox<br>for everyday work.</h1>
+      <p>Calculators, converters, developer helpers, and creative utilities. Most processing stays in your browser.</p>
+    </section>
+    <section class="tool-browser" aria-label="Browse tools">
+      <div class="tool-controls">
+        <label class="tool-search"><span class="sr-only">Search tools</span><span aria-hidden="true">⌕</span><input type="search" id="searchInput" placeholder="Search by name or purpose…" autocomplete="off"><kbd>/</kbd></label>
+        <div id="tool-filters" class="tool-filters" aria-label="Filter tools by category"></div>
+      </div>
+      <p id="tool-count" class="tool-count" aria-live="polite"></p>
+      <div id="tool-list" class="tool-grid"></div>
+      <div id="tool-empty" class="tool-empty" hidden><strong>No matching tools.</strong><span>Try a different name or category.</span></div>
+    </section>
+  </main>
+  <script type="module" src="/assets/js/tools.js"></script>
 </body>
 </html>

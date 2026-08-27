@@ -4,7 +4,7 @@
 	<channel>
 		<title>sheekovic.github.io</title>
 		<link><![CDATA[https://sheekovic.github.io]]></link>
-		<description>Sheekovic is a platform offering a variety of tools, services, and information on tech, game hacking, and coding. Explore more about Sheekovic!</description>
+		<description>Sheekovic Lab is a personal learning space for browser tools, software projects, and open experiments.</description>
 		<language>en</language>
 		<pubDate>Mon, 13 Jan 2025 01:46:36 +0000</pubDate>
 		<generator>MySitemapGenerator (www.mysitemapgenerator.com)</generator>
@@ -15,7 +15,7 @@
 			<link>https://sheekovic.github.io/index.html</link>
 			<dc:creator>Administrator</dc:creator>
 			<category>Site News</category>
-			<description>Sheekovic is a platform offering a variety of tools, services, and information on tech, game hacking, and coding. Explore more about Sheekovic!</description>
+			<description>Sheekovic Lab is a personal learning space for browser tools, software projects, and open experiments.</description>
 			<pubDate>Mon, 13 Jan 2025 01:35:18 GMT</pubDate>
 			<enclosure url="https://sheekovic.github.io/images/sheeko.jpg" type="image/jpeg" length="0" />
 		</item>
@@ -45,7 +45,7 @@
 			<link>https://sheekovic.github.io/profile.html</link>
 			<dc:creator>Administrator</dc:creator>
 			<category>Site News</category>
-			<description>View the profile of Sheekovic. Learn more about the work, projects, and background of Sheekovic, a skilled coder and game hacker.</description>
+			<description>Explore Sheekovic's software projects, browser tools, and learning experiments.</description>
 			<pubDate>Mon, 13 Jan 2025 01:35:18 GMT</pubDate>
 			<enclosure url="https://sheekovic.github.io/images/favicon.ico" type="image/vnd.microsoft.icon" length="0" />
 		</item>

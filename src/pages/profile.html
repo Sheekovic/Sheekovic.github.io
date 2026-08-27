@@ -13,15 +13,15 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description"
-		content="View the profile of Sheekovic. Learn more about the work, projects, and background of Sheekovic, a skilled coder and game hacker.">
-	<meta name="keywords" content="Sheekovic, profile, game hacker, coder, developer, tech, projects">
+		content="View the Sheekovic profile and explore current software projects, browser tools, and learning experiments.">
+	<meta name="keywords" content="Sheekovic, profile, coder, developer, web tools, software projects">
 	<meta name="author" content="Sheekovic">
 	<meta name="robots" content="index, follow">
 
 	<!-- Open Graph Meta Tags for Social Media -->
 	<meta property="og:title" content="User Profile - Sheekovic">
 	<meta property="og:description"
-		content="View the profile of Sheekovic. Learn more about the work, projects, and background of Sheekovic, a skilled coder and game hacker.">
+		content="Explore Sheekovic's software projects, browser tools, and learning experiments.">
 	<meta property="og:image" content="/images/favicon.ico">
 	<meta property="og:url" content="https://yourusername.github.io/user-profile-sheekovic">
 
@@ -29,7 +29,7 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="User Profile - Sheekovic">
 	<meta name="twitter:description"
-		content="View the profile of Sheekovic. Learn more about the work, projects, and background of Sheekovic, a skilled coder and game hacker.">
+		content="Explore Sheekovic's software projects, browser tools, and learning experiments.">
 	<meta name="twitter:image" content="/images/favicon.ico">
 	<meta name="twitter:site" content="@Sheekovic">
 
@@ -41,7 +41,7 @@
 	</noscript>
 </head>
 
-<body class="is-preload landing">
+<body>
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -81,7 +81,7 @@
 
 				<!-- Sign-Out Button -->
 				<div style="text-align: center;">
-					<button id="sign-out">Sign Out</button>
+					<button id="sign-out" hidden>Sign Out</button>
 				</div>
 			</div>
 		</section>
@@ -110,51 +110,7 @@
 
 	</div>
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/jquery.dropotron.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="assets/js/firebase-session.js" defer type="module"></script>
-	<script type="module">
-		import { getAuth } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-		const auth = getAuth();
-
-		// Populate user details dynamically
-		auth.onAuthStateChanged((user) => {
-			if (user) {
-				// User is logged in
-				const profilePic = user.photoURL || "images/default-avatar.png";
-				const username = user.displayName || "Anonymous";
-				const email = user.email || "Not provided";
-
-				// Update the table
-				const tableBody = document.getElementById("user-profile-table");
-				tableBody.innerHTML = `
-						<tr>
-							<td><img src="${profilePic}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%;"></td>
-							<td>${username}</td>
-							<td>${email}</td>
-						</tr>
-					`;
-			} else {
-				// User is not logged in
-				alert("Please log in to view your profile.");
-				window.location.href = "login.html"; // Redirect to home page
-			}
-		});
-
-		// Sign Out
-		document.getElementById('sign-out').addEventListener('click', () => {
-			auth.signOut()
-				.then(() => console.log("Sign-Out Successful"))
-				.catch(error => console.error("Sign-Out Error:", error));
-		});
-	</script>
+	<script type="module" src="/assets/js/profile.js"></script>
 </body>
 
 </html>
