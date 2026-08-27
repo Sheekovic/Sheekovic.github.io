@@ -73,6 +73,10 @@ assert.equal(
   buildWifi({ ssid: ' Lab Wi-Fi ', security: 'WPA', password: ' pass phrase ', hidden: false }),
   'WIFI:T:WPA;S: Lab Wi-Fi ;P: pass phrase ;H:false;;',
 );
+assert.equal(
+  buildWifi({ ssid: 'WPA3 Network', security: 'SAE', password: 'secure pass', hidden: false }),
+  'WIFI:T:SAE;S:WPA3 Network;P:secure pass;H:false;;',
+);
 assert.throws(
   () => buildWifi({ ssid: '   ', security: 'WPA', password: 'password', hidden: false }),
   /Network name is required/,
@@ -80,6 +84,8 @@ assert.throws(
 
 assert.equal(buildQrPayload('url', { url: 'example.com' }), 'https://example.com/');
 assert.equal(buildQrPayload('text', { text: 'Hello QR' }), 'Hello QR');
+assert.equal(buildQrPayload('text', { text: '  whitespace-sensitive\n' }), '  whitespace-sensitive\n');
+assert.throws(() => buildQrPayload('text', { text: '   \n' }), /Text is required/);
 assert.equal(buildQrPayload('audio', { audioUrl: 'example.com/audio.mp3' }), 'https://example.com/audio.mp3');
 assert.match(buildQrPayload('contact', { name: 'Test Person' }), /FN:Test Person/);
 assert.match(

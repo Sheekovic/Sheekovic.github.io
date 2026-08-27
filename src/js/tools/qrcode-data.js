@@ -93,7 +93,7 @@ function escapeWifi(value) {
 
 export function buildWifi(fields) {
   const ssid = requiredExact(fields.ssid, 'Network name');
-  const security = ['WPA', 'WEP', 'nopass'].includes(fields.security)
+  const security = ['WPA', 'SAE', 'WEP', 'nopass'].includes(fields.security)
     ? fields.security
     : 'WPA';
   const password = security === 'nopass' ? '' : requiredExact(fields.password, 'Wi-Fi password');
@@ -105,7 +105,7 @@ export function buildQrPayload(type, fields) {
     case 'url':
       return normalizeWebUrl(fields.url);
     case 'text':
-      return required(fields.text, 'Text');
+      return requiredExact(fields.text, 'Text');
     case 'contact':
       return buildVCard(fields);
     case 'audio':
