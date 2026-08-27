@@ -198,7 +198,9 @@
         <button class="secondary" onclick="location.href='tools.html'">← Back to Tools</button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"
+        integrity="sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         let selectedFiles = [];
         
@@ -215,20 +217,43 @@
             }
             
             const container = document.getElementById('filesContainer');
-            container.innerHTML = selectedFiles.map((file, index) => `
-                <div class="file-item">
-                    <div class="file-info">
-                        <div class="file-icon">📄</div>
-                        <div class="file-details">
-                            <h4>${file.name}</h4>
-                            <p>${formatFileSize(file.size)}</p>
-                        </div>
-                    </div>
-                    <div class="file-actions">
-                        <button class="btn-small" onclick="removeFile(${index})">Remove</button>
-                    </div>
-                </div>
-            `).join('');
+            container.replaceChildren();
+
+            selectedFiles.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.className = 'file-item';
+
+                const info = document.createElement('div');
+                info.className = 'file-info';
+
+                const icon = document.createElement('div');
+                icon.className = 'file-icon';
+                icon.textContent = '📄';
+
+                const details = document.createElement('div');
+                details.className = 'file-details';
+
+                const name = document.createElement('h4');
+                name.textContent = file.name;
+
+                const size = document.createElement('p');
+                size.textContent = formatFileSize(file.size);
+
+                const actions = document.createElement('div');
+                actions.className = 'file-actions';
+
+                const removeButton = document.createElement('button');
+                removeButton.className = 'btn-small';
+                removeButton.type = 'button';
+                removeButton.textContent = 'Remove';
+                removeButton.addEventListener('click', () => removeFile(index));
+
+                details.append(name, size);
+                info.append(icon, details);
+                actions.append(removeButton);
+                item.append(info, actions);
+                container.append(item);
+            });
             
             document.getElementById('fileList').classList.remove('hidden');
             document.getElementById('mergeBtn').classList.remove('hidden');

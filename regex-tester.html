@@ -240,7 +240,7 @@ another@domain.co.uk</textarea>
             const results = document.getElementById('results');
             
             if (!regexInput) {
-                results.innerHTML = '<div class="error">Please enter a regular expression</div>';
+                showMessage(results, 'error', 'Please enter a regular expression');
                 return;
             }
             
@@ -256,55 +256,85 @@ another@domain.co.uk</textarea>
                 const matches = [...testString.matchAll(regex)];
                 
                 if (matches.length === 0) {
-                    results.innerHTML = `
-                        <div class="match-info">
-                            <div class="match-count">No matches found</div>
-                        </div>
-                    `;
+                    const matchInfo = document.createElement('div');
+                    matchInfo.className = 'match-info';
+
+                    const matchCount = document.createElement('div');
+                    matchCount.className = 'match-count';
+                    matchCount.textContent = 'No matches found';
+
+                    matchInfo.append(matchCount);
+                    results.replaceChildren(matchInfo);
                     return;
                 }
-                
-                let html = `
-                    <div class="match-info">
-                        <div class="match-count">${matches.length} match${matches.length !== 1 ? 'es' : ''} found</div>
-                        ${matches.map((match, i) => `
-                            <div class="match-item">
-                                <div class="match-text">"${match[0]}"</div>
-                                <div class="match-position">Position: ${match.index} - ${match.index + match[0].length - 1}</div>
-                                ${match.length > 1 ? '<div class="match-position">Groups: ' + match.slice(1).map((g, gi) => `${gi + 1}: "${g}"`).join(', ') + '</div>' : ''}
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="highlighted-text">${highlightMatches(testString, matches)}</div>
-                `;
-                
-                results.innerHTML = html;
+
+                const matchInfo = document.createElement('div');
+                matchInfo.className = 'match-info';
+
+                const matchCount = document.createElement('div');
+                matchCount.className = 'match-count';
+                matchCount.textContent = `${matches.length} match${matches.length !== 1 ? 'es' : ''} found`;
+                matchInfo.append(matchCount);
+
+                matches.forEach((match) => {
+                    const item = document.createElement('div');
+                    item.className = 'match-item';
+
+                    const text = document.createElement('div');
+                    text.className = 'match-text';
+                    text.textContent = `"${match[0]}"`;
+
+                    const position = document.createElement('div');
+                    position.className = 'match-position';
+                    position.textContent = `Position: ${match.index} - ${match.index + match[0].length - 1}`;
+
+                    item.append(text, position);
+
+                    if (match.length > 1) {
+                        const groups = document.createElement('div');
+                        groups.className = 'match-position';
+                        groups.textContent = 'Groups: ' + match.slice(1)
+                            .map((group, index) => `${index + 1}: "${group}"`)
+                            .join(', ');
+                        item.append(groups);
+                    }
+
+                    matchInfo.append(item);
+                });
+
+                const highlightedText = document.createElement('div');
+                highlightedText.className = 'highlighted-text';
+                appendHighlightedText(highlightedText, testString, matches);
+
+                results.replaceChildren(matchInfo, highlightedText);
                 
             } catch (e) {
-                results.innerHTML = `<div class="error">Invalid RegEx: ${e.message}</div>`;
+                showMessage(results, 'error', `Invalid RegEx: ${e.message}`);
             }
         }
         
-        function highlightMatches(text, matches) {
-            if (matches.length === 0) return text;
-            
-            let result = '';
+        function appendHighlightedText(container, text, matches) {
             let lastIndex = 0;
             
             matches.forEach(match => {
-                result += escapeHtml(text.substring(lastIndex, match.index));
-                result += '<span class="highlight">' + escapeHtml(match[0]) + '</span>';
+                container.append(document.createTextNode(text.substring(lastIndex, match.index)));
+
+                const highlight = document.createElement('span');
+                highlight.className = 'highlight';
+                highlight.textContent = match[0];
+                container.append(highlight);
+
                 lastIndex = match.index + match[0].length;
             });
             
-            result += escapeHtml(text.substring(lastIndex));
-            return result;
+            container.append(document.createTextNode(text.substring(lastIndex)));
         }
-        
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
+
+        function showMessage(container, className, message) {
+            const element = document.createElement('div');
+            element.className = className;
+            element.textContent = message;
+            container.replaceChildren(element);
         }
         
         // Add input listener to test string
