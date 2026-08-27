@@ -2,16 +2,8 @@ import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
 import { extname, join } from "node:path";
 
-const sourceRoots = ["assets/js", "scripts"];
-const htmlFiles = [
-  "code-beautifier.html",
-  "donate.html",
-  "hash-generator.html",
-  "pdf-merger.html",
-  "regex-tester.html",
-  "sheekryptor.html",
-  "youtube.html",
-];
+const sourceRoots = ["src/js", "scripts"];
+const htmlFiles = [];
 
 const sourceFiles = [];
 
@@ -30,6 +22,16 @@ function collectJavaScriptFiles(directory) {
 for (const root of sourceRoots) {
   collectJavaScriptFiles(root);
 }
+
+function collectHtmlFiles(directory) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) collectHtmlFiles(path);
+    else if (extname(entry.name) === ".html") htmlFiles.push(path);
+  }
+}
+
+collectHtmlFiles("src/pages");
 
 for (const file of sourceFiles) {
   execFileSync(process.execPath, ["--check", file], { stdio: "inherit" });

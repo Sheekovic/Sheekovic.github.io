@@ -37,3 +37,5 @@ jobs:
       run: npm run check:syntax
     - name: Test YouTube counter client
       run: npm run check:youtube
+    - name: Build and validate static site
+      run: npm run build
