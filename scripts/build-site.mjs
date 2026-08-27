@@ -176,9 +176,15 @@ async function assertBuild() {
       throw new Error(`Missing viewport metadata in ${htmlPath}`);
     }
 
-    for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)) {
+    const normalizedHtml = html.toLowerCase();
+    for (const match of html.matchAll(/<script\b([^>]*)>/gi)) {
       const attributes = match[1];
-      const contents = match[2].trim();
+      const contentStart = match.index + match[0].length;
+      const contentEnd = normalizedHtml.indexOf("</script", contentStart);
+      if (contentEnd === -1) {
+        throw new Error(`Unclosed script element in ${htmlPath}`);
+      }
+      const contents = html.slice(contentStart, contentEnd).trim();
       const isStructuredData = /type\s*=\s*["']application\/ld\+json["']/i.test(attributes);
       if (!/\bsrc\s*=/i.test(attributes) && contents && !isStructuredData) {
         throw new Error(`Inline JavaScript is not allowed in ${htmlPath}`);
