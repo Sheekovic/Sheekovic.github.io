@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-import { publicConfig } from "../assets/js/public-config.js";
+import { publicConfig } from "../public-config.js";
 
 const apiKey = publicConfig.firebase.acrossboard.apiKey;
 

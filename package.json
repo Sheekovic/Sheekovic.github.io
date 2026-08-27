@@ -1,9 +1,11 @@
 {
     "name": "sheekovic-site",
     "version": "1.0.0",
-    "description": "A portfolio site for Ahmed F. Wahballah (Sheekovic)",
+    "description": "Sheekovic's personal space for learning, experiments, and useful web tools",
     "type": "module",
     "scripts": {
+        "build": "node scripts/build-site.mjs",
+        "check": "npm run check:secrets && npm run check:syntax && npm run check:youtube && npm run build",
         "check:secrets": "node scripts/check-secrets.mjs",
         "check:syntax": "node scripts/check-js-syntax.mjs",
         "check:youtube": "node scripts/check-youtube-counter.mjs"

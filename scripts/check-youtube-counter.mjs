@@ -102,7 +102,7 @@ globalThis.fetch = async (url) => {
   };
 };
 
-await import(`../youtube.js?test=${Date.now()}`);
+await import(`../src/js/youtube.js?test=${Date.now()}`);
 
 elements.get("channelLink").value = "https://www.youtube.com/@MrBeast";
 await eventListeners.get("channel-search-button:click")();

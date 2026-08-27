@@ -31,32 +31,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
       - name: Scan tracked source for hardcoded secrets
         run: node scripts/check-secrets.mjs
-      - name: Prepare static artifact
-        run: |
-          mkdir -p _site
-          rsync -a --delete \
-            --exclude='.git*' \
-            --exclude='.github' \
-            --exclude='node_modules' \
-            --exclude='scripts' \
-            --exclude='package*.json' \
-            --exclude='HARD_CODED_SECRETS.local.md' \
-            --exclude='Sheekovic.github.io' \
-            --exclude='_site' \
-            ./ _site/
+      - name: Build static artifact
+        run: npm run build
       - name: Render public browser configuration
         env:
           FIREBASE_SHEEKO_API_KEY: ${{ secrets.FIREBASE_SHEEKO_API_KEY }}
           FIREBASE_ACROSSBOARD_API_KEY: ${{ secrets.FIREBASE_ACROSSBOARD_API_KEY }}
-        run: node scripts/render-public-config.mjs _site/assets/js/public-config.js
+        run: node scripts/render-public-config.mjs dist/assets/js/public-config.js
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          path: 'dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
