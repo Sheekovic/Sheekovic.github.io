@@ -34,16 +34,48 @@ for (const file of sourceFiles) {
   execFileSync(process.execPath, ["--check", file], { stdio: "inherit" });
 }
 
-const inlineScriptPattern = /<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi;
 let inlineScriptCount = 0;
+
+function collectInlineScripts(html, file) {
+  const normalizedHtml = html.toLowerCase();
+  const scripts = [];
+  let position = 0;
+
+  while (position < html.length) {
+    const openingStart = normalizedHtml.indexOf("<script", position);
+    if (openingStart === -1) {
+      break;
+    }
+
+    const openingEnd = normalizedHtml.indexOf(">", openingStart + 7);
+    if (openingEnd === -1) {
+      throw new Error(`Malformed script element in ${file}`);
+    }
+
+    const closingStart = normalizedHtml.indexOf("</script", openingEnd + 1);
+    if (closingStart === -1) {
+      throw new Error(`Malformed script element in ${file}`);
+    }
+
+    const closingEnd = normalizedHtml.indexOf(">", closingStart + 8);
+    if (closingEnd === -1) {
+      throw new Error(`Malformed script element in ${file}`);
+    }
+
+    scripts.push({
+      attributes: html.slice(openingStart + 7, openingEnd),
+      source: html.slice(openingEnd + 1, closingStart),
+    });
+    position = closingEnd + 1;
+  }
+
+  return scripts;
+}
 
 for (const file of htmlFiles) {
   const html = readFileSync(file, "utf8");
 
-  for (const match of html.matchAll(inlineScriptPattern)) {
-    const attributes = match[1];
-    const source = match[2];
-
+  for (const { attributes, source } of collectInlineScripts(html, file)) {
     if (/\bsrc\s*=/.test(attributes)) {
       continue;
     }
