@@ -1,116 +1,30 @@
-<!DOCTYPE HTML>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-
-	<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ac31997b-e5d6-4262-8491-67d7c825e54b"
-		type="text/javascript" async></script>
-
-	<title>User Profile - Sheekovic</title>
-	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-
-	<!-- Meta Tags for SEO -->
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name="description"
-		content="View the Sheekovic profile and explore current software projects, browser tools, and learning experiments.">
-	<meta name="keywords" content="Sheekovic, profile, coder, developer, web tools, software projects">
-	<meta name="author" content="Sheekovic">
-	<meta name="robots" content="index, follow">
-
-	<!-- Open Graph Meta Tags for Social Media -->
-	<meta property="og:title" content="User Profile - Sheekovic">
-	<meta property="og:description"
-		content="Explore Sheekovic's software projects, browser tools, and learning experiments.">
-	<meta property="og:image" content="/images/favicon.ico">
-	<meta property="og:url" content="https://yourusername.github.io/user-profile-sheekovic">
-
-	<!-- Twitter Card Meta Tags -->
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="User Profile - Sheekovic">
-	<meta name="twitter:description"
-		content="Explore Sheekovic's software projects, browser tools, and learning experiments.">
-	<meta name="twitter:image" content="/images/favicon.ico">
-	<meta name="twitter:site" content="@Sheekovic">
-
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="assets/css/profile.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Profile — Sheekovic Lab</title>
+  <meta name="description" content="View the account currently signed in to Sheekovic Lab.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/images/favicon.ico">
 </head>
-
 <body>
-	<div id="page-wrapper">
-
-		<!-- Header -->
-		<header id="header">
-			<h1 id="logo"><a href="index.html">SHEEKOVIC</a></h1>
-			<nav id="nav">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="profile.html">Profile</a></li>
-					<li><a href="forum.html">Forum</a></li>
-				</ul>
-			</nav>
-		</header>
-		<!-- Profile Section -->
-		<section id="profile">
-			<div class="content">
-				<header>
-					<h2>User Profile</h2>
-					<p>Welcome to your profile page! Here are your account details:</p>
-				</header>
-
-				<!-- User Details Table -->
-				<div class="table-wrapper">
-					<table>
-						<thead>
-							<tr>
-								<th>Profile Picture</th>
-								<th>Username</th>
-								<th>Email</th>
-							</tr>
-						</thead>
-						<tbody id="user-profile-table">
-							<!-- User data will be dynamically added here -->
-						</tbody>
-					</table>
-				</div>
-
-				<!-- Sign-Out Button -->
-				<div style="text-align: center;">
-					<button id="sign-out" hidden>Sign Out</button>
-				</div>
-			</div>
-		</section>
-
-		<!-- Footer -->
-		<footer id="footer">
-			<ul class="icons">
-				<li><a href="https://x.com/Sheekovic" class="icon brands alt fa-twitter"><span
-							class="label">X</span></a></li>
-				<li><a href="https://www.facebook.com/sheekovic" class="icon brands alt fa-facebook-f"><span
-							class="label">Facebook</span></a></li>
-				<li><a href="https://www.linkedin.com/in/sheekovic/" class="icon brands alt fa-linkedin-in"><span
-							class="label">LinkedIn</span></a></li>
-				<li><a href="https://www.instagram.com/sheekovic/" class="icon brands alt fa-instagram"><span
-							class="label">Instagram</span></a></li>
-				<li><a href="https://github.com/Sheekovic" class="icon brands alt fa-github"><span
-							class="label">GitHub</span></a></li>
-				<li><a href="mailto:ahmeedsheeko@gmail.com" class="icon solid alt fa-envelope"><span
-							class="label">Email</span></a></li>
-			</ul>
-			<ul class="copyright">
-				<li>&copy; Beyond. All rights reserved.</li>
-				<li>Design: <a href="https://github.com/Sheekovic">Sheekovic</a></li>
-			</ul>
-		</footer>
-
-	</div>
-
-	<script type="module" src="/assets/js/profile.js"></script>
+  <main class="account-page">
+    <section id="profile" aria-labelledby="profile-title">
+      <header>
+        <p class="eyebrow"><span></span> Account</p>
+        <h1 id="profile-title">Your profile</h1>
+        <p>Account details are loaded from Firebase only after you sign in.</p>
+      </header>
+      <div class="table-wrapper">
+        <table>
+          <thead><tr><th>Profile picture</th><th>Name</th><th>Email</th></tr></thead>
+          <tbody id="user-profile-table"><tr><td colspan="3">Checking sign-in status…</td></tr></tbody>
+        </table>
+      </div>
+      <button id="sign-out" type="button" hidden>Sign out</button>
+    </section>
+  </main>
+  <script type="module" src="/assets/js/profile.js"></script>
 </body>
-
 </html>

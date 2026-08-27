@@ -1,203 +1,43 @@
-#age-form {
-    max-width: 600px;
-    margin: auto;
-    padding: 1em;
-    background: #574f4f28;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /*some space above the form*/
-    margin-bottom: 3%;
+.age-page {
+  width: min(calc(100% - 2rem), 58rem);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) 0 0;
 }
 
-#compatibility-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 1em;
-    background: #574f4f28;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.age-intro { max-width: 45rem; }
+.age-intro h1 { margin: 0; font-size: clamp(2.6rem, 8vw, 5.5rem); line-height: 0.98; }
+.age-intro > p:last-child { max-width: 40rem; font-size: 1.05rem; }
+
+.age-card {
+  display: grid;
+  margin-top: 2.5rem;
+  padding: clamp(1.25rem, 5vw, 2.5rem);
+  grid-template-columns: minmax(15rem, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(1.5rem, 5vw, 3rem);
+  border: 1px solid var(--site-border);
+  border-radius: var(--site-radius-lg);
+  background: var(--site-surface);
+  box-shadow: var(--site-shadow);
 }
 
-#age-form .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -0.5em;
-}
+.age-card form { display: flex; flex-direction: column; gap: 0.75rem; }
+.age-card label { color: var(--site-text); font-weight: 750; }
+.age-card input { width: 100%; min-height: 3.25rem; padding: 0.75rem 0.9rem; border: 1px solid var(--site-border-strong); border-radius: 0.7rem; background: var(--site-bg-soft); color: var(--site-text); }
+.age-card button { min-height: 3.1rem; border: 0; border-radius: 0.7rem; background: var(--site-accent); color: #03251c; font-weight: 800; cursor: pointer; }
+.age-error { margin: 0; color: var(--site-danger) !important; }
 
-#compatibility-form .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -0.5em;
-}
+.age-results { min-width: 0; }
+.age-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.7rem; }
+.age-result-grid article { display: grid; min-width: 0; padding: 1.1rem 0.6rem; place-items: center; border: 1px solid var(--site-border); border-radius: 0.8rem; background: var(--site-bg-soft); }
+.age-result-grid strong { color: var(--site-accent); font-size: clamp(1.8rem, 6vw, 3rem); line-height: 1; }
+.age-result-grid span { color: var(--site-muted); font-size: 0.78rem; }
+.age-details { margin: 1rem 0 0; }
+.age-details div { display: flex; padding: 0.8rem 0; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--site-border); }
+.age-details dt { color: var(--site-muted); }
+.age-details dd { margin: 0; color: var(--site-text); font-weight: 700; text-align: right; }
 
-#age-form .col-4, .col-12-small {
-    padding: 0.5em;
-    flex: 1;
-}
-
-#compatibility-form .col-4, .col-12-small {
-    padding: 0.5em;
-    flex: 1;
-}
-
-
-#age-form input {
-    width: 100%;
-    padding: 1rem;
-    margin: 0.5em 0;
-    border: 1px solid #fffefe42;
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: rgba(32, 32, 32, 0.192);
-    color: white;
-}
-
-#compatibility-form input {
-    width: 100%;
-    padding: 1rem;
-    margin: 0.5em 0;
-    border: 1px solid #fffefe42;
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: rgba(32, 32, 32, 0.192);
-    color: white;
-}
-
-#age-form button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: auto;  /* Set width to auto so button fits next to inputs */
-    padding: 1rem;
-    margin: 0.5em 0;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #e44c65;
-    color: white;
-}
-
-#age-form button:hover {
-    background-color: #6e1432;
-}
-
-
-#compatibility-form button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: auto;  /* Set width to auto so button fits next to inputs */
-    padding: 1rem;
-    margin: 0.5em 0;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #e44c65;
-    color: white;
-}
-
-#compatibility-form button:hover {
-    background-color: #6e1432;
-}
-
-/* Add this CSS to style the cards and circular image */
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 10px 0;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    background-color: #574f4f28;
-}
-
-.card-header {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-}
-
-.circle-img {
-    border-radius: 50%;
-    width: 100px;
-    /*border color*/
-    border: 1px solid #ffffffd0;
-    height: 100px;
-    object-fit: cover;
-}
-
-.card-body {
-    text-align: center;
-}
-
-.card-body h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #e4dede;
-}
-
-.card-body p {
-    margin: 0;
-    font-size: 1rem;
-    color: #dbd2d2;
-}
-
-.compatibility-details {
-    background: #574f4f00;
-    width: 75%;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
-    flex-direction: column;
-    align-items: center;
-}
-
-.compatibility-details img {
-    width: 150px;
-    /*add space between image and another image*/
-    margin: 1%;
-    margin-top: 1%;
-    border-radius: 50%;
-    box-shadow: 0px 2px 2px rgba(2, 2, 2, 0.2);
-}
-
-#zodiac-score-image {
-    width: 350px;
-    /*add space between image and another image*/
-    margin: auto;
-}
-
-.compatibility-details h2 {
-    font-size: 2.5rem;
-    margin: 0;
-    color: #e4dede;
-}
-
-.compatibility-details p {
-    font-size: 2rem;
-    color: #dbd2d2;
+@media (max-width: 680px) {
+  .age-card { grid-template-columns: 1fr; }
+  .age-details div { align-items: flex-start; flex-direction: column; gap: 0.2rem; }
+  .age-details dd { text-align: left; }
 }

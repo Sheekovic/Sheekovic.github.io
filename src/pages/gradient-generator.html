@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://sheekovic.github.io/gradient-generator.html">
     <meta property="og:title" content="Free CSS Gradient Generator - Create Linear & Radial Gradients">
     <meta property="og:description" content="Free CSS gradient generator. Create beautiful linear and radial gradients visually. Add color stops, adjust angles, copy CSS instantly.">
-    <meta property="og:image" content="https://sheekovic.github.io/images/gradient-tool.png">
+    <meta property="og:image" content="https://sheekovic.github.io/images/sheeko.jpg">
     <meta property="og:site_name" content="Sheekovic Tools">
     
     <!-- Twitter -->
@@ -23,7 +23,7 @@
     <meta property="twitter:url" content="https://sheekovic.github.io/gradient-generator.html">
     <meta property="twitter:title" content="Free CSS Gradient Generator">
     <meta property="twitter:description" content="Free CSS gradient generator. Create beautiful linear and radial gradients visually.">
-    <meta property="twitter:image" content="https://sheekovic.github.io/images/gradient-tool.png">
+    <meta property="twitter:image" content="https://sheekovic.github.io/images/sheeko.jpg">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -58,7 +58,7 @@
         <div class="controls">
             <div class="input-group">
                 <label>Gradient Type:</label>
-                <select id="gradientType" onchange="updateGradient()">
+                <select id="gradientType">
                     <option value="linear">Linear</option>
                     <option value="radial">Radial</option>
                 </select>
@@ -66,22 +66,22 @@
             
             <div class="input-group" id="angleGroup">
                 <label>Angle: <span id="angleValue">90</span>°</label>
-                <input type="range" id="angle" min="0" max="360" value="90" oninput="updateGradient()">
+                <input type="range" id="angle" min="0" max="360" value="90">
             </div>
             
             <div class="color-stops">
                 <h3 style="margin-bottom: 15px;">Color Stops:</h3>
                 <div id="colorStopsList"></div>
-                <button class="add-btn" onclick="addColorStop()">+ Add Color Stop</button>
+                <button class="add-btn" id="add-color-stop" type="button">+ Add Color Stop</button>
             </div>
         </div>
         
-        <div class="code-output" onclick="copyCode()" title="Click to copy">
+        <div class="code-output">
             <div id="cssCode">background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);</div>
         </div>
         
-        <button onclick="copyCode()">Copy CSS Code</button>
-        <button class="secondary" onclick="location.href='tools.html'">← Back to Tools</button>
+        <button id="copy-gradient" type="button">Copy CSS Code</button>
+        <button class="secondary" id="back-to-tools" type="button">← Back to Tools</button>
     </div>
     <script src="/assets/js/tools/gradient-generator.js"></script>
 </body>

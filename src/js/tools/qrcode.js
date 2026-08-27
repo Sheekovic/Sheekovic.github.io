@@ -9,7 +9,7 @@ function generateQR() {
                 return;
             }
 
-            qrcodeDiv.innerHTML = '';
+            qrcodeDiv.replaceChildren();
 
             QRCode.toCanvas(text, {
                 width: size,

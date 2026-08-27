@@ -16,7 +16,7 @@
         "developer"
     ],
     "author": "Ahmed F. Wahballah",
-    "license": "ISC",
+    "license": "MIT",
     "engines": {
         "node": ">=22.x"
     }

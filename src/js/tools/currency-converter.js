@@ -97,7 +97,10 @@ const CACHE_KEY = 'sheekovic_currency_data';
         function showMessage(message, type = 'info') {
             const statusDiv = document.getElementById('statusMessage');
             const className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'info';
-            statusDiv.innerHTML = `<div class="${className}">${message}</div>`;
+            const messageElement = document.createElement('div');
+            messageElement.className = className;
+            messageElement.textContent = message;
+            statusDiv.replaceChildren(messageElement);
         }
 
         function isCrypto(code) {
@@ -119,8 +122,8 @@ const CACHE_KEY = 'sheekovic_currency_data';
                 return a[1].localeCompare(b[1]);
             });
 
-            fromSelect.innerHTML = '';
-            toSelect.innerHTML = '';
+            fromSelect.replaceChildren();
+            toSelect.replaceChildren();
 
             sortedCurrencies.forEach(([code, name]) => {
                 const type = isCrypto(code) ? '🪙' : '💵';

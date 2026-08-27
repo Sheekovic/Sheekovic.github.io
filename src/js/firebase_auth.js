@@ -1,8 +1,5 @@
-// Import Firebase SDKs and your Firebase configuration
-import { firebaseApp } from './firebase-config.js'; // Import initialized app
-import firebaseConfig from './firebase-config.js'; // Import the config if needed for debugging
+import { firebaseApp } from './firebase-config.js';
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
 // Firebase services
@@ -12,8 +9,6 @@ const auth = getAuth(firebaseApp); // Use the already initialized Firebase app
 export const binanceAuth = getAuth(firebaseApp);
 export const binanceGithubProvider = new GithubAuthProvider();
 export const binanceGoogleProvider = new GoogleAuthProvider();
-
-const analytics = getAnalytics(firebaseApp); // Use analytics if needed
 
 // Providers
 const githubProvider = new GithubAuthProvider();
@@ -57,13 +52,19 @@ document.getElementById('sign-out')?.addEventListener('click', () => {
 
 // Update UI After Sign-In
 export function updateUI(user) {
-  const userProfilePic = user.photoURL || "default-avatar.png";
+  const userProfilePic = user.photoURL || "https://avatars.githubusercontent.com/u/78682787?v=4";
   const userName = user.displayName || user.email || "Anonymous";
-  document.getElementById('user-info').innerHTML = `
-    <img src="${userProfilePic}" alt="Profile Picture" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 8px;">
-    <span>${userName}</span>
-    <p>Redirecting to your profile in 5 seconds...</p>
-  `;
+  const container = document.getElementById('user-info');
+  const image = document.createElement('img');
+  const name = document.createElement('span');
+  const message = document.createElement('p');
+  image.src = userProfilePic;
+  image.alt = '';
+  image.width = 24;
+  image.height = 24;
+  name.textContent = userName;
+  message.textContent = 'Redirecting to your profile in 5 seconds…';
+  container.replaceChildren(image, name, message);
 
   // Wait for 5 seconds, then redirect to profile.html
   setTimeout(() => {

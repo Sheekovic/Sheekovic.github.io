@@ -1,174 +1,45 @@
-<!DOCTYPE HTML>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ac31997b-e5d6-4262-8491-67d7c825e54b"
-        type="text/javascript" async></script>
-
-    <title>Sheekovic - Age Calculator</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-
-    <!-- Meta Tags for SEO -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description"
-        content="Calculate your age quickly and easily with Sheekovic's Age Calculator. Find out how many years, months, days, and even hours you've lived.">
-    <meta name="keywords"
-        content="age calculator, calculate age, Sheekovic, age in years, months, days, time calculator">
-    <meta name="author" content="Sheekovic">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Sheekovic - Age Calculator">
-    <meta property="og:description"
-        content="Calculate your age quickly and easily with Sheekovic's Age Calculator. Find out how many years, months, days, and even hours you've lived.">
-    <meta property="og:image" content="/images/favicon.ico">
-    <meta property="og:url" content="https://github.com/Sheekovic/Sheekovic.github.io">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sheekovic - Age Calculator">
-    <meta name="twitter:description"
-        content="Calculate your age quickly and easily with Sheekovic's Age Calculator. Find out how many years, months, days, and even hours you've lived.">
-    <meta name="twitter:image" content="/images/favicon.ico">
-    <meta name="twitter:site" content="@Sheekovic">
-
-    <!-- External CSS and JS -->
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/age.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Age Calculator — Sheekovic Lab</title>
+  <meta name="description" content="Calculate an exact calendar age, total days lived, and time until the next birthday in your browser.">
+  <meta name="author" content="Ahmed F. Wahballah">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sheekovic.github.io/age.html">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/age.css">
 </head>
-
-<body class="is-preload landing">
-    <div id="page-wrapper">
-
-        <!-- Header -->
-        <header id="header">
-            <h1 id="logo"><a href="index.html">SHEEKOVIC</a></h1>
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="youtube.html">YouTube Live</a></li>
-                    <li><a href="/api/api.html">API</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li>
-                        <section>
-                            <button id="github-signup" class="button primary">Sign Up with GitHub</button>
-                        </section>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-
-        <!-- Main Section -->
-        <section id="main" class="wrapper style1 special fade-up">
-            <div class="container">
-                <header class="major">
-                    <h2>Age Calculator</h2>
-                    <p>Find out your exact age and more fun facts!</p>
-                </header>
-                <div class="box">
-                    <!-- Input Form -->
-                    <form id="age-form">
-                        <div class="row gtr-uniform">
-                            <div class="col-4 col-12-small">
-                                <input type="number" id="day" name="day" placeholder="Day" min="1" max="31" required>
-                            </div>
-                            <div class="col-4 col-12-small">
-                                <input type="number" id="month" name="month" placeholder="Month" min="1" max="12"
-                                    required>
-                            </div>
-                            <div class="col-4 col-12-small">
-                                <input type="number" id="year" name="year" placeholder="Year" min="1900" required>
-                            </div>
-                        </div>
-                        <section>
-                            <button type="submit" class="button primary">Calculate</button>
-                        </section>
-                    </form>
-                    <!-- Output Section -->
-                    <div id="results" style="margin-top: 20px; display: none;">
-                        <p id="current-age"></p>
-                        <p id="next-birthday"></p>
-                        <p id="fun-facts"></p>
-                        <p id="famous-people"></p>
-                    </div>
-                    <!-- compatibility form -->
-                    <form id="compatibility-form">
-                        <div class="row gtr-uniform">
-                            <div class="col-4 col-12-small">
-                                <input type="number" id="compatibility-day" name="compatibility-day" placeholder="Day"
-                                    min="1" max="31" required>
-                            </div>
-                            <div class="col-4 col-12-small">
-                                <input type="number" id="compatibility-month" name="compatibility-month"
-                                    placeholder="Month" min="1" max="12" required>
-                            </div>
-                            <div class="col-4 col-12-small">
-                                <input type="number" id="compatibility-year" name="compatibility-year"
-                                    placeholder="Year" min="1900" required>
-                            </div>
-                        </div>
-                        <section>
-                            <button type="submit" class="button primary">Check Compatibility</button>
-                        </section>
-                    </form>
-                    <!-- compatibility output section -->
-                    <div id="compatibility-results" style="margin-top: 20px; display: none;">
-                        <p id="compatibility"></p>
-                    </div>
-                    <div class="compatibility-details" id="compatibility-details">
-                        <img src="" id="zodiac-image">
-                        <img src="" id="zodiac-image-2">
-                        <h2 id="zodiac_signs"></h2>
-                        <p id="match-score"></p>
-                        <img src="" id="zodiac-score-image">
-                    </div>
-                    <div id="compatibility-score">
-                    </div>
-                </div>
-            </div>
-    </div>
+<body>
+  <main id="main" class="age-page">
+    <section class="age-intro" aria-labelledby="age-title">
+      <p class="eyebrow"><span></span> Private, browser-based calculation</p>
+      <h1 id="age-title">Age Calculator</h1>
+      <p>Choose a birth date to see an exact calendar age, total days lived, and the countdown to the next birthday. The date never leaves your browser.</p>
     </section>
 
-    <!-- Footer -->
-    <footer id="footer">
-        <ul class="icons">
-            <li><a href="https://x.com/Sheekovic" class="icon brands alt fa-twitter"><span class="label">X</span></a>
-            </li>
-            <li><a href="https://www.facebook.com/sheekovic" class="icon brands alt fa-facebook-f"><span
-                        class="label">Facebook</span></a></li>
-            <li><a href="https://www.linkedin.com/in/sheekovic/" class="icon brands alt fa-linkedin-in"><span
-                        class="label">LinkedIn</span></a></li>
-            <li><a href="https://www.instagram.com/sheekovic/" class="icon brands alt fa-instagram"><span
-                        class="label">Instagram</span></a></li>
-            <li><a href="https://github.com/Sheekovic" class="icon brands alt fa-github"><span
-                        class="label">GitHub</span></a></li>
-            <li><a href="mailto:ahmeedsheeko@gmail.com" class="icon solid alt fa-envelope"><span
-                        class="label">Email</span></a></li>
-        </ul>
-        <ul class="copyright">
-            <li>&copy; Beyond. All rights reserved.</li>
-            <li>Design: <a href="https://github.com/Sheekovic">Sheekovic</a></li>
-        </ul>
-    </footer>
+    <section class="age-card" aria-label="Age calculation">
+      <form id="age-form">
+        <label for="birth-date">Date of birth</label>
+        <input type="date" id="birth-date" required>
+        <button type="submit">Calculate age</button>
+        <p id="age-error" class="age-error" role="alert" hidden></p>
+      </form>
 
-    </div>
-
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/jquery.dropotron.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/firebase-session.js" defer type="module"></script>
-    <script src="assets/js/AgeCalculator.js"></script>
+      <div id="age-results" class="age-results" aria-live="polite" hidden>
+        <div class="age-result-grid">
+          <article><strong id="age-years">0</strong><span>years</span></article>
+          <article><strong id="age-months">0</strong><span>months</span></article>
+          <article><strong id="age-days">0</strong><span>days</span></article>
+        </div>
+        <dl class="age-details">
+          <div><dt>Total days lived</dt><dd id="age-total-days">0</dd></div>
+          <div><dt>Next birthday</dt><dd id="age-next-birthday">—</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+  <script src="/assets/js/AgeCalculator.js"></script>
 </body>
-
 </html>
