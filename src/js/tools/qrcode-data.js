@@ -41,6 +41,7 @@ export function buildVCard(fields) {
     'BEGIN:VCARD',
     'VERSION:3.0',
     `FN:${escapeVCard(fullName)}`,
+    `N:;${escapeVCard(fullName)};;;`,
   ];
 
   optionalVCardLine(lines, 'ORG', fields.organization);

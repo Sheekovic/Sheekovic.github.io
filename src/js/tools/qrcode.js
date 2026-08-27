@@ -247,7 +247,17 @@ function renderQr({ announce = false } = {}) {
 
 function scheduleRender() {
   window.clearTimeout(renderTimer);
-  renderTimer = window.setTimeout(() => renderQr(), 180);
+  renderTimer = window.setTimeout(() => {
+    renderTimer = undefined;
+    renderQr();
+  }, 180);
+}
+
+function flushPendingRender() {
+  if (renderTimer === undefined) return;
+  window.clearTimeout(renderTimer);
+  renderTimer = undefined;
+  renderQr();
 }
 
 function setLogo(dataUrl = '') {
@@ -334,6 +344,7 @@ for (const button of document.querySelectorAll('[data-preset]')) {
 
 for (const button of document.querySelectorAll('[data-download]')) {
   button.addEventListener('click', async () => {
+    flushPendingRender();
     if (!qrCode || !latestPayload) {
       setStatus('Generate a valid QR code before downloading.', 'error');
       return;
@@ -352,6 +363,7 @@ for (const button of document.querySelectorAll('[data-download]')) {
 }
 
 document.getElementById('copy-payload').addEventListener('click', async () => {
+  flushPendingRender();
   if (!latestPayload) {
     setStatus('Generate a valid QR code before copying.', 'error');
     return;

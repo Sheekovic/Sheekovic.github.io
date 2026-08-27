@@ -22,6 +22,7 @@ const contact = buildVCard({
 });
 assert.match(contact, /^BEGIN:VCARD\r\nVERSION:3\.0\r\n/);
 assert.match(contact, /FN:Ahmed\\, Wahballah/);
+assert.match(contact, /N:;Ahmed\\, Wahballah;;;/);
 assert.match(contact, /TEL;TYPE=CELL:\+20 100 000 0000/);
 assert.match(contact, /EMAIL;TYPE=INTERNET:hello@example\.com/);
 assert.match(contact, /URL:https:\/\/example\.com\//);
