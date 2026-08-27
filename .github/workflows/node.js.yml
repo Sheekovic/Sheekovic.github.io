@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
   build:
 
@@ -18,21 +21,17 @@ jobs:
         # node-version: [16.x, 18.x]
 
     steps:
-    - run: node --version
-    - run: npm --version
     - uses: actions/checkout@v4
-    - name: Scan tracked source for hardcoded secrets
-      run: node scripts/check-secrets.mjs
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install express  # Ensure express is installed
-    - run: npm install firebase
-    - run: npm install sqlite3
-    - run: npm ci
-    - run: node ./assets/js/check-sqlite.js
-    - run: node ./assets/js/create_user_data_db.js
-    - run: node ./assets/js/sqlapp.js
-  #  - run: node ./assets/js/app.js  # Show deprecation warnings
-  #  - run: npm test  # Run tests if needed
+        cache: npm
+    - name: Install locked dependencies
+      run: npm ci --ignore-scripts
+    - name: Audit production dependencies
+      run: npm audit --audit-level=low
+    - name: Scan tracked source for hardcoded secrets
+      run: npm run check:secrets
+    - name: Check project JavaScript syntax
+      run: npm run check:syntax
