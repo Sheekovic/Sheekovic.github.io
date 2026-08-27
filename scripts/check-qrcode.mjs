@@ -29,6 +29,10 @@ assert.doesNotMatch(contact, /ADR;TYPE=WORK/);
 assert.match(contact, /NOTE:Learning\\; building/);
 assert.match(contact, /\r\nEND:VCARD$/);
 
+const contactWithAddress = buildVCard({ name: 'Test Person', address: 'Cairo, Egypt' });
+assert.match(contactWithAddress, /ADR;TYPE=WORK:;;Cairo\\, Egypt;;;;/);
+assert.doesNotMatch(contactWithAddress, /ADR;TYPE=WORK:\\;/);
+
 assert.equal(
   buildWifi({ ssid: 'Cafe;Guest', security: 'WPA', password: 'pass:word', hidden: true }),
   'WIFI:T:WPA;S:Cafe\\;Guest;P:pass\\:word;H:true;;',

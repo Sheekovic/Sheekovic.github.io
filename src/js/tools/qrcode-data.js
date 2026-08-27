@@ -23,6 +23,7 @@ export function normalizeWebUrl(value, label = 'URL') {
 
 export function escapeVCard(value) {
   return String(value || '')
+    .replace(/\r\n?/g, '\n')
     .replaceAll('\\', '\\\\')
     .replaceAll('\n', '\\n')
     .replaceAll(';', '\\;')
@@ -50,7 +51,7 @@ export function buildVCard(fields) {
     lines.push(`URL:${escapeVCard(normalizeWebUrl(fields.website, 'Contact website'))}`);
   }
   const address = String(fields.address || '').trim();
-  if (address) optionalVCardLine(lines, 'ADR;TYPE=WORK', `;;${address};;;;`);
+  if (address) lines.push(`ADR;TYPE=WORK:;;${escapeVCard(address)};;;;`);
   optionalVCardLine(lines, 'NOTE', fields.note);
   lines.push('END:VCARD');
   return lines.join('\r\n');
