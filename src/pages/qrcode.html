@@ -1,81 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free QR Code Generator - Create Custom QR Codes Online | Sheekovic</title>
-    <meta name="description" content="Generate free QR codes instantly! Create custom QR codes for URLs, text, contact info, and more. Download high-quality PNG QR codes. No registration required.">
-    <meta name="keywords" content="qr code generator, free qr code, create qr code, qr code maker, custom qr code, qr code online, generate qr code, qr scanner">
-    <meta name="author" content="Sheekovic">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://sheekovic.github.io/qrcode.html">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sheekovic.github.io/qrcode.html">
-    <meta property="og:title" content="Free QR Code Generator - Create Custom QR Codes Online">
-    <meta property="og:description" content="Generate free QR codes instantly! Create custom QR codes for URLs, text, contact info, and more. Download high-quality PNG QR codes.">
-    <meta property="og:image" content="https://sheekovic.github.io/images/sheeko.jpg">
-    <meta property="og:site_name" content="Sheekovic Tools">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://sheekovic.github.io/qrcode.html">
-    <meta property="twitter:title" content="Free QR Code Generator - Create Custom QR Codes Online">
-    <meta property="twitter:description" content="Generate free QR codes instantly! Create custom QR codes for URLs, text, contact info, and more. Download high-quality PNG QR codes.">
-    <meta property="twitter:image" content="https://sheekovic.github.io/images/sheeko.jpg">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "QR Code Generator",
-      "description": "Free online QR code generator tool. Create custom QR codes for URLs, text, and more.",
-      "url": "https://sheekovic.github.io/qrcode.html",
-      "applicationCategory": "UtilitiesApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Sheekovic"
-      }
-    }
-    </script>
-    
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <link rel="stylesheet" href="/assets/css/tools/qrcode.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced QR Studio — Branded QR Codes | Sheekovic</title>
+  <meta name="description" content="Create branded QR codes for links, contact cards, audio, Wi-Fi, and text. Add a logo, colors, gradients, custom shapes, and download PNG or SVG files.">
+  <meta name="keywords" content="advanced qr code generator, qr logo, vcard qr, audio qr code, wifi qr, custom qr colors">
+  <meta name="author" content="Sheekovic">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sheekovic.github.io/qrcode.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sheekovic.github.io/qrcode.html">
+  <meta property="og:title" content="Advanced QR Studio — Sheekovic Lab">
+  <meta property="og:description" content="Design branded QR codes with logos, gradients, contact cards, audio links, and more.">
+  <meta property="og:image" content="https://sheekovic.github.io/images/sheeko.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Advanced QR Studio — Sheekovic Lab">
+  <meta name="twitter:description" content="Build and export custom QR codes locally in your browser.">
+  <meta name="twitter:image" content="https://sheekovic.github.io/images/sheeko.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Advanced QR Studio",
+    "description": "Create branded QR codes for web links, contacts, audio, Wi-Fi, and text.",
+    "url": "https://sheekovic.github.io/qrcode.html",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/tools/qrcode.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🔲 QR Code Generator</h1>
-        
-        <div class="input-group">
-            <label for="text">Enter Text or URL:</label>
-            <input type="text" id="text" placeholder="https://example.com">
-        </div>
-        
-        <div class="input-group">
-            <label for="size">Size:</label>
-            <select id="size">
-                <option value="128">Small (128x128)</option>
-                <option value="256" selected>Medium (256x256)</option>
-                <option value="512">Large (512x512)</option>
-            </select>
-        </div>
-        
-        <button onclick="generateQR()">Generate QR Code</button>
-        
-        <div id="qrcode"></div>
-        
-        <button class="download-btn" id="downloadBtn" onclick="downloadQR()">Download QR Code</button>
-        <button class="back-btn" onclick="location.href='tools.html'">← Back to Tools</button>
-    </div>
+  <main class="qr-studio">
+    <header class="qr-hero">
+      <p class="eyebrow"><span></span> Private, local QR design</p>
+      <h1>Advanced QR Studio</h1>
+      <p>Create a scan-ready QR code, add your brand, and export it in high resolution. Your text, contacts, Wi-Fi password, and uploaded logo stay in this browser.</p>
+      <div class="qr-feature-list" aria-label="Key features">
+        <span>Logo-ready</span><span>PNG + SVG</span><span>Live preview</span><span>No upload</span>
+      </div>
+    </header>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-    <script src="/assets/js/tools/qrcode.js"></script>
+    <div class="qr-workspace">
+      <form class="qr-builder" id="qr-form" novalidate>
+        <section class="qr-panel" aria-labelledby="content-heading">
+          <div class="qr-panel__heading"><span>01</span><div><h2 id="content-heading">Choose the content</h2><p>The scanner receives exactly what you build here.</p></div></div>
+          <fieldset class="qr-type-switcher">
+            <legend class="sr-only">QR content type</legend>
+            <label><input type="radio" name="content-type" value="url" checked><span>Link</span></label>
+            <label><input type="radio" name="content-type" value="text"><span>Text</span></label>
+            <label><input type="radio" name="content-type" value="contact"><span>Contact</span></label>
+            <label><input type="radio" name="content-type" value="audio"><span>Audio</span></label>
+            <label><input type="radio" name="content-type" value="wifi"><span>Wi-Fi</span></label>
+          </fieldset>
+
+          <div class="qr-content-panel" data-content-panel="url">
+            <label for="qr-url">Website or app link</label>
+            <input id="qr-url" name="url" type="url" value="https://sheekovic.github.io/" placeholder="https://example.com" autocomplete="url">
+          </div>
+
+          <div class="qr-content-panel" data-content-panel="text" hidden>
+            <label for="qr-text">Message</label>
+            <textarea id="qr-text" name="text" rows="5" maxlength="2953" placeholder="Write the text that should appear after scanning"></textarea>
+            <p class="field-note">Capacity is validated in UTF-8 bytes against the selected error-recovery level.</p>
+          </div>
+
+          <div class="qr-content-panel qr-form-grid" data-content-panel="contact" hidden>
+            <label class="qr-span-2">Full name<input name="name" autocomplete="name" placeholder="Ahmed Wahballah"></label>
+            <label>Organization<input name="organization" autocomplete="organization" placeholder="Company or project"></label>
+            <label>Job title<input name="jobTitle" autocomplete="organization-title" placeholder="Developer"></label>
+            <label>Phone<input name="phone" type="tel" autocomplete="tel" placeholder="+20 100 000 0000"></label>
+            <label>Email<input name="email" type="email" autocomplete="email" placeholder="hello@example.com"></label>
+            <label class="qr-span-2">Website<input name="website" type="url" autocomplete="url" placeholder="https://example.com"></label>
+            <label class="qr-span-2">Address<input name="address" autocomplete="street-address" placeholder="City, country"></label>
+            <label class="qr-span-2">Note<textarea name="note" rows="2" maxlength="240" placeholder="Optional note"></textarea></label>
+          </div>
+
+          <div class="qr-content-panel" data-content-panel="audio" hidden>
+            <label for="audio-url">Public audio link</label>
+            <input id="audio-url" name="audioUrl" type="url" placeholder="https://example.com/song.mp3">
+            <p class="field-note">A QR code cannot contain a full song file. It stores the HTTPS link; the audio preview below verifies that link before export.</p>
+            <audio id="audio-preview" controls preload="metadata" hidden></audio>
+          </div>
+
+          <div class="qr-content-panel qr-form-grid" data-content-panel="wifi" hidden>
+            <label class="qr-span-2">Network name (SSID)<input name="ssid" autocomplete="off" placeholder="Home Wi-Fi"></label>
+            <label>Security<select name="security"><option value="WPA">WPA/WPA2</option><option value="SAE">WPA3 (SAE)</option><option value="WEP">WEP</option><option value="nopass">No password</option></select></label>
+            <label>Password<input name="password" type="password" autocomplete="new-password" placeholder="Wi-Fi password"></label>
+            <label class="qr-check qr-span-2"><input name="hidden" type="checkbox"><span>Hidden network</span></label>
+          </div>
+        </section>
+
+        <section class="qr-panel" aria-labelledby="brand-heading">
+          <div class="qr-panel__heading"><span>02</span><div><h2 id="brand-heading">Add your brand</h2><p>Use high contrast and a simple square logo for reliable scanning.</p></div></div>
+          <div class="qr-logo-row">
+            <div class="qr-logo-drop">
+              <input id="logo-file" name="logo" type="file" accept="image/png,image/jpeg,image/webp">
+              <label for="logo-file"><strong>Add a logo</strong><span>PNG, JPG, or WebP · max 3 MB</span></label>
+            </div>
+            <div class="qr-logo-preview" id="logo-preview" aria-label="Logo preview"><span>No logo</span></div>
+            <button class="qr-text-button" id="remove-logo" type="button" hidden>Remove</button>
+          </div>
+          <div class="qr-form-grid">
+            <label>Logo size <output id="logo-size-value">30%</output><input id="logo-size" name="logoSize" type="range" min="15" max="40" value="30"></label>
+            <label>Logo padding <output id="logo-margin-value">6px</output><input id="logo-margin" name="logoMargin" type="range" min="0" max="16" value="6"></label>
+          </div>
+        </section>
+
+        <section class="qr-panel" aria-labelledby="style-heading">
+          <div class="qr-panel__heading"><span>03</span><div><h2 id="style-heading">Style the code</h2><p>Shape, color, resolution, and recovery controls.</p></div></div>
+          <div class="qr-presets" aria-label="Color presets">
+            <button type="button" data-preset="classic">Classic</button>
+            <button type="button" data-preset="ocean">Ocean</button>
+            <button type="button" data-preset="sunset">Sunset</button>
+            <button type="button" data-preset="mint">Mint</button>
+          </div>
+          <div class="qr-form-grid qr-style-grid">
+            <label>Primary color<input name="primaryColor" type="color" value="#07111f"></label>
+            <label>Secondary color<input name="secondaryColor" type="color" value="#087f61"></label>
+            <label>Background<input name="backgroundColor" type="color" value="#ffffff"></label>
+            <label class="qr-check"><input name="gradient" type="checkbox" checked><span>Use gradient</span></label>
+            <label>Module shape<select name="dotStyle"><option value="rounded">Rounded</option><option value="dots">Dots</option><option value="classy-rounded">Classy rounded</option><option value="classy">Classy</option><option value="square">Square</option><option value="extra-rounded">Extra rounded</option></select></label>
+            <label>Corner shape<select name="cornerStyle"><option value="extra-rounded">Extra rounded</option><option value="dot">Dot</option><option value="square">Square</option></select></label>
+            <label>Gradient direction<select name="gradientRotation"><option value="0">Left to right</option><option value="90">Top to bottom</option><option value="45">Diagonal down</option><option value="135">Diagonal up</option></select></label>
+            <label>Error recovery<select name="errorLevel"><option value="H" selected>High — best for logos</option><option value="Q">Quartile</option><option value="M">Medium</option><option value="L">Low</option></select></label>
+            <label>Export size<select name="size"><option value="512">512 × 512</option><option value="768" selected>768 × 768</option><option value="1024">1024 × 1024</option><option value="1536">1536 × 1536</option></select></label>
+            <label>Quiet zone <output id="margin-value">16px</output><input id="qr-margin" name="margin" type="range" min="0" max="40" value="16"></label>
+          </div>
+          <p class="qr-contrast" id="contrast-message" role="status"></p>
+        </section>
+
+        <div class="qr-builder-actions">
+          <button class="site-button site-button--primary" type="submit">Generate QR code</button>
+          <button class="site-button" id="reset-qr" type="reset">Reset studio</button>
+        </div>
+      </form>
+
+      <aside class="qr-preview-panel" aria-labelledby="preview-heading">
+        <div class="qr-preview-heading"><div><p class="eyebrow"><span></span> Live result</p><h2 id="preview-heading">Scan preview</h2></div><span class="qr-ready-indicator" id="ready-indicator">Ready</span></div>
+        <div class="qr-canvas-wrap" id="qr-preview"></div>
+        <p class="qr-status" id="qr-status" role="status" aria-live="polite">Your QR code is ready.</p>
+        <dl class="qr-summary">
+          <div><dt>Type</dt><dd id="summary-type">Link</dd></div>
+          <div><dt>Payload</dt><dd id="summary-payload">—</dd></div>
+          <div><dt>Resolution</dt><dd id="summary-size">768 × 768</dd></div>
+        </dl>
+        <div class="qr-download-grid">
+          <button class="site-button site-button--primary" type="button" data-download="png">Download PNG</button>
+          <button class="site-button" type="button" data-download="svg">Download SVG</button>
+          <button class="site-button qr-span-2" id="copy-payload" type="button">Copy encoded content</button>
+        </div>
+        <p class="field-note">Always test the downloaded code with two different camera apps before printing.</p>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/assets/vendor/qr-code-styling.js"></script>
+  <script type="module" src="/assets/js/tools/qrcode.js"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@ export const tools = Object.freeze([
   { file: "/color-converter.html", name: "Color Converter", icon: "◒", category: "Design", description: "Convert between HEX, RGB, HSL, and CMYK." },
   { file: "/gradient-generator.html", name: "Gradient Generator", icon: "◐", category: "Design", description: "Build linear and radial CSS gradients visually." },
   { file: "/box-shadow-generator.html", name: "Shadow Generator", icon: "□", category: "Design", description: "Tune CSS box shadows and copy the result." },
-  { file: "/qrcode.html", name: "QR Code Generator", icon: "▦", category: "Media", description: "Create downloadable QR codes from text or links." },
+  { file: "/qrcode.html", name: "Advanced QR Studio", icon: "▦", category: "Media", description: "Create branded QR codes for links, contacts, audio, Wi-Fi, and text." },
   { file: "/image-compressor.html", name: "Image Compressor", icon: "▧", category: "Media", description: "Reduce image file sizes locally in the browser." },
   { file: "/pdf-merger.html", name: "PDF Merger", icon: "PDF", category: "Media", description: "Combine multiple PDF files into one document." },
   { file: "/pixformat.html", name: "PixFormat", icon: "PX", category: "Media", description: "Explore the PixFormat image conversion project." },

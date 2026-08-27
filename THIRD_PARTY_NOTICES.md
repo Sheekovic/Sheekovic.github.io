@@ -1,6 +1,6 @@
 # Third-party notices
 
-This project loads the following third-party browser libraries from their publishers or public CDNs. They are not relicensed by the project's MIT License.
+This project uses the following third-party browser libraries. Some are bundled during the build and others are loaded from their publishers or public CDNs. They are not relicensed by the project's MIT License.
 
 | Component | Used for | License |
 | --- | --- | --- |
@@ -10,9 +10,9 @@ This project loads the following third-party browser libraries from their publis
 | js-beautify | JavaScript, HTML, and CSS formatting | MIT |
 | marked | Markdown parsing | MIT |
 | pdf-lib | PDF merging | MIT |
-| qrcode | QR code generation | MIT |
+| qr-code-styling and qrcode-generator | Styled QR code generation | MIT |
 | QRCode.js | Donation QR rendering | MIT |
 | highlight.js | Syntax highlighting in SheeKryptor | BSD-3-Clause |
 | Odometer | Animated YouTube statistics | MIT |
 
-The corresponding project and license links are present in the page source or the upstream package documentation. External APIs and hosted services are governed by their own terms and privacy policies.
+The corresponding project and license links are available in package metadata, page source, or upstream documentation. External APIs and hosted services are governed by their own terms and privacy policies.
