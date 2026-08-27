@@ -27,6 +27,8 @@ let logoDataUrl = '';
 let qrCode;
 let latestPayload = '';
 let renderTimer;
+let logoReadGeneration = 0;
+let activeLogoReader;
 
 function control(name) {
   return form.elements.namedItem(name);
@@ -285,7 +287,14 @@ function setLogo(dataUrl = '') {
   }
 }
 
+function cancelPendingLogoRead() {
+  logoReadGeneration += 1;
+  if (activeLogoReader?.readyState === FileReader.LOADING) activeLogoReader.abort();
+  activeLogoReader = undefined;
+}
+
 logoInput.addEventListener('change', () => {
+  cancelPendingLogoRead();
   const file = logoInput.files?.[0];
   if (!file) return;
   if (!allowedLogoTypes.has(file.type)) {
@@ -299,15 +308,24 @@ logoInput.addEventListener('change', () => {
     return;
   }
   const reader = new FileReader();
+  const generation = logoReadGeneration;
+  activeLogoReader = reader;
   reader.addEventListener('load', () => {
+    if (generation !== logoReadGeneration) return;
+    activeLogoReader = undefined;
     setLogo(String(reader.result));
     renderQr({ announce: true });
   });
-  reader.addEventListener('error', () => setStatus('Unable to read that logo.', 'error'));
+  reader.addEventListener('error', () => {
+    if (generation !== logoReadGeneration) return;
+    activeLogoReader = undefined;
+    setStatus('Unable to read that logo.', 'error');
+  });
   reader.readAsDataURL(file);
 });
 
 removeLogoButton.addEventListener('click', () => {
+  cancelPendingLogoRead();
   setLogo();
   renderQr({ announce: true });
 });
@@ -329,6 +347,7 @@ form.addEventListener('change', (event) => {
 });
 
 form.addEventListener('reset', () => {
+  cancelPendingLogoRead();
   window.setTimeout(() => {
     clearSavedStyle();
     setLogo();
