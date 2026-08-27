@@ -10,7 +10,6 @@ if (missing.length > 0) {
 }
 
 const config = {
-  apiBaseUrl: process.env.PUBLIC_API_BASE_URL || "https://sheekovic.netlify.app",
   firebase: {
     sheeko: { apiKey: process.env.FIREBASE_SHEEKO_API_KEY },
     acrossboard: { apiKey: process.env.FIREBASE_ACROSSBOARD_API_KEY }
