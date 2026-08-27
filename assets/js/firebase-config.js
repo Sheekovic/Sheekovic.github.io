@@ -1,1 +1,25 @@
-const _0x398f14=_0xa872;(function(_0x2502e5,_0x435c1d){const _0x46e6ef=_0xa872,_0x5406e3=_0x2502e5();while(!![]){try{const _0x26841c=parseInt(_0x46e6ef(0x1d2))/0x1+parseInt(_0x46e6ef(0x1ca))/0x2+-parseInt(_0x46e6ef(0x1c7))/0x3*(-parseInt(_0x46e6ef(0x1d3))/0x4)+-parseInt(_0x46e6ef(0x1d0))/0x5+-parseInt(_0x46e6ef(0x1cc))/0x6*(-parseInt(_0x46e6ef(0x1d4))/0x7)+-parseInt(_0x46e6ef(0x1c8))/0x8*(parseInt(_0x46e6ef(0x1d1))/0x9)+-parseInt(_0x46e6ef(0x1cb))/0xa;if(_0x26841c===_0x435c1d)break;else _0x5406e3['push'](_0x5406e3['shift']());}catch(_0x5afe99){_0x5406e3['push'](_0x5406e3['shift']());}}}(_0x2604,0xb9a80));import{initializeApp}from'https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js';import{getAnalytics}from'https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js';const firebaseConfig={'apiKey':_0x398f14(0x1cf),'authDomain':'sheeko-github.firebaseapp.com','projectId':_0x398f14(0x1c6),'storageBucket':_0x398f14(0x1cd),'messagingSenderId':_0x398f14(0x1ce),'appId':'1:77160038597:web:964aa0a9b4a426ffcc30ac','measurementId':_0x398f14(0x1c9)};export const firebaseApp=initializeApp(firebaseConfig);export const analytics=getAnalytics(firebaseApp);function _0x2604(){const _0x5640f1=['197364wuYxgu','sheeko-github.firebasestorage.app','77160038597','AIzaSyCnzRojHjTeb1e_enXi6YWMse7X6w0vPXo','2005680YZDXDf','36dUUDoC','210772OYJNSA','46180fzwHAD','301CAenBU','sheeko-github','387nlQSBz','2218664VFGLab','G-3E4W2ESB42','1367546iOJlbr','15273760WcouKt'];_0x2604=function(){return _0x5640f1;};return _0x2604();}function _0xa872(_0x431764,_0x32c21e){const _0x26047e=_0x2604();return _0xa872=function(_0xa872e0,_0x5f36b4){_0xa872e0=_0xa872e0-0x1c6;let _0x565fb7=_0x26047e[_0xa872e0];return _0x565fb7;},_0xa872(_0x431764,_0x32c21e);}export default firebaseConfig;
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+import { publicConfig } from "./public-config.js";
+
+const apiKey = publicConfig.firebase.sheeko.apiKey;
+
+if (!apiKey) {
+  throw new Error(
+    "Firebase public config is missing. Render assets/js/public-config.js before serving the site."
+  );
+}
+
+const firebaseConfig = {
+  apiKey,
+  authDomain: "sheeko-github.firebaseapp.com",
+  projectId: "sheeko-github",
+  storageBucket: "sheeko-github.firebasestorage.app",
+  messagingSenderId: "77160038597",
+  appId: "1:77160038597:web:964aa0a9b4a426ffcc30ac",
+  measurementId: "G-3E4W2ESB42"
+};
+
+export const firebaseApp = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(firebaseApp);
+export default firebaseConfig;

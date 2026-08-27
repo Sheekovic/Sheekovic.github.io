@@ -130,3 +130,7 @@ dist
 .pnp.*
 # Local Netlify folder
 .netlify
+
+# Local security inventory. This file intentionally contains revoked values and
+# must never be committed or uploaded to GitHub Pages.
+HARD_CODED_SECRETS.local.md
