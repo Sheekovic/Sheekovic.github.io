@@ -176,7 +176,7 @@ async function assertBuild() {
       throw new Error(`Missing viewport metadata in ${htmlPath}`);
     }
 
-    for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+    for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)) {
       const attributes = match[1];
       const contents = match[2].trim();
       const isStructuredData = /type\s*=\s*["']application\/ld\+json["']/i.test(attributes);
