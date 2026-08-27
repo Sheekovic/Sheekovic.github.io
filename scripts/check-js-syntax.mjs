@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
 import { extname, join } from "node:path";
 
-const sourceRoots = ["assets/js", "scripts", "netlify/functions"];
+const sourceRoots = ["assets/js", "scripts"];
 const htmlFiles = [
   "code-beautifier.html",
   "donate.html",

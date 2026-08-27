@@ -39,12 +39,9 @@ jobs:
           rsync -a --delete \
             --exclude='.git*' \
             --exclude='.github' \
-            --exclude='.netlify' \
             --exclude='node_modules' \
             --exclude='scripts' \
-            --exclude='netlify' \
             --exclude='package*.json' \
-            --exclude='netlify.toml' \
             --exclude='HARD_CODED_SECRETS.local.md' \
             --exclude='Sheekovic.github.io' \
             --exclude='_site' \
@@ -53,7 +50,6 @@ jobs:
         env:
           FIREBASE_SHEEKO_API_KEY: ${{ secrets.FIREBASE_SHEEKO_API_KEY }}
           FIREBASE_ACROSSBOARD_API_KEY: ${{ secrets.FIREBASE_ACROSSBOARD_API_KEY }}
-          PUBLIC_API_BASE_URL: ${{ vars.PUBLIC_API_BASE_URL }}
         run: node scripts/render-public-config.mjs _site/assets/js/public-config.js
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -2,7 +2,6 @@ const tools = [
   // Existing Tools
   { file: "age.html", name: "Age Calculator", description: "Calculate your exact age in years, months, and days." },
   { file: "pixformat.html", name: "PixFormat", description: "Convert images to different formats easily." },
-  { file: "youtube.html", name: "YouTube LSC", description: "YouTube Live Subscribers Counter." },
   { file: "to-do.html", name: "To-Do List", description: "Manage your daily tasks with this simple to-do list." },
   { file: "binance.html", name: "Binance Strategy Tester", description: "Backtest Binance Futures trading strategies with customizable parameters and performance analysis." },
   { file: "sheekryptor.html", name: "SheeKryptor", description: "Encrypt, decrypt, password generator, API testing and much more." },
