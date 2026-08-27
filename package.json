@@ -24,5 +24,8 @@
     },
     "dependencies": {
         "qr-code-styling": "1.9.2"
+    },
+    "devDependencies": {
+        "qrcode-generator": "1.5.2"
     }
 }

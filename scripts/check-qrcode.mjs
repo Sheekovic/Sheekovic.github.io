@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import qrcodeGenerator from 'qrcode-generator';
 import {
   assertQrCapacity,
   buildQrPayload,
@@ -19,6 +20,23 @@ assert.equal(assertQrCapacity('a'.repeat(1273), 'H'), 1273);
 assert.throws(() => assertQrCapacity('a'.repeat(1274), 'H'), /supports up to 1,273/);
 assert.equal(assertQrCapacity('مرحبا', 'H'), 10);
 assert.equal(assertQrCapacity('a'.repeat(2953), 'L'), 2953);
+
+// qr-code-styling 1.9.2 uses qrcode-generator 1.5.2's UTF-8 encoder. It does not
+// prepend a BOM, so a mixed UTF-8 payload that is exactly 1,273 bytes fits H/40.
+qrcodeGenerator.stringToBytes = qrcodeGenerator.stringToBytesFuncs['UTF-8'];
+const multibyteAtHLimit = `${'a'.repeat(1271)}é`;
+const multibyteOverHLimit = `${'a'.repeat(1272)}é`;
+assert.equal(assertQrCapacity(multibyteAtHLimit, 'H'), 1273);
+assert.doesNotThrow(() => {
+  const qr = qrcodeGenerator(0, 'H');
+  qr.addData(multibyteAtHLimit, 'Byte');
+  qr.make();
+});
+assert.throws(() => {
+  const qr = qrcodeGenerator(0, 'H');
+  qr.addData(multibyteOverHLimit, 'Byte');
+  qr.make();
+}, /code length overflow/);
 
 assert.equal(escapeVCard('One, Two; Three\nFour'), 'One\\, Two\\; Three\\nFour');
 

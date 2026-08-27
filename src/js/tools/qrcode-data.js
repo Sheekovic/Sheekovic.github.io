@@ -14,6 +14,8 @@ const byteCapacityByRecoveryLevel = Object.freeze({ L: 2953, M: 2331, Q: 1663, H
 
 export function assertQrCapacity(payload, recoveryLevel) {
   const level = byteCapacityByRecoveryLevel[recoveryLevel] ? recoveryLevel : 'H';
+  // qr-code-styling 1.9.2 bundles qrcode-generator 1.5.2, whose UTF-8 encoder
+  // emits the payload bytes directly without adding a byte-order mark.
   const byteLength = new TextEncoder().encode(String(payload || '')).byteLength;
   const capacity = byteCapacityByRecoveryLevel[level];
   if (byteLength > capacity) {
