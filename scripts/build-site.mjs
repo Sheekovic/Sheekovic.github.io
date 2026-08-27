@@ -9,8 +9,15 @@ const javascriptRoot = resolve(projectRoot, "src/js");
 const stylesRoot = resolve(projectRoot, "src/styles");
 
 const browserOnlyExcludes = new Set([
+  "auth_github_provider_create.js",
+  "auth_github_signin_popup.js",
+  "auth_github_signin_redirect_result.js",
+  "auth_sign_out.js",
+  "auth_signin_redirect.js",
   "check-sqlite.js",
   "create_user_data_db.js",
+  "github-login.js",
+  "pop-upHandler.js",
   "protection.js",
   "server.js",
   "sqlapp.js",
@@ -85,7 +92,25 @@ async function assertBuild() {
   }
 
   for (const file of await walk(outputRoot)) {
-    if (extname(file).toLowerCase() !== ".html") continue;
+    const extension = extname(file).toLowerCase();
+
+    if (extension === ".js") {
+      const source = await readFile(file, "utf8");
+      const importPattern = /(?:import\s+(?:[^"']*?\s+from\s+)?|export\s+[^"']*?\s+from\s+)["'](\.{1,2}\/[^"']+)["']/g;
+
+      for (const match of source.matchAll(importPattern)) {
+        const reference = match[1].split(/[?#]/, 1)[0];
+        const target = resolve(dirname(file), reference);
+        const details = await stat(target).catch(() => null);
+        if (!details?.isFile()) {
+          throw new Error(
+            `Broken local module import in ${relative(outputRoot, file)}: ${reference}`,
+          );
+        }
+      }
+    }
+
+    if (extension !== ".html") continue;
 
     const html = await readFile(file, "utf8");
     for (const match of html.matchAll(/(?:href|src)\s*=\s*["']([^"']+)["']/gi)) {

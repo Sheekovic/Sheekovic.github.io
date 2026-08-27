@@ -1,6 +1,6 @@
 // Import Firebase SDKs and your Firebase configuration 
-import { firebaseApp } from './assets/js/firebase-config.js'; // Import initialized app
-import firebaseConfig from './assets/js/firebase-config.js'; // Import the config if needed for debugging
+import { firebaseApp } from './firebase-config.js'; // Import initialized app
+import firebaseConfig from './firebase-config.js'; // Import the config if needed for debugging
 import { getAuth, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 
