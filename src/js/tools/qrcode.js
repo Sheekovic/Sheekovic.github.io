@@ -127,7 +127,7 @@ function qrOptions(payload) {
     },
     cornersDotOptions: {
       type: value('cornerStyle') === 'square' ? 'square' : 'dot',
-      color: value('secondaryColor'),
+      color: useGradient ? value('secondaryColor') : value('primaryColor'),
     },
     backgroundOptions: { color: value('backgroundColor') },
   };
